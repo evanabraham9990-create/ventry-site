@@ -168,13 +168,13 @@
       'rgba(168,156,247,VAL)'
     ];
 
-    var count = 55;
+    var count = 38;
     for (var i = 0; i < count; i++) {
       var dot = document.createElement('span');
       dot.className = 'hero-sprinkle';
 
-      var size = (Math.random() * 1.5 + 1).toFixed(1);
-      var opacity = (Math.random() * 0.35 + 0.3).toFixed(2);
+      var size = (Math.random() * 1.2 + 0.8).toFixed(1);
+      var opacity = (Math.random() * 0.2 + 0.25).toFixed(2);
       var color = colors[Math.floor(Math.random() * colors.length)].replace('VAL', opacity);
 
       // Weight positions toward edges
@@ -189,8 +189,8 @@
       }
       y = Math.random() * 100;
 
-      var duration = (Math.random() * 4 + 3).toFixed(1);
-      var delay = (Math.random() * 6).toFixed(1);
+      var duration = (Math.random() * 5 + 6).toFixed(1);
+      var delay = (Math.random() * 10).toFixed(1);
 
       dot.style.cssText = [
         'width:' + size + 'px',

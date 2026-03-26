@@ -343,7 +343,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   z-index: 1;
   background-image: radial-gradient(circle, rgba(196, 181, 253, 0.18) 1px, transparent 1px);
   background-size: 32px 32px;
-  opacity: 0.22;
+  opacity: 0.15;
   pointer-events: none;
 }
 
@@ -394,8 +394,8 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0; transform: scale(0.6); }
-  50%       { opacity: 1; transform: scale(1); }
+  0%, 100% { opacity: 0.15; }
+  50%       { opacity: 0.65; }
 }
 
 .hero-sprinkle {
@@ -403,7 +403,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   border-radius: 50%;
   pointer-events: none;
   z-index: 3;
-  animation: twinkle linear infinite;
+  animation: twinkle ease-in-out infinite;
 }
 
 /* ============================================================
