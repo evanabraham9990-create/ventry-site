@@ -700,15 +700,12 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .feature-check {
   width: 22px;
   height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple-core), var(--indigo-deep));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--purple-core);
   flex-shrink: 0;
   margin-top: 2px;
-  box-shadow: 0 0 12px rgba(124, 111, 247, 0.35);
 }
 
 .feature-list li div {
