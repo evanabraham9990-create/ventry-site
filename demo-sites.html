@@ -97,12 +97,19 @@
 
         <!-- Tree Service -->
         <div class="demo-site-card fade-up" data-delay="120">
-          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-hvac" aria-label="View Tree Service Demo">
+          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-tree" aria-label="View Tree Service Demo">
             <div class="demo-anim-wrap">
               <svg class="demo-anim-icon" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="40" cy="28" r="16" fill="rgba(124,111,247,0.12)" stroke="rgba(124,111,247,0.6)" stroke-width="2"/>
-                <path d="M40 14 L40 8M40 42 L40 48M54 18 L58 14M26 38 L22 42M54 38 L58 42M26 18 L22 14" stroke="rgba(124,111,247,0.5)" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="40" cy="28" r="7" fill="rgba(124,111,247,0.3)" class="hvac-pulse"/>
+                <g class="tree-sway">
+                  <!-- Trunk -->
+                  <rect x="36" y="46" width="8" height="10" rx="1" fill="rgba(124,111,247,0.25)" stroke="rgba(124,111,247,0.55)" stroke-width="1.5"/>
+                  <!-- Bottom layer -->
+                  <polygon points="8,50 40,34 72,50" fill="rgba(124,111,247,0.16)" stroke="rgba(124,111,247,0.6)" stroke-width="1.5"/>
+                  <!-- Middle layer -->
+                  <polygon points="14,40 40,22 66,40" fill="rgba(124,111,247,0.22)" stroke="rgba(124,111,247,0.65)" stroke-width="1.5"/>
+                  <!-- Top layer -->
+                  <polygon points="22,30 40,10 58,30" fill="rgba(124,111,247,0.3)" stroke="rgba(124,111,247,0.75)" stroke-width="1.5"/>
+                </g>
               </svg>
               <div class="demo-anim-label">Tree Service</div>
             </div>

@@ -2041,3 +2041,14 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .demo-site-info .btn {
   margin-top: auto;
 }
+
+/* Tree — gentle sway */
+.tree-sway {
+  animation: tree-sway 3.5s ease-in-out infinite;
+  transform-origin: 40px 56px;
+}
+@keyframes tree-sway {
+  0%, 100% { transform: rotate(0deg); }
+  30%       { transform: rotate(2deg); }
+  70%       { transform: rotate(-2deg); }
+}
