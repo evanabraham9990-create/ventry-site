@@ -155,6 +155,58 @@
   });
 
   /* ----------------------------------------------------------
+     HERO SPRINKLE DOTS
+  ---------------------------------------------------------- */
+  (function () {
+    var heroBg = document.querySelector('.hero-bg');
+    if (!heroBg) return;
+
+    var colors = [
+      'rgba(240,242,255,VAL)',
+      'rgba(196,181,253,VAL)',
+      'rgba(255,255,255,VAL)',
+      'rgba(168,156,247,VAL)'
+    ];
+
+    var count = 55;
+    for (var i = 0; i < count; i++) {
+      var dot = document.createElement('span');
+      dot.className = 'hero-sprinkle';
+
+      var size = (Math.random() * 1.5 + 1).toFixed(1);
+      var opacity = (Math.random() * 0.35 + 0.3).toFixed(2);
+      var color = colors[Math.floor(Math.random() * colors.length)].replace('VAL', opacity);
+
+      // Weight positions toward edges
+      var x, y;
+      var edge = Math.random();
+      if (edge < 0.35) {
+        x = Math.random() * 18;
+      } else if (edge < 0.70) {
+        x = 82 + Math.random() * 18;
+      } else {
+        x = Math.random() * 100;
+      }
+      y = Math.random() * 100;
+
+      var duration = (Math.random() * 4 + 3).toFixed(1);
+      var delay = (Math.random() * 6).toFixed(1);
+
+      dot.style.cssText = [
+        'width:' + size + 'px',
+        'height:' + size + 'px',
+        'background:' + color,
+        'left:' + x.toFixed(1) + '%',
+        'top:' + y.toFixed(1) + '%',
+        'animation-duration:' + duration + 's',
+        'animation-delay:-' + delay + 's'
+      ].join(';');
+
+      heroBg.appendChild(dot);
+    }
+  })();
+
+  /* ----------------------------------------------------------
      VIDEO PLACEHOLDER — PLAY BUTTON
      (Swap with real YouTube embed when URL is available)
   ---------------------------------------------------------- */

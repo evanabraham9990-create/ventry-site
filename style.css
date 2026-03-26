@@ -343,7 +343,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   z-index: 1;
   background-image: radial-gradient(circle, rgba(196, 181, 253, 0.18) 1px, transparent 1px);
   background-size: 32px 32px;
-  opacity: 0; /* DEBUG: re-enable → 0.3 */
+  opacity: 0.22;
   pointer-events: none;
 }
 
@@ -372,7 +372,6 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   background: radial-gradient(circle, rgba(124, 111, 247, 0.13) 0%, transparent 70%);
   filter: blur(80px);
   pointer-events: none;
-  opacity: 0; /* DEBUG: re-enable → remove this line */
   animation: key-breathe 12s ease-in-out infinite;
 }
 
@@ -387,12 +386,24 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   background: radial-gradient(circle, rgba(67, 56, 202, 0.07) 0%, transparent 70%);
   filter: blur(60px);
   pointer-events: none;
-  opacity: 0; /* DEBUG: re-enable → remove this line */
 }
 
 @keyframes key-breathe {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.75; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  50%       { opacity: 1; transform: scale(1); }
+}
+
+.hero-sprinkle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 3;
+  animation: twinkle linear infinite;
 }
 
 /* ============================================================
