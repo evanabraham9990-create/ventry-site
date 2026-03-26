@@ -2020,27 +2020,24 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   50%       { opacity: 1; filter: blur(1px); }
 }
 
-/* Restoration — droplet pulse + flame flicker */
-.restore-drop {
-  animation: drop-pulse 2.8s ease-in-out infinite;
-  transform-origin: 16px 38px;
+/* Restoration — shield pulse + bolt flash */
+.shield-pulse {
+  animation: shield-glow 2.4s ease-in-out infinite;
 }
-@keyframes drop-pulse {
-  0%, 100% { opacity: 0.7; transform: scaleY(1); }
-  50%       { opacity: 1;   transform: scaleY(1.06); }
+@keyframes shield-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(124,111,247,0.3)); opacity: 0.85; }
+  50%       { filter: drop-shadow(0 0 10px rgba(124,111,247,0.7)); opacity: 1; }
 }
 
-.restore-flame {
-  animation: flame-flicker 1.4s ease-in-out infinite alternate;
-  transform-origin: 64px 44px;
+.bolt-flash {
+  animation: bolt-pulse 2.4s ease-in-out infinite;
 }
-.restore-flame-inner {
-  animation: flame-flicker 1s ease-in-out infinite alternate-reverse;
-  transform-origin: 64px 40px;
+@keyframes bolt-pulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; filter: drop-shadow(0 0 6px rgba(200,180,255,0.9)); }
 }
-@keyframes flame-flicker {
-  0%   { transform: scaleX(1)   scaleY(1);    opacity: 0.8; }
-  33%  { transform: scaleX(0.94) scaleY(1.05); opacity: 1;   }
-  66%  { transform: scaleX(1.05) scaleY(0.97); opacity: 0.9; }
-  100% { transform: scaleX(0.97) scaleY(1.04); opacity: 1;   }
+
+/* Button alignment — pin to bottom of card info */
+.demo-site-info .btn {
+  margin-top: auto;
 }
