@@ -123,16 +123,26 @@
 
         <!-- Garage Door -->
         <div class="demo-site-card fade-up" data-delay="60">
-          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-plumbing" aria-label="View Garage Door Demo">
+          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-garage" aria-label="View Garage Door Demo">
             <div class="demo-anim-wrap">
               <svg class="demo-anim-icon" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M28 10 L28 34 Q28 44 38 44 L52 44" stroke="rgba(124,111,247,0.7)" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <circle cx="56" cy="44" r="5" fill="rgba(124,111,247,0.25)" stroke="rgba(124,111,247,0.6)" stroke-width="2"/>
-                <path d="M34 10 L22 10" stroke="rgba(124,111,247,0.5)" stroke-width="3" stroke-linecap="round"/>
+                <defs>
+                  <clipPath id="garage-clip">
+                    <rect x="16" y="8" width="48" height="38"/>
+                  </clipPath>
+                </defs>
+                <!-- Frame -->
+                <rect x="16" y="8" width="48" height="38" rx="1" stroke="rgba(124,111,247,0.7)" stroke-width="2"/>
+                <!-- Door panels (clipped to frame, animate up) -->
+                <g clip-path="url(#garage-clip)" class="garage-door-panels">
+                  <rect x="17" y="9"  width="46" height="8" rx="0" fill="rgba(124,111,247,0.22)" stroke="rgba(124,111,247,0.45)" stroke-width="1"/>
+                  <rect x="17" y="18" width="46" height="8" rx="0" fill="rgba(124,111,247,0.22)" stroke="rgba(124,111,247,0.45)" stroke-width="1"/>
+                  <rect x="17" y="27" width="46" height="8" rx="0" fill="rgba(124,111,247,0.22)" stroke="rgba(124,111,247,0.45)" stroke-width="1"/>
+                  <rect x="17" y="36" width="46" height="8" rx="0" fill="rgba(124,111,247,0.22)" stroke="rgba(124,111,247,0.45)" stroke-width="1"/>
+                </g>
+                <!-- Ground -->
+                <rect x="10" y="47" width="60" height="4" rx="2" fill="rgba(124,111,247,0.15)" stroke="rgba(124,111,247,0.35)" stroke-width="1"/>
               </svg>
-              <div class="demo-drops">
-                <span></span><span></span><span></span>
-              </div>
               <div class="demo-anim-label">Garage Door</div>
             </div>
           </a>
@@ -145,12 +155,26 @@
 
         <!-- Pest Control -->
         <div class="demo-site-card fade-up" data-delay="120">
-          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-medspa" aria-label="View Pest Control Demo">
+          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-pest" aria-label="View Pest Control Demo">
             <div class="demo-anim-wrap">
               <svg class="demo-anim-icon" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="40" cy="28" rx="18" ry="22" fill="rgba(124,111,247,0.1)" stroke="rgba(124,111,247,0.5)" stroke-width="1.5"/>
-                <path d="M40 10 Q46 20 40 28 Q34 20 40 10Z" fill="rgba(124,111,247,0.4)"/>
-                <circle cx="40" cy="28" r="3" fill="rgba(200,180,255,0.8)" class="medspa-glow"/>
+                <!-- Target rings -->
+                <circle cx="40" cy="30" r="22" stroke="rgba(124,111,247,0.2)" stroke-width="1" class="pest-ring-1"/>
+                <circle cx="40" cy="30" r="15" stroke="rgba(124,111,247,0.3)" stroke-width="1" class="pest-ring-2"/>
+                <!-- Bug body -->
+                <ellipse cx="40" cy="31" rx="6" ry="9" fill="rgba(124,111,247,0.25)" stroke="rgba(124,111,247,0.7)" stroke-width="1.5"/>
+                <!-- Head -->
+                <circle cx="40" cy="20" r="4" fill="rgba(124,111,247,0.25)" stroke="rgba(124,111,247,0.7)" stroke-width="1.5"/>
+                <!-- Antennae -->
+                <path d="M38,17 Q34,11 30,9" stroke="rgba(124,111,247,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none" class="pest-antenna-l"/>
+                <path d="M42,17 Q46,11 50,9" stroke="rgba(124,111,247,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none" class="pest-antenna-r"/>
+                <!-- Legs -->
+                <line x1="34" y1="27" x2="24" y2="23" stroke="rgba(124,111,247,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="34" y1="31" x2="23" y2="31" stroke="rgba(124,111,247,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="34" y1="35" x2="24" y2="39" stroke="rgba(124,111,247,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="46" y1="27" x2="56" y2="23" stroke="rgba(124,111,247,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="46" y1="31" x2="57" y2="31" stroke="rgba(124,111,247,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="46" y1="35" x2="56" y2="39" stroke="rgba(124,111,247,0.5)" stroke-width="1.2" stroke-linecap="round"/>
               </svg>
               <div class="demo-anim-label">Pest Control</div>
             </div>

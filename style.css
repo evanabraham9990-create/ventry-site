@@ -2052,3 +2052,42 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   30%       { transform: rotate(2deg); }
   70%       { transform: rotate(-2deg); }
 }
+
+/* Garage Door — open and close */
+.garage-door-panels {
+  animation: garage-open 4s ease-in-out infinite;
+}
+@keyframes garage-open {
+  0%, 15%   { transform: translateY(0); }
+  40%, 60%  { transform: translateY(-38px); }
+  85%, 100% { transform: translateY(0); }
+}
+
+/* Pest Control — pulsing target rings + antenna wave */
+.pest-ring-1 {
+  animation: pest-ping 2.4s ease-out infinite;
+}
+.pest-ring-2 {
+  animation: pest-ping 2.4s ease-out infinite 0.4s;
+}
+@keyframes pest-ping {
+  0%   { opacity: 0.8; transform: scale(0.85); transform-origin: 40px 30px; }
+  70%  { opacity: 0.3; }
+  100% { opacity: 0;   transform: scale(1.15); transform-origin: 40px 30px; }
+}
+.pest-antenna-l {
+  animation: antenna-l 1.8s ease-in-out infinite alternate;
+  transform-origin: 38px 17px;
+}
+.pest-antenna-r {
+  animation: antenna-r 1.8s ease-in-out infinite alternate;
+  transform-origin: 42px 17px;
+}
+@keyframes antenna-l {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(-12deg); }
+}
+@keyframes antenna-r {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(12deg); }
+}
