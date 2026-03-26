@@ -2076,6 +2076,16 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   to   { transform: rotate(360deg); }
 }
 
+/* Plumbing — drops inside SVG */
+.svg-drop-1 { animation: svg-drip 1.8s ease-in infinite 0s;    }
+.svg-drop-2 { animation: svg-drip 1.8s ease-in infinite 0.6s;  }
+.svg-drop-3 { animation: svg-drip 1.8s ease-in infinite 1.2s;  }
+@keyframes svg-drip {
+  0%   { transform: translateY(0);    opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+
 /* Garage Door — open and close */
 .garage-door-panels {
   animation: garage-open 4s ease-in-out infinite;
