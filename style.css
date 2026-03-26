@@ -2146,3 +2146,41 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(12deg); }
 }
+
+/* ============================================================
+   SCROLL TO TOP BUTTON
+   ============================================================ */
+#scroll-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  color: var(--purple-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(124, 111, 247, 0.2);
+}
+
+#scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#scroll-top-btn:hover {
+  background: var(--bg-surface);
+  border-color: var(--purple-core);
+  color: #fff;
+  box-shadow: var(--glow-sm);
+}
