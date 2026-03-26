@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapid Response Restoration | 24/7 Water & Fire Damage</title>
+<meta name="description" content="Rapid Response Restoration — 24/7 emergency water damage, fire damage, and mold remediation. On-site within 2 hours or your assessment is free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #060F1E;
+    --navy-2: #0A1628;
+    --navy-3: #0E1F3A;
+    --cyan: #00C2E0;
+    --cyan-dim: #0090A8;
+    --cyan-glow: rgba(0,194,224,.15);
+    --cyan-glow-strong: rgba(0,194,224,.25);
+    --red: #FF3B3B;
+    --red-dim: rgba(255,59,59,.12);
+    --red-glow: rgba(255,59,59,.2);
+    --green: #22C55E;
+    --text: #E8EFF8;
+    --muted: #4A5B6E;
+    --muted-2: #7A8FA0;
+    --white: #FFFFFF;
+    --nav-h: 72px;
+    --ticker-h: 38px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* UTILITY */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+  section { position: relative; }
+  a { text-decoration: none; color: inherit; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+  .reveal-delay-5 { transition-delay: .5s; }
+
+  /* ALERT TICKER */
+  .ticker-wrap {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: var(--ticker-h);
+    background: var(--red);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 40s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #fff;
+    padding-right: 4rem;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: var(--ticker-h);
+    left: 0; right: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    transition: background .35s, box-shadow .35s;
+  }
+  nav.scrolled {
+    background: rgba(6,15,30,.94);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 1px 0 rgba(0,194,224,.12), 0 8px 32px rgba(0,0,0,.4);
+  }
+  .nav-logo { display: flex; align-items: center; gap: .75rem; }
+  .nav-logo-badge {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--cyan);
+    letter-spacing: -.02em;
+    line-height: 1;
+  }
+  .nav-logo-text { display: flex; flex-direction: column; gap: .1rem; }
+  .nav-logo-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .82rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1;
+  }
+  .nav-logo-sub {
+    font-family: 'Lato', sans-serif;
+    font-size: .62rem;
+    color: var(--muted-2);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: .88rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+  .nav-phone {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--cyan);
+    letter-spacing: .03em;
+  }
+  .btn-call-nav {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--red);
+    padding: .55rem 1.25rem;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .btn-call-nav:hover {
+    background: #e02828;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--red-glow);
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    transition: transform .3s, opacity .3s;
+    border-radius: 2px;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: calc(var(--ticker-h) + var(--nav-h));
+    left: 0; right: 0;
+    background: rgba(6,15,30,.98);
+    backdrop-filter: blur(24px);
+    padding: 2rem 5% 2.5rem;
+    z-index: 99;
+    border-bottom: 1px solid rgba(0,194,224,.1);
+    flex-direction: column;
+    gap: .25rem;
+    animation: slideDown .3s ease;
+  }
+  .mobile-menu.open { display: flex; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .mobile-menu a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text);
+    padding: .75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .mobile-menu-phone {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--cyan);
+    padding: 1rem 0 .5rem;
+  }
+  .mobile-menu .btn-call-nav {
+    margin-top: .75rem;
+    width: 100%;
+    padding: .9rem;
+    font-size: .88rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    padding-top: calc(var(--ticker-h) + var(--nav-h));
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(160deg, rgba(6,15,30,.93) 0%, rgba(8,21,37,.88) 50%, rgba(6,13,24,.94) 100%);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 65% 40%, rgba(0,194,224,.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 15% 80%, rgba(255,59,59,.04) 0%, transparent 60%);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 5% 4rem;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 2px;
+    background: var(--cyan);
+    display: block;
+    flex-shrink: 0;
+  }
+  .hero-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.04;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline .accent { color: var(--cyan); }
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted-2);
+    line-height: 1.75;
+    max-width: 500px;
+    margin-bottom: 2rem;
+  }
+  .hero-phone-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-phone-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1;
+    margin-bottom: .3rem;
+  }
+  .hero-phone-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--cyan);
+    letter-spacing: -.01em;
+    animation: phonePulse 2.5s ease-in-out infinite;
+    line-height: 1;
+  }
+  @keyframes phonePulse {
+    0%, 100% { text-shadow: 0 0 0 transparent; }
+    50% { text-shadow: 0 0 28px rgba(0,194,224,.5); }
+  }
+  .hero-cta-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+  .btn-primary {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .92rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--red);
+    padding: .9rem 2rem;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    background: #e02828;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255,59,59,.35);
+  }
+  .btn-outline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: .88rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: transparent;
+    padding: .9rem 1.75rem;
+    border-radius: 3px;
+    border: 1.5px solid rgba(0,194,224,.35);
+    cursor: pointer;
+    transition: border-color .2s, background .2s, transform .15s;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .btn-outline:hover {
+    border-color: var(--cyan);
+    background: var(--cyan-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Dispatch Card */
+  .dispatch-card {
+    background: rgba(10,22,40,.88);
+    border: 1px solid rgba(0,194,224,.18);
+    border-radius: 8px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+  }
+  .dispatch-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--cyan-dim));
+  }
+  .dispatch-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .dispatch-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    color: var(--red);
+    text-transform: uppercase;
+  }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: livePulse 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,59,59,.6); }
+    50% { opacity: .85; box-shadow: 0 0 0 6px rgba(255,59,59,0); }
+  }
+  .dispatch-status-row {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.5rem;
+  }
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    animation: greenPulse 2s ease-in-out infinite;
+  }
+  @keyframes greenPulse {
+    0%, 100% { box-shadow: 0 0 6px rgba(34,197,94,.5); }
+    50% { box-shadow: 0 0 14px rgba(34,197,94,.9); }
+  }
+  .dispatch-status-label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--green);
+    letter-spacing: .04em;
+  }
+  .dispatch-items { display: flex; flex-direction: column; gap: .85rem; }
+  .dispatch-item {
+    display: flex;
+    flex-direction: column;
+    gap: .18rem;
+    padding-bottom: .85rem;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .dispatch-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .dispatch-item-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: .62rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .dispatch-item-value {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--text);
+  }
+  .dispatch-item-value.highlight { color: var(--cyan); }
+  .dispatch-cta {
+    margin-top: 1.5rem;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: .88rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cyan);
+    padding: .85rem;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+  }
+  .dispatch-cta:hover {
+    background: #00d4f5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,194,224,.3);
+  }
+  .dispatch-note {
+    text-align: center;
+    font-size: .66rem;
+    color: var(--muted);
+    margin-top: .6rem;
+    line-height: 1.5;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--navy-3);
+    border-top: 1px solid rgba(0,194,224,.07);
+    border-bottom: 1px solid rgba(0,194,224,.07);
+    padding: 1rem 5%;
+    overflow: hidden;
+  }
+  .trust-bar-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    white-space: nowrap;
+  }
+  .trust-item .ti { color: var(--cyan); font-size: .85rem; }
+
+  /* SECTION LABELS */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: .68rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 20px;
+    height: 1.5px;
+    background: var(--cyan);
+    display: block;
+    flex-shrink: 0;
+  }
+  .section-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.08;
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: -.01em;
+  }
+  .section-sub {
+    font-size: .95rem;
+    font-weight: 300;
+    color: var(--muted-2);
+    line-height: 1.75;
+    max-width: 540px;
+    margin-top: .75rem;
+  }
+
+  /* PAIN SCENARIOS */
+  #pain {
+    padding: 6rem 5%;
+    background: var(--navy);
+  }
+  .pain-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
+  .pain-header .section-sub { margin: .75rem auto 0; }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .pain-card {
+    background: var(--navy-2);
+    border: 1px solid rgba(0,194,224,.07);
+    border-radius: 6px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .3s, transform .3s;
+  }
+  .pain-card:hover {
+    border-color: rgba(0,194,224,.18);
+    transform: translateY(-4px);
+  }
+  .pain-card-img {
+    height: 170px;
+    margin: -2rem -2rem 1.5rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+  }
+  .pain-card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6,15,30,.35) 0%, rgba(6,15,30,.7) 100%);
+  }
+  .pain-card-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(0,194,224,.05);
+    position: absolute;
+    top: .75rem;
+    right: 1.25rem;
+    letter-spacing: -.04em;
+    user-select: none;
+  }
+  .pain-card-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: .75rem;
+    letter-spacing: .02em;
+    line-height: 1.3;
+    position: relative;
+  }
+  .pain-card-situation {
+    font-size: .88rem;
+    color: var(--muted-2);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .pain-card-warning {
+    background: rgba(255,59,59,.06);
+    border: 1px solid rgba(255,59,59,.18);
+    border-radius: 4px;
+    padding: .9rem 1rem;
+  }
+  .pain-card-warning-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: .4rem;
+  }
+  .pain-card-warning p {
+    font-size: .82rem;
+    color: rgba(248,130,130,.85);
+    line-height: 1.6;
+  }
+
+  /* SERVICES */
+  #services {
+    padding: 6rem 5%;
+    background: var(--navy-2);
+    border-top: 1px solid rgba(0,194,224,.06);
+    border-bottom: 1px solid rgba(0,194,224,.06);
+  }
+  .services-header { max-width: 1200px; margin: 0 auto 3.5rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: var(--navy-3);
+    border: 1px solid rgba(0,194,224,.07);
+    border-top: 3px solid var(--cyan);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: transform .3s, box-shadow .3s;
+    position: relative;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(0,194,224,.14), inset 0 0 40px rgba(0,194,224,.025);
+  }
+  .service-num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: rgba(0,194,224,.14);
+    line-height: 1;
+    margin-bottom: .75rem;
+    letter-spacing: -.02em;
+  }
+  .service-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--text);
+    letter-spacing: .04em;
+    margin-bottom: .75rem;
+    line-height: 1.3;
+  }
+  .service-desc { font-size: .86rem; color: var(--muted-2); line-height: 1.78; }
+
+  /* BEFORE / AFTER */
+  #results {
+    padding: 6rem 5%;
+    background: var(--navy);
+  }
+  .results-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
+  .results-header .section-sub { margin: .75rem auto 0; }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ba-card {
+    background: var(--navy-2);
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .ba-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.3);
+  }
+  .ba-card-photo {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .ba-card-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6,15,30,.2) 0%, rgba(6,15,30,.65) 100%);
+  }
+  .ba-card-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted-2);
+    padding: 1.25rem 1.5rem .75rem;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+  .ba-half { padding: 1.25rem 1.5rem; }
+  .ba-half.before {
+    background: rgba(255,59,59,.04);
+    border-bottom: 1px solid rgba(255,59,59,.1);
+  }
+  .ba-half.after {
+    background: rgba(0,194,224,.035);
+    border-bottom: 1px solid rgba(0,194,224,.1);
+  }
+  .ba-label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: .58rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+  }
+  .ba-half.before .ba-label { color: var(--red); }
+  .ba-half.after .ba-label { color: var(--cyan); }
+  .ba-half p { font-size: .84rem; line-height: 1.65; }
+  .ba-half.before p { color: rgba(248,130,130,.8); }
+  .ba-half.after p { color: rgba(0,194,224,.88); }
+  .ba-outcome {
+    padding: 1rem 1.5rem;
+    font-size: .78rem;
+    color: var(--muted-2);
+    line-height: 1.55;
+    font-style: italic;
+  }
+  .ba-outcome strong { color: var(--text); font-style: normal; }
+
+  /* PROCESS */
+  #process {
+    padding: 6rem 5%;
+    background: var(--navy-2);
+    border-top: 1px solid rgba(0,194,224,.06);
+  }
+  .process-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+  .process-header .section-sub { margin: .75rem auto 0; }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2.2rem;
+    left: calc(12.5% + 1.75rem);
+    right: calc(12.5% + 1.75rem);
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--cyan-dim), rgba(0,194,224,.4), var(--cyan-dim));
+    z-index: 0;
+  }
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .process-num {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background: var(--navy-3);
+    border: 2px solid var(--cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--cyan);
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(0,194,224,.1);
+  }
+  .process-step-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: .88rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text);
+    margin-bottom: .65rem;
+  }
+  .process-step-desc { font-size: .82rem; color: var(--muted-2); line-height: 1.72; }
+
+  /* INSURANCE */
+  #insurance {
+    padding: 6rem 5%;
+    background: var(--navy);
+  }
+  .insurance-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
+  .insurance-header .section-sub { margin: .75rem auto 0; }
+  .insurance-panel {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--navy-3);
+    border: 1px solid rgba(0,194,224,.11);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .insurance-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .insurance-col {
+    padding: 2.5rem;
+    border-right: 1px solid rgba(255,255,255,.05);
+  }
+  .insurance-col:last-child { border-right: none; }
+  .insurance-col-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+  .insurance-col-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--cyan);
+    margin-bottom: .75rem;
+  }
+  .insurance-col p { font-size: .86rem; color: var(--muted-2); line-height: 1.78; }
+  .insurance-footer {
+    background: rgba(0,194,224,.07);
+    border-top: 1px solid rgba(0,194,224,.14);
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .insurance-footer-badge {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: rgba(0,194,224,.1);
+    padding: .32rem .85rem;
+    border-radius: 2px;
+    border: 1px solid rgba(0,194,224,.22);
+    white-space: nowrap;
+  }
+  .insurance-footer p {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: .84rem;
+    color: var(--text);
+    letter-spacing: .04em;
+  }
+
+  /* STATS */
+  #stats { background: var(--cyan); padding: 4rem 5%; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .stat-label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: .76rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(6,15,30,.58);
+    margin-top: .4rem;
+    line-height: 1.4;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials {
+    padding: 6rem 5%;
+    background: var(--navy-2);
+    border-top: 1px solid rgba(0,194,224,.06);
+  }
+  .testimonials-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: var(--navy-3);
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 6px;
+    padding: 1.75rem;
+    transition: transform .3s, border-color .3s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,194,224,.1);
+  }
+  .testimonial-stars { color: #FFB800; font-size: .9rem; letter-spacing: .04em; margin-bottom: 1rem; }
+  .testimonial-quote {
+    font-size: .88rem;
+    color: var(--muted-2);
+    line-height: 1.78;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+  }
+  .testimonial-author {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text);
+  }
+  .testimonial-meta { font-size: .7rem; color: var(--muted); margin-top: .2rem; letter-spacing: .04em; }
+  .testimonial-type {
+    display: inline-block;
+    margin-top: .6rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: var(--cyan-glow);
+    padding: .2rem .6rem;
+    border-radius: 2px;
+    border: 1px solid rgba(0,194,224,.14);
+  }
+
+  /* FAQ */
+  #faq {
+    padding: 6rem 5%;
+    background: var(--navy);
+  }
+  .faq-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
+  .faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .faq-item {
+    background: var(--navy-2);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .faq-item.open { border-color: rgba(0,194,224,.18); }
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
+  }
+  .faq-question-text {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: .96rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .faq-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,194,224,.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color .2s, background .2s, transform .3s;
+    color: var(--cyan);
+    font-size: .8rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon {
+    background: var(--cyan-glow);
+    border-color: var(--cyan);
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease, padding .3s;
+    padding: 0 1.5rem;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.25rem; }
+  .faq-answer p {
+    font-size: .88rem;
+    color: var(--muted-2);
+    line-height: 1.82;
+    border-top: 1px solid rgba(255,255,255,.04);
+    padding-top: 1rem;
+  }
+
+  /* FINAL CTA */
+  #cta {
+    padding: 7rem 5%;
+    background: var(--navy-2);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-top: 1px solid rgba(0,194,224,.07);
+  }
+  #cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 50% 50%, rgba(0,194,224,.055) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 40% at 80% 20%, rgba(255,59,59,.035) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .cta-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: .68rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+  .cta-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: -.01em;
+    margin-bottom: 1rem;
+  }
+  .cta-sub {
+    font-size: .98rem;
+    font-weight: 300;
+    color: var(--muted-2);
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .cta-phone-big {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    color: var(--cyan);
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-bottom: 2rem;
+    display: block;
+    animation: phonePulse 2.5s ease-in-out infinite;
+  }
+  .cta-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+  .btn-primary-lg {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--red);
+    padding: 1rem 2.5rem;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    display: inline-block;
+  }
+  .btn-primary-lg:hover {
+    background: #e02828;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(255,59,59,.4);
+  }
+  .cta-text-link { font-family: 'Oswald', sans-serif; font-weight: 500; font-size: .82rem; letter-spacing: .08em; color: var(--muted-2); }
+  .cta-text-link a { color: var(--cyan); text-decoration: underline; text-decoration-color: rgba(0,194,224,.3); }
+
+  /* FOOTER */
+  footer {
+    background: #040B15;
+    padding: 4rem 5% 2rem;
+    border-top: 1px solid rgba(0,194,224,.07);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+  }
+  .footer-logo-wrap { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+  .footer-logo-badge {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--cyan);
+    line-height: 1;
+  }
+  .footer-logo-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1.35;
+  }
+  .footer-tagline { font-size: .84rem; color: var(--muted); line-height: 1.72; margin-bottom: 1rem; }
+  .footer-cert {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: var(--cyan-glow);
+    border: 1px solid rgba(0,194,224,.18);
+    padding: .3rem .8rem;
+    border-radius: 2px;
+  }
+  .footer-col-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 1.25rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+  .footer-col ul li a, .footer-col ul li span { font-size: .84rem; color: var(--muted); transition: color .2s; line-height: 1.5; }
+  .footer-col ul li a:hover { color: var(--cyan); }
+  .footer-contact-item { display: flex; flex-direction: column; gap: .15rem; margin-bottom: .75rem; }
+  .footer-contact-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: .6rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .footer-contact-value { font-size: .88rem; color: var(--text); }
+  .footer-contact-value.phone { color: var(--cyan); font-weight: 700; font-size: 1rem; font-family: 'Oswald', sans-serif; }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy { font-size: .72rem; color: var(--muted); letter-spacing: .04em; }
+  .footer-bottom-links { display: flex; gap: 1.5rem; }
+  .footer-bottom-links a { font-size: .72rem; color: var(--muted); letter-spacing: .04em; transition: color .2s; }
+  .footer-bottom-links a:hover { color: var(--cyan); }
+
+  /* MOBILE STICKY CTA */
+  .mobile-cta-sticky {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 300;
+    white-space: nowrap;
+    transition: opacity .3s;
+  }
+  .mobile-cta-sticky a {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: .88rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--red);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(255,59,59,.5);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .mobile-cta-sticky a:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 40px rgba(255,59,59,.6);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 960px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .dispatch-card { max-width: 460px; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    .process-steps::before { display: none; }
+    .ba-grid { grid-template-columns: 1fr; max-width: 520px; }
+  }
+  @media (max-width: 768px) {
+    .pain-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .insurance-grid { grid-template-columns: 1fr; }
+    .insurance-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .insurance-col:last-child { border-bottom: none; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .process-steps { grid-template-columns: 1fr; gap: 2rem; }
+    .mobile-cta-sticky { display: block; }
+    #pain, #services, #results, #process, #insurance, #testimonials, #faq, #cta { padding: 4rem 5%; }
+  }
+  @media (max-width: 760px) {
+    .nav-links, .nav-right { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 560px) {
+    .hero-phone-number { font-size: 1.8rem; }
+    .hero-cta-row { flex-direction: column; align-items: flex-start; }
+    .btn-primary, .btn-outline { width: 100%; text-align: center; }
+    .cta-btns { flex-direction: column; align-items: center; }
+    .stats-grid { gap: 1.25rem; }
+    .ba-grid { max-width: 100%; }
+    .insurance-footer { flex-direction: column; text-align: center; }
+    .trust-bar-inner { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ALERT TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span>⚡ 24/7 EMERGENCY DISPATCH — CALL (240) 555-0182 &nbsp;·&nbsp; Water damage? Call now — every hour counts against you &nbsp;·&nbsp; IICRC Certified &nbsp;·&nbsp; Direct insurance billing &nbsp;·&nbsp; On-site within 2 hours guaranteed &nbsp;·&nbsp;</span>
+    <span>⚡ 24/7 EMERGENCY DISPATCH — CALL (240) 555-0182 &nbsp;·&nbsp; Water damage? Call now — every hour counts against you &nbsp;·&nbsp; IICRC Certified &nbsp;·&nbsp; Direct insurance billing &nbsp;·&nbsp; On-site within 2 hours guaranteed &nbsp;·&nbsp;</span>
+    <span>⚡ 24/7 EMERGENCY DISPATCH — CALL (240) 555-0182 &nbsp;·&nbsp; Water damage? Call now — every hour counts against you &nbsp;·&nbsp; IICRC Certified &nbsp;·&nbsp; Direct insurance billing &nbsp;·&nbsp; On-site within 2 hours guaranteed &nbsp;·&nbsp;</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-badge">RRR</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Rapid Response</span>
+      <span class="nav-logo-sub">Restoration</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-phone">(240) 555-0182</span>
+    <a href="tel:2405550182" class="btn-call-nav">Call Now</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" class="nav-mobile-link">Services</a>
+  <a href="#process" class="nav-mobile-link">Process</a>
+  <a href="#testimonials" class="nav-mobile-link">Reviews</a>
+  <a href="#faq" class="nav-mobile-link">FAQ</a>
+  <div class="mobile-menu-phone">(240) 555-0182</div>
+  <a href="tel:2405550182" class="btn-call-nav">Call Now — We're Available 24/7</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">24/7 Emergency Restoration Services</div>
+      <h1 class="hero-headline reveal reveal-delay-1">WHEN DISASTER<br><span class="accent">STRIKES,</span><br>WE MOVE FIRST</h1>
+      <p class="hero-sub reveal reveal-delay-2">24/7 emergency water and fire damage restoration. On-site within 2 hours — or your assessment is free.</p>
+      <div class="hero-phone-wrap reveal reveal-delay-3">
+        <div>
+          <div class="hero-phone-label">Emergency Line — Answered 24/7</div>
+          <div class="hero-phone-number">(240) 555-0182</div>
+        </div>
+      </div>
+      <div class="hero-cta-row reveal reveal-delay-4">
+        <a href="tel:2405550182" class="btn-primary">Call Now — We're Available</a>
+        <a href="#results" class="btn-outline">See Our Work</a>
+      </div>
+    </div>
+    <div class="dispatch-card reveal reveal-delay-2">
+      <div class="dispatch-card-header">
+        <span class="dispatch-title">Emergency Dispatch Center</span>
+        <span class="live-badge"><span class="live-dot"></span> Live</span>
+      </div>
+      <div class="dispatch-status-row">
+        <span class="status-dot"></span>
+        <span class="dispatch-status-label">CREW STATUS: AVAILABLE</span>
+      </div>
+      <div class="dispatch-items">
+        <div class="dispatch-item">
+          <span class="dispatch-item-label">Response Time</span>
+          <span class="dispatch-item-value highlight">&lt; 2 Hours</span>
+        </div>
+        <div class="dispatch-item">
+          <span class="dispatch-item-label">Coverage Area</span>
+          <span class="dispatch-item-value">Montgomery, Frederick, Howard County</span>
+        </div>
+        <div class="dispatch-item">
+          <span class="dispatch-item-label">Insurance Billing</span>
+          <span class="dispatch-item-value highlight">Direct — $0 Upfront</span>
+        </div>
+        <div class="dispatch-item">
+          <span class="dispatch-item-label">Availability</span>
+          <span class="dispatch-item-value">24 / 7 / 365</span>
+        </div>
+      </div>
+      <a href="tel:2405550182" class="dispatch-cta">Call for Immediate Dispatch</a>
+      <p class="dispatch-note">Phone answered in under 30 seconds.<br>No voicemail. No call tree.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="ti">✓</span> IICRC Certified</div>
+    <div class="trust-item"><span class="ti">✓</span> EPA Compliant</div>
+    <div class="trust-item"><span class="ti">✓</span> Licensed &amp; Insured</div>
+    <div class="trust-item"><span class="ti">★</span> 5-Star Rated</div>
+    <div class="trust-item"><span class="ti">●</span> 12+ Years in Business</div>
+    <div class="trust-item"><span class="ti">✓</span> Direct Insurance Billing</div>
+  </div>
+</div>
+
+<!-- PAIN SCENARIOS -->
+<section id="pain">
+  <div class="container">
+    <div class="pain-header">
+      <div class="section-label reveal">Situations We Respond To</div>
+      <h2 class="section-headline reveal reveal-delay-1">WE'VE SEEN THIS<br>EXACT SITUATION</h2>
+      <p class="section-sub reveal reveal-delay-2">Every hour you wait adds dollars to the final bill. Here's what we handle every week.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-card-img" style="background-image:url('https://images.unsplash.com/photo-1504307651-50983c87faf7?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="pain-card-number">01</div>
+        <div class="pain-card-title">Woke Up to 3 Inches of Water</div>
+        <p class="pain-card-situation">A supply line behind the washing machine burst overnight. The kitchen floor is soaking. You don't know if the subfloor is already saturated or how far the water traveled into adjacent rooms.</p>
+        <div class="pain-card-warning">
+          <div class="pain-card-warning-label">⚠ If You Wait</div>
+          <p>Subfloor warps within 12 hours. Mold begins forming in 24–48 hours. What was a $2,400 job becomes $14,000+.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal reveal-delay-1">
+        <div class="pain-card-img" style="background-image:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="pain-card-number">02</div>
+        <div class="pain-card-title">Came Home to a Refrigerator Leak</div>
+        <p class="pain-card-situation">You were gone for a week. The fridge line has been dripping the entire time. The kitchen subfloor is soft when you walk on it. There's a smell you can't place.</p>
+        <div class="pain-card-warning">
+          <div class="pain-card-warning-label">⚠ If You Wait</div>
+          <p>Mold colony is likely already forming behind the baseboards. Every day you wait = more structural damage. Remediation cost doubles weekly.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal reveal-delay-2">
+        <div class="pain-card-img" style="background-image:url('https://images.unsplash.com/photo-1563302111-eab4b145e6c9?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="pain-card-number">03</div>
+        <div class="pain-card-title">Kitchen Fire — Smoke Everywhere</div>
+        <p class="pain-card-situation">Fire department cleared the scene. The fire is out. But soot and smoke have penetrated every surface on the second floor. The smell is overwhelming and the air tastes of it.</p>
+        <div class="pain-card-warning">
+          <div class="pain-card-warning-label">⚠ If You Wait</div>
+          <p>Smoke odor bonds to porous surfaces within 72 hours and becomes permanent. Soot is chemically corrosive — it keeps damaging surfaces even after the fire is out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label reveal">Full-Service Restoration</div>
+      <h2 class="section-headline reveal reveal-delay-1">WHAT WE HANDLE</h2>
+      <p class="section-sub reveal reveal-delay-2">Industrial-grade equipment. Certified technicians. From first call to final clearance.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-name">Emergency Water Extraction</div>
+        <p class="service-desc">Truck-mounted extraction units remove standing water at up to 25 gallons per minute. We're equipped for crawl spaces, finished basements, and multi-story flooding. Same-day dispatch, no exceptions.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <div class="service-name">Structural Drying</div>
+        <p class="service-desc">Industrial-grade dehumidifiers and axial air movers placed by our certified technicians. We monitor moisture levels daily until your structure reaches certified drying targets — not before.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <div class="service-name">Fire &amp; Smoke Remediation</div>
+        <p class="service-desc">Chemical sponge soot removal, thermal fogging for odor neutralization, and HEPA air scrubbing. We treat every affected surface, including inside HVAC systems — not just the visible ones.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">04</div>
+        <div class="service-name">Mold Containment &amp; Removal</div>
+        <p class="service-desc">Negative air pressure containment barriers, HEPA air scrubbers, and EPA-registered antimicrobial treatment. We don't just clean the surface — we eliminate the source and test for clearance.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">05</div>
+        <div class="service-name">Insurance Claims Coordination</div>
+        <p class="service-desc">We've worked directly with Allstate, State Farm, USAA, Nationwide, and 40+ other carriers. We document everything, direct-bill your insurance, and handle adjuster communication so you don't have to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="results">
+  <div class="container">
+    <div class="results-header">
+      <div class="section-label reveal">Real Job Outcomes</div>
+      <h2 class="section-headline reveal reveal-delay-1">RESULTS WE'VE DELIVERED</h2>
+      <p class="section-sub reveal reveal-delay-2">Real situations, real timelines, real outcomes from jobs in our service area.</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card reveal">
+        <div class="ba-card-photo" style="background-image:url('https://images.unsplash.com/photo-1504307651-50983c87faf7?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="ba-card-title">Basement Flood — Rockville, MD</div>
+        <div class="ba-half before">
+          <div class="ba-label">Before</div>
+          <p>6 inches of standing water, soaked drywall throughout, carpet destroyed, crawlspace fully saturated.</p>
+        </div>
+        <div class="ba-half after">
+          <div class="ba-label">After</div>
+          <p>Dry structure certified in 4 days. Drywall preserved. No mold growth. Crawlspace sealed.</p>
+        </div>
+        <div class="ba-outcome"><strong>$2,800 job</strong> — would have been $18,000+ if left untouched for 2 weeks.</div>
+      </div>
+      <div class="ba-card reveal reveal-delay-1">
+        <div class="ba-card-photo" style="background-image:url('https://images.unsplash.com/photo-1563302111-eab4b145e6c9?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="ba-card-title">Kitchen Fire — Bethesda, MD</div>
+        <div class="ba-half before">
+          <div class="ba-label">Before</div>
+          <p>Smoke and soot on all second-floor surfaces, unbearable odor, HVAC system fully contaminated.</p>
+        </div>
+        <div class="ba-half after">
+          <div class="ba-label">After</div>
+          <p>Certified clean air test passed. Odor fully eliminated. HVAC cleaned. Family returned in 6 days.</p>
+        </div>
+        <div class="ba-outcome">Soot treated within 48 hours — <strong>preventing permanent surface damage</strong> that would have required full replacement.</div>
+      </div>
+      <div class="ba-card reveal reveal-delay-2">
+        <div class="ba-card-photo" style="background-image:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="ba-card-title">Refrigerator Leak — Germantown, MD</div>
+        <div class="ba-half before">
+          <div class="ba-label">Before</div>
+          <p>Subfloor softening after 7-day undetected leak, visible mold starting in baseboards, smell throughout kitchen.</p>
+        </div>
+        <div class="ba-half after">
+          <div class="ba-label">After</div>
+          <p>Mold contained and cleared. Subfloor dried and structurally stabilized. No replacement needed.</p>
+        </div>
+        <div class="ba-outcome"><strong>$3,100 job</strong> vs. estimated $15,000 structural subfloor replacement if caught 2 weeks later.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="process-header">
+      <div class="section-label reveal">Our Response Protocol</div>
+      <h2 class="section-headline reveal reveal-delay-1">HOW IT WORKS</h2>
+      <p class="section-sub reveal reveal-delay-2">From your first call to a certified dry structure — every step is accountable.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-num">1</div>
+        <div class="process-step-title">You Call</div>
+        <p class="process-step-desc">Phone picked up in under 30 seconds. No voicemail, no call tree. A real person who knows exactly what questions to ask.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">2</div>
+        <div class="process-step-title">We Dispatch</div>
+        <p class="process-step-desc">Crew rolling within 15 minutes of your call. You'll receive a text with your technician's name and real-time ETA.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">3</div>
+        <div class="process-step-title">We Assess</div>
+        <p class="process-step-desc">On-site walk-through completed in 30 minutes. Moisture readings taken, damage mapped, full scope confirmed before we start.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">4</div>
+        <div class="process-step-title">We Restore</div>
+        <p class="process-step-desc">Work begins immediately. Progress updates every 24 hours. Job not marked complete until your structure hits certified dry standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section id="insurance">
+  <div class="container">
+    <div class="insurance-header">
+      <div class="section-label reveal">No Out-of-Pocket Hassle</div>
+      <h2 class="section-headline reveal reveal-delay-1">WE HANDLE<br>YOUR INSURANCE</h2>
+      <p class="section-sub reveal reveal-delay-2">Most homeowners don't know they can have us bill the insurance carrier directly. Here's how it works.</p>
+    </div>
+    <div class="insurance-panel reveal">
+      <div class="insurance-grid">
+        <div class="insurance-col">
+          <span class="insurance-col-icon">💳</span>
+          <div class="insurance-col-title">We Bill Direct</div>
+          <p>We invoice your insurance carrier directly. You don't pay out of pocket while waiting for reimbursement. No fronting thousands of dollars during an already stressful situation.</p>
+        </div>
+        <div class="insurance-col">
+          <span class="insurance-col-icon">📋</span>
+          <div class="insurance-col-title">We Document Everything</div>
+          <p>Photos at every stage, moisture readings, equipment logs, and a complete scope of work. Everything your adjuster needs to approve the claim — delivered in the format they prefer.</p>
+        </div>
+        <div class="insurance-col">
+          <span class="insurance-col-icon">🤝</span>
+          <div class="insurance-col-title">We Know the Carriers</div>
+          <p>We've worked with Allstate, State Farm, USAA, Nationwide, Farmers, and 40+ others. We know what documentation each carrier requires and how to get claims approved on first submission.</p>
+        </div>
+      </div>
+      <div class="insurance-footer">
+        <span class="insurance-footer-badge">Free Inspection</span>
+        <p>No out-of-pocket cost if your loss is covered by insurance. We'll tell you upfront what's likely covered before we start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid container">
+    <div class="stat-item reveal">
+      <div class="stat-number" data-target="2" data-suffix=" Hrs">2 Hrs</div>
+      <div class="stat-label">Average On-Site Response Time</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-number" data-target="4200" data-suffix="+">4,200+</div>
+      <div class="stat-label">Jobs Completed Since 2012</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-number" data-target="98" data-suffix="%">98%</div>
+      <div class="stat-label">Insurance Claims Approved First Submission</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-number" data-prefix="$" data-target="0">$0</div>
+      <div class="stat-label">Out-of-Pocket Cost for Insured Losses (Typical)</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="section-label reveal">Customer Reviews</div>
+      <h2 class="section-headline reveal reveal-delay-1">WHAT OUR CUSTOMERS SAY</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"They picked up on the second ring at 2am. Had a crew at my house before sunrise. My basement was bone dry in three days. I can't believe how fast they moved."</p>
+        <div class="testimonial-author">Marcus T.</div>
+        <div class="testimonial-meta">Rockville, MD</div>
+        <span class="testimonial-type">Water Damage</span>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"My adjuster told me the documentation Rapid Response provided was the most thorough he'd seen in 20 years. Claim approved in 11 days. Didn't have to fight anyone."</p>
+        <div class="testimonial-author">Sandra K.</div>
+        <div class="testimonial-meta">Bethesda, MD</div>
+        <span class="testimonial-type">Fire Damage</span>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I didn't know mold had already started until they showed me the moisture readings. Caught it early. Saved me a lot of money. They explained every single step."</p>
+        <div class="testimonial-author">James R.</div>
+        <div class="testimonial-meta">Silver Spring, MD</div>
+        <span class="testimonial-type">Mold Remediation</span>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Every other company I called gave me a 4-hour window. These guys were on-site in 90 minutes. I didn't lose my floor. The speed genuinely made the difference."</p>
+        <div class="testimonial-author">Patricia M.</div>
+        <div class="testimonial-meta">Gaithersburg, MD</div>
+        <span class="testimonial-type">Flood Emergency</span>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Professional crew, explained everything they were doing, kept my family updated throughout the whole process. Exactly what you need when you're already stressed out."</p>
+        <div class="testimonial-author">David L.</div>
+        <div class="testimonial-meta">Germantown, MD</div>
+        <span class="testimonial-type">Fire &amp; Smoke</span>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I was bracing for a massive bill I couldn't afford. They billed my insurance directly and I paid nothing. My kitchen looks brand new. I still tell everyone about this company."</p>
+        <div class="testimonial-author">Christine W.</div>
+        <div class="testimonial-meta">Frederick, MD</div>
+        <span class="testimonial-type">Water Damage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="section-label reveal">Common Questions</div>
+      <h2 class="section-headline reveal reveal-delay-1">QUESTIONS WE GET EVERY DAY</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-question-text">How fast can you actually get here?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Our goal is on-site within 2 hours of your call. In most of our service area across Montgomery and Frederick County, we average 90 minutes. If we can't make it within 2 hours, your initial assessment is free — no questions asked.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-question-text">What if I'm not sure if it's covered by insurance?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Call us first. We'll come out, assess the damage, and give you a full scope of work before we start anything. From experience, we can tell you whether the damage is likely covered, and we'll handle all claim documentation regardless of the answer.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-question-text">Do I have to pay anything upfront?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>For insured losses, no. We direct-bill your carrier and you owe nothing upfront. For non-insured work, we provide a written estimate before starting anything and require 50% at project start — always in writing, always clear.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-question-text">How long does drying typically take?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Structural drying typically takes 3–5 days depending on the extent of the damage, ambient conditions, and building materials. We take daily moisture readings and will not close the job until certified dry targets are reached — not when it seems dry, when it is certified dry.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          <span class="faq-question-text">Can you work while I'm at work?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. We coordinate access with you however works best — lockboxes, neighbor access, whatever. You'll receive a text when the crew arrives, daily written progress updates, and a text when they leave. You're always informed, even if you're not there.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <p class="cta-eyebrow reveal">Available 24 Hours · 7 Days · 365 Days</p>
+    <h2 class="cta-headline reveal reveal-delay-1">WATER DOESN'T WAIT.<br>NEITHER DO WE.</h2>
+    <p class="cta-sub reveal reveal-delay-2">The longer you wait, the more it costs. Call now for a free assessment — any time, any day.</p>
+    <a href="tel:2405550182" class="cta-phone-big reveal reveal-delay-3">(240) 555-0182</a>
+    <div class="cta-btns reveal reveal-delay-4">
+      <a href="tel:2405550182" class="btn-primary-lg">Call Now — Free Assessment</a>
+    </div>
+    <p class="cta-text-link reveal reveal-delay-5">Prefer to text? <a href="sms:2405550182">Message us at (240) 555-0182</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <div class="footer-logo-badge">RRR</div>
+        <div class="footer-logo-name">Rapid Response<br>Restoration</div>
+      </div>
+      <p class="footer-tagline">24/7 emergency water damage, fire damage, and mold remediation. When disaster strikes, we move first.</p>
+      <span class="footer-cert">IICRC Certified</span>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul>
+        <li><a href="#services">Emergency Water Extraction</a></li>
+        <li><a href="#services">Structural Drying</a></li>
+        <li><a href="#services">Fire &amp; Smoke Remediation</a></li>
+        <li><a href="#services">Mold Containment &amp; Removal</a></li>
+        <li><a href="#services">Insurance Claims Coordination</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Service Areas</div>
+      <ul>
+        <li><span>Montgomery County, MD</span></li>
+        <li><span>Frederick County, MD</span></li>
+        <li><span>Howard County, MD</span></li>
+        <li><span>Prince George's County, MD</span></li>
+        <li><span>DC Metro Area</span></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Emergency Line</span>
+        <span class="footer-contact-value phone">(240) 555-0182</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Availability</span>
+        <span class="footer-contact-value">24 / 7 / 365</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Response Time</span>
+        <span class="footer-contact-value">On-Site Within 2 Hours</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Coverage</span>
+        <span class="footer-contact-value">Montgomery, Frederick, Howard, PG County</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Rapid Response Restoration. All rights reserved. IICRC Certified · Licensed &amp; Insured · Maryland.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta-sticky" id="mobile-sticky">
+  <a href="tel:2405550182">
+    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call Now — (240) 555-0182
+  </a>
+</div>
+
+<script>
+  // NAV scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-mobile-link, .mobile-menu .btn-call-nav').forEach(el => {
+    el.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Scroll reveal
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Stats count-up
+  let statsAnimated = false;
+  const statsObs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting || statsAnimated) return;
+    statsAnimated = true;
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      if (target === 0) { el.textContent = prefix + '0' + suffix; return; }
+      const duration = 1800;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(eased * target);
+        el.textContent = prefix + (val >= 1000 ? val.toLocaleString() : val) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.3 });
+  const statsEl = document.getElementById('stats');
+  if (statsEl) statsObs.observe(statsEl);
+
+  // Mobile sticky — hide near footer
+  const stickyEl = document.getElementById('mobile-sticky');
+  const footerEl = document.querySelector('footer');
+  if (stickyEl && footerEl) {
+    new IntersectionObserver(entries => {
+      stickyEl.style.opacity = entries[0].isIntersecting ? '0' : '1';
+      stickyEl.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+    }, { threshold: 0.05 }).observe(footerEl);
+  }
+</script>
+</body>
+</html>

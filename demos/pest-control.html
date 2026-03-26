@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barrier Pest Defense | Targeted Pest Control</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<meta name="description" content="Barrier Pest Defense — Targeted pest control with guaranteed results. Termites, bed bugs, rodents, quarterly defense.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --olive: #0D1A0F;
+    --olive-2: #111F13;
+    --olive-3: #0A1509;
+    --gold: #C9A227;
+    --gold-light: #E0B93A;
+    --gold-dim: rgba(201,162,39,.1);
+    --gold-border: rgba(201,162,39,.2);
+    --mid-green: #4A7A40;
+    --mid-green-dim: rgba(74,122,64,.12);
+    --text: #E8EDEA;
+    --muted: #5A7060;
+    --muted-2: #8AAA90;
+    --divider: rgba(255,255,255,.06);
+    --nav-h: 72px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--olive);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6%;
+    transition: background .3s;
+  }
+  nav.scrolled {
+    background: rgba(13,26,15,.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted-2); text-decoration: none;
+    font-size: .82rem; font-weight: 600;
+    letter-spacing: .05em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--olive) !important;
+    padding: .48rem 1.3rem;
+    border-radius: 3px;
+    font-weight: 700 !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted-2); }
+
+  /* ─── HERO — Style B tactical overlay ─── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden; padding-top: var(--nav-h);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1563299796-17596ed6b017?w=1600&q=80') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(115deg, rgba(13,26,15,.98) 45%, rgba(13,26,15,.6) 100%);
+  }
+  /* tactical grid overlay */
+  .hero-grid-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      linear-gradient(rgba(201,162,39,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,162,39,.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    width: 100%; padding: 3rem 6%;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 4rem; align-items: center;
+  }
+  .hero-mission-tag {
+    display: inline-flex; align-items: center; gap: .7rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    padding: .35rem 1rem; border-radius: 2px;
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .mission-indicator {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .hero-mission-tag span {
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .hero-h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 6.5vw, 6.5rem);
+    font-weight: 700; line-height: 1;
+    letter-spacing: -.03em;
+    color: var(--text);
+    opacity: 0; animation: fadeUp .85s .35s forwards;
+  }
+  .hero-h1 em { font-style: normal; color: var(--gold); display: block; }
+  .hero-sub {
+    margin-top: 1.6rem;
+    font-size: 1rem; font-weight: 300;
+    line-height: 1.8; color: var(--muted-2);
+    max-width: 460px;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+  .hero-btns {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .6s .65s forwards;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--olive);
+    padding: .85rem 2rem; border: none;
+    border-radius: 3px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .9rem; font-weight: 700;
+    letter-spacing: .03em;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,162,39,.3); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    padding: .85rem 2rem;
+    border: 1.5px solid rgba(255,255,255,.12);
+    border-radius: 3px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .9rem; font-weight: 600;
+    cursor: pointer; transition: border-color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-guarantee {
+    margin-top: 2rem;
+    display: flex; align-items: center; gap: .6rem;
+    font-size: .8rem; color: var(--muted-2);
+    opacity: 0; animation: fadeUp .5s .8s forwards;
+  }
+  .hero-guarantee strong { color: var(--gold); }
+
+  /* mission briefing card */
+  .hero-briefing {
+    opacity: 0; animation: fadeUp .8s .7s forwards;
+  }
+  .briefing-inner {
+    background: rgba(13,26,15,.9);
+    border: 1px solid var(--gold-border);
+    backdrop-filter: blur(24px);
+    border-radius: 6px; overflow: hidden;
+  }
+  .briefing-header {
+    background: var(--gold-dim);
+    border-bottom: 1px solid var(--gold-border);
+    padding: 1rem 1.4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .briefing-header-title {
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .briefing-header-status {
+    display: flex; align-items: center; gap: .4rem;
+    font-size: .68rem; color: var(--muted-2); font-weight: 600;
+  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .briefing-body { padding: 1.4rem; }
+  .brief-row {
+    display: flex; align-items: center; gap: .8rem;
+    padding: .7rem 0; border-bottom: 1px solid var(--divider);
+  }
+  .brief-row:last-child { border-bottom: none; }
+  .brief-icon { font-size: 1.1rem; width: 30px; flex-shrink: 0; text-align: center; }
+  .brief-text { font-size: .82rem; color: var(--muted-2); line-height: 1.5; }
+  .brief-text strong { color: var(--gold); display: block; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 960px) { .hero-inner { grid-template-columns: 1fr; } .hero-briefing { display: none; } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 7rem 6%; }
+  .section-eyebrow {
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -.02em;
+    color: var(--text); max-width: 620px;
+  }
+  .section-title em { font-style: normal; color: var(--gold); }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .65s, transform .65s;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── SERVICES — staggered 3-col ─── */
+  #services { background: var(--olive-2); }
+  .services-header { margin-bottom: 4rem; }
+  .services-stagger {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    align-items: start;
+  }
+  /* alternating heights via padding offsets */
+  .svc-col-mid { padding-top: 2.5rem; }
+  .svc-col-right { padding-top: 5rem; }
+  .service-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    padding: 2rem 1.8rem;
+    margin-bottom: 1.2rem;
+    transition: border-color .25s, transform .25s;
+    position: relative;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .service-card:hover { border-color: var(--gold-border); transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+  .service-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); margin-bottom: .5rem;
+    letter-spacing: -.01em;
+  }
+  .service-card p { font-size: .84rem; line-height: 1.75; color: var(--muted-2); }
+  .service-guarantee {
+    display: inline-block; margin-top: .8rem;
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    padding: .2rem .6rem; border-radius: 2px;
+  }
+  @media (max-width: 900px) { .services-stagger { grid-template-columns: 1fr; } .svc-col-mid, .svc-col-right { padding-top: 0; } }
+
+  /* ─── SCENARIOS ─── */
+  #scenarios { background: var(--olive-3); }
+  .scenarios-header { margin-bottom: 3.5rem; }
+  /* sidebar layout — section headings hang left */
+  .scenarios-body {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .scenarios-sidebar {
+    position: sticky; top: 100px;
+  }
+  .scenarios-sidebar p { font-size: .9rem; line-height: 1.8; color: var(--muted-2); margin-top: .8rem; }
+  .scenarios-sidebar .btn-primary { margin-top: 1.5rem; }
+  .scenarios-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .scenario-item {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px; padding: 2rem;
+    transition: border-color .25s;
+  }
+  .scenario-item:hover { border-color: var(--gold-border); }
+  .scenario-threat {
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: .8rem;
+  }
+  .scenario-item h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--text); margin-bottom: .6rem;
+  }
+  .scenario-item p { font-size: .86rem; line-height: 1.75; color: var(--muted-2); }
+  .scenario-outcome {
+    margin-top: 1rem; padding-top: .8rem;
+    border-top: 1px solid var(--divider);
+    font-size: .8rem; color: var(--gold);
+    font-weight: 600; line-height: 1.6;
+  }
+  @media (max-width: 900px) { .scenarios-body { grid-template-columns: 1fr; } .scenarios-sidebar { position: static; } }
+
+  /* ─── GUARANTEE ─── */
+  #guarantee {
+    background: var(--gold);
+    padding: 5.5rem 6%;
+  }
+  .guarantee-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem; align-items: center;
+  }
+  #guarantee h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700; letter-spacing: -.03em;
+    line-height: 1.1; color: var(--olive);
+  }
+  #guarantee p { margin-top: .8rem; font-size: 1rem; color: rgba(13,26,15,.7); line-height: 1.75; max-width: 520px; }
+  .guarantee-badge {
+    flex-shrink: 0;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: var(--olive);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 0 8px rgba(13,26,15,.15);
+  }
+  .guarantee-badge-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .guarantee-badge-text { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2); margin-top: .2rem; }
+  @media (max-width: 768px) { .guarantee-inner { grid-template-columns: 1fr; } .guarantee-badge { display: none; } }
+
+  /* ─── STATS ─── */
+  #stats { background: var(--olive-2); padding: 5rem 6%; }
+  .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700; color: var(--gold); line-height: 1;
+  }
+  .stat-label { margin-top: .4rem; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: 1fr 1fr; } }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--olive); }
+  .testi-header { margin-bottom: 3rem; }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
+  .testi-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 4px; padding: 2rem;
+    transition: border-color .3s;
+  }
+  .testi-card:hover { border-color: var(--gold-border); }
+  .stars { color: var(--gold); font-size: .88rem; margin-bottom: .8rem; }
+  .testi-quote { font-size: .88rem; line-height: 1.8; color: var(--muted-2); font-style: italic; margin-bottom: 1.4rem; }
+  .testi-author { display: flex; align-items: center; gap: .75rem; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 4px;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .88rem; font-weight: 700; color: var(--gold);
+  }
+  .testi-name { font-size: .9rem; font-weight: 700; color: var(--text); }
+  .testi-meta { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--olive-3);
+    padding: 7rem 6%;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,162,39,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,162,39,.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 680px; }
+  .cta-eyebrow {
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  #cta h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+    font-weight: 700; letter-spacing: -.03em;
+    line-height: 1.05; color: var(--text); margin-bottom: 1.2rem;
+  }
+  #cta h2 em { font-style: normal; color: var(--gold); }
+  #cta p { font-size: 1rem; color: var(--muted-2); margin-bottom: 2.5rem; line-height: 1.8; max-width: 500px; }
+  .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .cta-note { margin-top: 1.5rem; font-size: .8rem; color: var(--muted); }
+
+  /* footer */
+  footer {
+    background: #080E09;
+    padding: 2rem 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--divider);
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: .76rem; color: var(--muted); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(13,26,15,.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text); text-decoration: none; }
+  .mobile-menu a:hover { color: var(--gold); }
+  .close-menu { position: absolute; top: 1.5rem; right: 6%; background: none; border: none; font-size: 1.5rem; color: var(--muted-2); cursor: pointer; }
+  @media (max-width: 760px) { .hamburger { display: flex; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo"><span>Barrier</span> Pest Defense</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#scenarios">Situations</a></li>
+    <li><a href="#guarantee">Guarantee</a></li>
+    <li><a href="#cta" class="nav-cta">Book Inspection</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#scenarios" onclick="this.closest('.mobile-menu').classList.remove('open')">Situations</a>
+  <a href="#guarantee" onclick="this.closest('.mobile-menu').classList.remove('open')">Guarantee</a>
+  <a href="#cta" onclick="this.closest('.mobile-menu').classList.remove('open')">Book Inspection</a>
+</div>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-mission-tag">
+        <div class="mission-indicator"></div>
+        <span>Inspections Available Today</span>
+      </div>
+      <h1 class="hero-h1">Eliminate.<em>Protect.</em></h1>
+      <p class="hero-sub">Targeted pest control with guaranteed results. Termites, bed bugs, rodents, and perimeter defense. If the problem returns within 30 days, we come back — no charge.</p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-primary">Book an Inspection</a>
+        <a href="#services" class="btn-outline">View Treatment Plans</a>
+      </div>
+      <div class="hero-guarantee">
+        <strong>30-Day Guarantee</strong> — If it returns, so do we.
+      </div>
+    </div>
+    <div class="hero-briefing">
+      <div class="briefing-inner">
+        <div class="briefing-header">
+          <span class="briefing-header-title">Mission Criteria</span>
+          <div class="briefing-header-status">
+            <div class="status-dot"></div>
+            Active
+          </div>
+        </div>
+        <div class="briefing-body">
+          <div class="brief-row">
+            <div class="brief-icon">🔍</div>
+            <div class="brief-text">
+              <strong>Identify</strong>
+              Species-specific inspection with full structural assessment
+            </div>
+          </div>
+          <div class="brief-row">
+            <div class="brief-icon">⚗️</div>
+            <div class="brief-text">
+              <strong>Target</strong>
+              Treatment matched to pest type, severity, and structure
+            </div>
+          </div>
+          <div class="brief-row">
+            <div class="brief-icon">🛡️</div>
+            <div class="brief-text">
+              <strong>Defend</strong>
+              Barrier protection established to prevent re-entry
+            </div>
+          </div>
+          <div class="brief-row">
+            <div class="brief-icon">📋</div>
+            <div class="brief-text">
+              <strong>Document</strong>
+              Written report provided for all commercial clients
+            </div>
+          </div>
+          <div class="brief-row" style="border-bottom:none;">
+            <div class="brief-icon">✅</div>
+            <div class="brief-text">
+              <strong>Guarantee</strong>
+              30-day callback policy, no questions asked
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-eyebrow">Treatment Programs</div>
+    <h2 class="section-title">Every Pest.<br>One <em>Definitive</em> Answer.</h2>
+  </div>
+  <div class="services-stagger">
+    <div class="svc-col-left">
+      <div class="service-card reveal">
+        <div class="service-icon">🐜</div>
+        <h3>Termite Inspection & Treatment</h3>
+        <p>Full structural inspection with moisture probe, termite baiting system installation or liquid barrier treatment, and a written report. We map every activity zone found.</p>
+        <span class="service-guarantee">Warranty Available</span>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">🐛</div>
+        <h3>Quarterly Perimeter Defense</h3>
+        <p>Exterior treatment every 90 days — granular and liquid barrier applied around foundation, entry points, and landscaping perimeter. Re-entry guaranteed if insects breach between visits.</p>
+        <span class="service-guarantee">Re-Entry Guaranteed</span>
+      </div>
+    </div>
+    <div class="svc-col-mid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">🛏️</div>
+        <h3>Bed Bug Elimination</h3>
+        <p>Thermal heat treatment (120°F+) throughout all affected rooms combined with residual chemical application. All rooms cleared in a single treatment day. Dogs available for pre/post detection.</p>
+        <span class="service-guarantee">Single-Visit Resolution</span>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">🍽️</div>
+        <h3>Commercial Food-Service Program</h3>
+        <p>Monthly service visits with HACCP-compliant documentation. Trap logs, treatment records, and inspection reports formatted for health department review. Hotels, restaurants, food processors.</p>
+        <span class="service-guarantee">Inspection-Ready Docs</span>
+      </div>
+    </div>
+    <div class="svc-col-right">
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">🐀</div>
+        <h3>Rodent Exclusion Program</h3>
+        <p>Full exterior exclusion work — hardware cloth, sealant, and physical barriers at every identified entry point. Trap matrix placement and bait stations. Follow-up in 2 weeks.</p>
+        <span class="service-guarantee">Entry Points Sealed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <div class="scenarios-header reveal">
+    <div class="section-eyebrow">Real Situations</div>
+    <h2 class="section-title">When It's <em>Urgent</em>,<br>the Clock Is Running.</h2>
+  </div>
+  <div class="scenarios-body">
+    <div class="scenarios-sidebar reveal">
+      <p>Most pest calls have a time component — a transaction closing, a health inspection, a hotel check-in. We're used to working on timelines that matter.</p>
+      <a href="#cta" class="btn-primary">Get Help Now</a>
+    </div>
+    <div class="scenarios-list">
+      <div class="scenario-item reveal reveal-delay-1">
+        <div class="scenario-threat">Threat: Subterranean Termites</div>
+        <h4>Neighbor's House Had Termites — Now the Owner Is Worried</h4>
+        <p>Homeowner found small mud tubes along the basement foundation wall after learning a neighbor two doors down was in termite treatment. Called the same afternoon. We were on-site the next morning. Termite activity confirmed in two locations. Treatment started same week — liquid barrier and two bait stations installed.</p>
+        <div class="scenario-outcome">Inspection same day → $2,800 treatment → warranty issued → homeowner protected before active colony could expand</div>
+      </div>
+      <div class="scenario-item reveal reveal-delay-2">
+        <div class="scenario-threat">Threat: Bed Bugs · High Stakes</div>
+        <h4>Hotel — Full Weekend Booking, Bed Bug Evidence Found</h4>
+        <p>Hotel manager called Thursday morning after housekeeping reported signs in Room 112. Full occupancy starting Friday. We performed a same-day dog inspection across all 24 rooms, found two additional active rooms, and completed heat treatment on all three the following morning before guests arrived. Zero check-in delays.</p>
+        <div class="scenario-outcome">Thursday call → Friday treatment → full weekend unaffected → reputation protected → service contract signed</div>
+      </div>
+      <div class="scenario-item reveal reveal-delay-3">
+        <div class="scenario-threat">Threat: Rodents · Compliance</div>
+        <h4>Restaurant Health Inspection in 4 Days</h4>
+        <p>Owner received a city notification of a scheduled health inspection on a Monday. Called us the same day. On-site Tuesday — found entry points behind the prep line and under the back door. Exclusion work completed Wednesday, traps set Thursday, inspector came Friday. No violations cited for pest activity.</p>
+        <div class="scenario-outcome">4-day turnaround → zero pest violations → $350/month ongoing food-service contract signed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guarantee">
+  <div class="guarantee-inner reveal">
+    <div>
+      <h2>If It Comes Back, We Do Too.</h2>
+      <p>Every residential treatment includes a 30-day callback guarantee. If the targeted pest returns within 30 days of service, we retreat the affected areas at no charge. No paperwork. No debate.</p>
+    </div>
+    <div class="guarantee-badge">
+      <div class="guarantee-badge-num">30</div>
+      <div class="guarantee-badge-text">Day<br>Guarantee</div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">1,800+</div>
+      <div class="stat-label">Jobs Completed</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">30-Day</div>
+      <div class="stat-label">Callback Guarantee</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">Customer Rating</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">9yr</div>
+      <div class="stat-label">In Business</div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Client Reviews</div>
+    <h2 class="section-title">Targeted.<br><em>Effective. Guaranteed.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Found termites in the basement two weeks before closing. Barrier came out next day, identified the scope, and treated within the week. We have the written report and the transaction closed on time. Could not have asked for better."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JB</div>
+        <div>
+          <div class="testi-name">James B.</div>
+          <div class="testi-meta">Termite Treatment · Pre-Sale</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"We had to make a choice: delay check-in or solve the bed bug problem overnight. Barrier solved it overnight. The dog confirmed two additional rooms we didn't know about. Every room was clear by 8am."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">CM</div>
+        <div>
+          <div class="testi-name">Carlos M.</div>
+          <div class="testi-meta">Hotel GM · Bed Bug Elimination</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Quarterly service for 18 months. Not a single callback. The technicians are thorough, they document everything, and I can hand the reports straight to a health inspector. That kind of reliability is worth the contract."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RP</div>
+        <div>
+          <div class="testi-name">Rosa P.</div>
+          <div class="testi-meta">Restaurant Owner · Quarterly Program</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-eyebrow reveal">Book Today · Inspections Available This Week</div>
+    <h2 class="reveal">Don't Let It Spread.<br><em>Get a Clear Answer Today.</em></h2>
+    <p class="reveal">Most inspections can be scheduled within 24 hours. We'll identify what you're dealing with, explain the treatment options, and give you a quote before any work starts.</p>
+    <div class="cta-btns reveal">
+      <a href="tel:+14435550291" class="btn-primary">Call (443) 555-0291</a>
+      <a href="#services" class="btn-outline">View All Services</a>
+    </div>
+    <p class="cta-note reveal">Commercial clients: ask about our monthly documentation programs for health compliance.</p>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo"><span>Barrier</span> Pest Defense</a>
+  <p>© 2025 Barrier Pest Defense. QualityPro Certified · Licensed · Insured</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

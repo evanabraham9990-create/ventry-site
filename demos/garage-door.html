@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronGate Garage & Door | Same-Day Service</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+<meta name="description" content="IronGate Garage & Door — Same-day garage door repair and installation. Springs, openers, panels, cables. We carry the parts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --slate: #111820;
+    --slate-2: #18222E;
+    --slate-3: #0D151D;
+    --red: #D32F2F;
+    --red-light: #EF5350;
+    --red-dim: rgba(211,47,47,.12);
+    --red-border: rgba(211,47,47,.25);
+    --steel: #4A87B5;
+    --steel-dim: rgba(74,135,181,.1);
+    --steel-border: rgba(74,135,181,.2);
+    --text: #E8EEF4;
+    --muted: #5A6A7A;
+    --muted-2: #8A9EAE;
+    --divider: rgba(255,255,255,.06);
+    --nav-h: 68px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--slate);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    transition: background .3s;
+  }
+  nav.scrolled {
+    background: rgba(17,24,32,.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted-2); text-decoration: none;
+    font-size: .82rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-cta {
+    background: var(--red) !important;
+    color: var(--text) !important;
+    padding: .45rem 1.3rem;
+    border-radius: 2px;
+    font-weight: 700 !important;
+  }
+  .nav-cta:hover { background: var(--red-light) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted-2); }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden; padding-top: var(--nav-h);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(100deg, rgba(17,24,32,.97) 45%, rgba(17,24,32,.5) 100%);
+  }
+  /* steel stripe accent */
+  .hero-stripe {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--red) 0%, var(--steel) 100%);
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    padding: 3rem 6%;
+    max-width: 680px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: var(--red-dim);
+    border: 1px solid var(--red-border);
+    padding: .35rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .hero-badge span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--red);
+  }
+  .hero-h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 800; line-height: .9;
+    letter-spacing: .02em; text-transform: uppercase;
+    color: var(--text);
+    opacity: 0; animation: fadeUp .8s .35s forwards;
+  }
+  .hero-h1 em { font-style: normal; color: var(--red); display: block; }
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: 1.05rem; font-weight: 300;
+    line-height: 1.7; color: var(--muted-2);
+    max-width: 480px;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+  .hero-btns {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .6s .65s forwards;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: var(--text);
+    padding: .85rem 2rem;
+    border: none; border-radius: 2px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    padding: .85rem 2rem;
+    border: 1.5px solid rgba(255,255,255,.15);
+    border-radius: 2px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--steel); color: var(--steel); }
+  .hero-specs {
+    margin-top: 3rem;
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid var(--divider);
+    opacity: 0; animation: fadeUp .6s .8s forwards;
+  }
+  .hero-spec {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: .8rem; font-weight: 600;
+    color: var(--muted-2); letter-spacing: .05em;
+  }
+  .spec-icon { width: 28px; height: 28px; background: var(--steel-dim); border: 1px solid var(--steel-border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: .9rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 768px) { .hero-inner { max-width: 100%; padding: 3rem 5%; } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 7rem 6%; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--red); margin-bottom: .8rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--red); }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: .03em; line-height: 1;
+    color: var(--text); max-width: 700px;
+  }
+  .section-title em { font-style: normal; color: var(--red); }
+
+  .reveal {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── PAIN ─── */
+  #pain {
+    background: var(--slate-2);
+    padding: 5rem 6%;
+  }
+  .pain-banner {
+    background: var(--red-dim);
+    border: 1px solid var(--red-border);
+    border-radius: 2px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .pain-banner-icon { font-size: 2rem; flex-shrink: 0; }
+  .pain-banner h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text); margin-bottom: .25rem;
+  }
+  .pain-banner p { font-size: .88rem; color: var(--muted-2); line-height: 1.6; }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .pain-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 2px;
+    padding: 1.8rem;
+    border-top: 2px solid var(--red);
+    transition: border-top-color .25s;
+  }
+  .pain-card:hover { border-top-color: var(--steel); }
+  .pain-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: .8rem;
+  }
+  .pain-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .05em;
+    color: var(--text); margin-bottom: .5rem;
+  }
+  .pain-card p { font-size: .84rem; line-height: 1.7; color: var(--muted-2); }
+  @media (max-width: 768px) { .pain-grid { grid-template-columns: 1fr; } }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--slate-3); }
+  .services-header { margin-bottom: 3.5rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--divider);
+    border: 1px solid var(--divider);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--slate);
+    padding: 2.2rem 2rem;
+    transition: background .2s;
+    cursor: default;
+  }
+  .service-card:hover { background: var(--slate-2); }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--red-dim);
+    border: 1px solid var(--red-border);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.4rem;
+    font-size: 1.3rem;
+  }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text); margin-bottom: .5rem;
+  }
+  .service-card p { font-size: .84rem; line-height: 1.7; color: var(--muted-2); }
+  .service-detail {
+    margin-top: .8rem;
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--steel);
+  }
+
+  /* ─── PROCESS ─── */
+  #process { background: var(--slate-2); padding: 6rem 6%; }
+  .process-header { margin-bottom: 4rem; }
+  .process-track {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    position: relative;
+  }
+  .process-track::before {
+    content: '';
+    position: absolute;
+    top: 24px; left: 12.5%; right: 12.5%;
+    height: 1px;
+    background: linear-gradient(to right, var(--red), rgba(74,135,181,.4));
+  }
+  .process-step { text-align: center; padding: 0 1rem; }
+  .process-circle {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1.5px solid var(--red);
+    background: var(--slate-2);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.4rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 800;
+    color: var(--red);
+    position: relative; z-index: 1;
+  }
+  .process-step h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text); margin-bottom: .4rem;
+  }
+  .process-step p { font-size: .82rem; color: var(--muted-2); line-height: 1.65; }
+  @media (max-width: 768px) { .process-track { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .process-track::before { display: none; } }
+
+  /* ─── STATS ─── */
+  #stats { background: var(--red); padding: 4.5rem 6%; }
+  .stats-inner {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 800; color: var(--text);
+    line-height: 1; letter-spacing: .02em;
+  }
+  .stat-label {
+    margin-top: .35rem;
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(232,238,244,.6);
+  }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: 1fr 1fr; } }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--slate); }
+  .testi-header { margin-bottom: 3rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+  .testi-card {
+    background: var(--slate-2);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--steel);
+    border-radius: 2px;
+    padding: 2rem;
+    transition: border-left-color .3s;
+  }
+  .testi-card:hover { border-left-color: var(--red); }
+  .testi-stars { color: #FFB800; font-size: .85rem; letter-spacing: .08em; margin-bottom: .8rem; }
+  .testi-quote { font-size: .9rem; line-height: 1.8; color: var(--muted-2); margin-bottom: 1.4rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: .75rem; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 2px;
+    background: var(--steel-dim);
+    border: 1px solid var(--steel-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem; font-weight: 700; color: var(--steel);
+  }
+  .testi-name { font-family: 'Barlow Condensed', sans-serif; font-size: .95rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text); }
+  .testi-meta { font-size: .76rem; color: var(--muted); margin-top: .1rem; }
+
+  /* ─── CTA ─── */
+  #cta { background: var(--slate-3); text-align: center; padding: 7rem 6%; }
+  #cta h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: .03em; line-height: .95;
+    color: var(--text); margin-bottom: 1.2rem;
+  }
+  #cta h2 em { font-style: normal; color: var(--red); display: block; }
+  #cta p { font-size: 1rem; color: var(--muted-2); margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.75; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cta-phone { margin-top: 1.5rem; font-size: .88rem; color: var(--muted); }
+  .cta-phone a { color: var(--red); font-weight: 700; text-decoration: none; }
+
+  /* footer */
+  footer {
+    background: #080C10;
+    padding: 2rem 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 800;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+  }
+  .footer-logo span { color: var(--red); }
+  footer p { font-size: .76rem; color: var(--muted); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(17,24,32,.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+  }
+  .mobile-menu a:hover { color: var(--red); }
+  .close-menu { position: absolute; top: 1.5rem; right: 5%; background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
+  @media (max-width: 760px) { .hamburger { display: flex; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Iron<span>Gate</span> Garage</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#cta" class="nav-cta">Same-Day Service</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#process" onclick="this.closest('.mobile-menu').classList.remove('open')">Process</a>
+  <a href="#testimonials" onclick="this.closest('.mobile-menu').classList.remove('open')">Reviews</a>
+  <a href="#cta" onclick="this.closest('.mobile-menu').classList.remove('open')">Same-Day Service</a>
+</div>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <span>Technicians Available Now</span>
+    </div>
+    <h1 class="hero-h1">Back In<em>Operation.</em>Fast.</h1>
+    <p class="hero-sub">Same-day garage door repair and installation. Springs, openers, panels, cables — we carry the parts. You don't wait on a parts order.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Get Same-Day Service</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+    <div class="hero-specs">
+      <div class="hero-spec">
+        <div class="spec-icon">⚡</div>
+        Same-Day Response
+      </div>
+      <div class="hero-spec">
+        <div class="spec-icon">🔧</div>
+        Parts on Every Truck
+      </div>
+      <div class="hero-spec">
+        <div class="spec-icon">🛡️</div>
+        Fully Licensed & Insured
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pain">
+  <div class="pain-banner reveal">
+    <div class="pain-banner-icon">⚠️</div>
+    <div>
+      <h3>A Broken Garage Door Is a Security Problem</h3>
+      <p>A door that won't close leaves your home unsecured, your car exposed, and your schedule disrupted. Every hour it's broken is an hour your property is vulnerable. We respond fast because this isn't a wait-until-Monday problem.</p>
+    </div>
+  </div>
+  <div class="section-label reveal">Real Situations</div>
+  <div class="pain-grid">
+    <div class="pain-card reveal reveal-delay-1">
+      <div class="pain-time">7:04 AM — Before Work</div>
+      <h4>Spring Snapped Overnight</h4>
+      <p>The spring failed silently sometime after midnight. You go to open the door and it won't move. Your car is inside and you have a 7:30 meeting. This is our most common morning call — we carry both torsion and extension springs on every truck.</p>
+    </div>
+    <div class="pain-card reveal reveal-delay-2">
+      <div class="pain-time">8:45 PM — Returning Home</div>
+      <h4>Opener Not Responding</h4>
+      <p>Power surged during a storm and the opener lost its programming. You're in the driveway, it's raining, and nothing is working. We troubleshoot openers for all major brands remotely first — often we can talk you through a reset in 5 minutes.</p>
+    </div>
+    <div class="pain-card reveal reveal-delay-3">
+      <div class="pain-time">2:30 PM — At Home</div>
+      <h4>Backed Into the Panel</h4>
+      <p>It happens. The car rolled back a foot too far and now the bottom panel is buckled and the door won't seal. If it can't close, your garage is exposed. We match panels for all major manufacturers — most are same-week, not special order.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-label">What We Fix</div>
+    <h2 class="section-title">Everything<br><em>Garage Doors.</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🔩</div>
+      <h3>Broken Spring Replacement</h3>
+      <p>Torsion and extension springs replaced on-site with commercial-grade parts. We stock the most common sizes — no waiting on orders in most cases.</p>
+      <div class="service-detail">Same-Day · 90-Min Arrival</div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">📡</div>
+      <h3>Opener Repair & Installation</h3>
+      <p>All major brands diagnosed and serviced. Belt drive, chain drive, jackshaft. Smart opener upgrades with app control available on any install.</p>
+      <div class="service-detail">All Major Brands</div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">🛤️</div>
+      <h3>Off-Track Door Repair</h3>
+      <p>Cables jumped their drums, rollers derailed — the door is sitting wrong and won't move correctly. Full realignment and safety inspection included with every repair.</p>
+      <div class="service-detail">Safety Check Included</div>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon">🏗️</div>
+      <h3>Panel Replacement</h3>
+      <p>Dented, cracked, or weathered panels replaced using manufacturer-matched parts. Structural integrity assessed on every panel job.</p>
+      <div class="service-detail">Manufacturer-Matched</div>
+    </div>
+    <div class="service-card reveal reveal-delay-4">
+      <div class="service-icon">🚪</div>
+      <h3>New Door Installation</h3>
+      <p>Full replacement measured, selected, and installed. Steel, wood composite, aluminum — we source from multiple manufacturers to get you the right door at the right price.</p>
+      <div class="service-detail">Installed Within the Week</div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="process-header reveal">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Four Steps.<br><em>Done Today.</em></h2>
+  </div>
+  <div class="process-track">
+    <div class="process-step reveal reveal-delay-1">
+      <div class="process-circle">01</div>
+      <h3>You Call</h3>
+      <p>Describe the problem — we troubleshoot on the call and confirm what parts our tech needs to bring.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="process-circle">02</div>
+      <h3>Tech Dispatched</h3>
+      <p>Closest available tech rolls with the right parts already on the truck. No second trip, no delay.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="process-circle">03</div>
+      <h3>Repair Done</h3>
+      <p>Most repairs take 45–90 minutes on-site. You get a written quote before anything starts. No surprises.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-4">
+      <div class="process-circle">04</div>
+      <h3>Back Online</h3>
+      <p>Door tested fully — open, close, safety reversal, balance check. We don't leave until it's working correctly.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">90min</div>
+      <div class="stat-label">Avg Arrival Time</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">3,800+</div>
+      <div class="stat-label">Repairs Completed</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">97%</div>
+      <div class="stat-label">Same-Day Resolution</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">4.8★</div>
+      <div class="stat-label">Customer Satisfaction</div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-label">Client Reviews</div>
+    <h2 class="section-title">They Called.<br><em>We Fixed It.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Spring broke at 6:45am. I had a client meeting at 9. Called IronGate at 7, tech arrived at 8:20, done by 9:05. I made my meeting. These guys are exactly what they say they are."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MB</div>
+        <div>
+          <div class="testi-name">Mike B.</div>
+          <div class="testi-meta">Spring Repair · Columbia, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"The door wouldn't close after a power surge and I was leaving town the next morning. IronGate came out at 8pm, replaced the opener board, and had it working in an hour. Lifesavers."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">TF</div>
+        <div>
+          <div class="testi-name">Theresa F.</div>
+          <div class="testi-meta">Opener Repair · Ellicott City, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Backed into the door with the car. The whole bottom panel was crushed. IronGate matched the panel perfectly and replaced it in one visit. You can't even tell anything happened."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">CR</div>
+        <div>
+          <div class="testi-name">Carlos R.</div>
+          <div class="testi-meta">Panel Replacement · Baltimore, MD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="section-label" style="justify-content:center;" class="reveal">Emergency Service</div>
+  <h2 class="reveal">Door Is Down?<em>We Fix It Today.</em></h2>
+  <p class="reveal">Same-day service, parts on every truck, upfront pricing before we start. Call now and get a tech moving to your address.</p>
+  <div class="cta-btns reveal">
+    <a href="tel:+14105550143" class="btn-primary">Call (410) 555-0143</a>
+    <a href="#services" class="btn-outline">View All Services</a>
+  </div>
+  <div class="cta-phone reveal">Or text us at <a href="tel:+14105550143">(410) 555-0143</a> — we respond within minutes</div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Iron<span>Gate</span></a>
+  <p>© 2025 IronGate Garage & Door. Licensed · Insured · Locally Owned</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

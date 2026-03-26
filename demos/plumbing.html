@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streamline Plumbing | Expert Plumbing Services</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+<meta name="description" content="Streamline Plumbing — Expert plumbing for emergencies, renovations, and installations. Upfront pricing. No surprise fees.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F9FC;
+    --bg-2: #EDF3F8;
+    --bg-3: #E4EDF4;
+    --aqua: #0097B2;
+    --aqua-light: #00B4CC;
+    --aqua-dim: rgba(0,151,178,.08);
+    --aqua-border: rgba(0,151,178,.16);
+    --navy: #0B1C33;
+    --navy-2: #1A2E48;
+    --muted: #6A8AA0;
+    --muted-2: #4A6A82;
+    --divider: #D0DFE8;
+    --white: #FFFFFF;
+    --nav-h: 80px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 7%;
+    background: var(--bg);
+    border-bottom: 1px solid var(--divider);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(11,28,51,.06); }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--navy); text-decoration: none;
+  }
+  .nav-logo span { color: var(--aqua); }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: .85rem; font-weight: 500;
+    letter-spacing: .02em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--aqua) !important;
+    color: var(--white) !important;
+    padding: .52rem 1.4rem;
+    border-radius: 4px;
+    font-weight: 600 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--aqua-light) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted); }
+
+  /* ─── HERO — Style C minimal, no bg image ─── */
+  #hero {
+    min-height: 100vh;
+    padding-top: var(--nav-h);
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--bg);
+    position: relative; overflow: hidden;
+  }
+  /* Subtle aqua gradient at top */
+  #hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--aqua), var(--aqua-light), transparent);
+  }
+  /* Faint circle ornament */
+  .hero-ornament {
+    position: absolute; right: 5%; top: 50%;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    border: 1px solid var(--divider);
+    border-radius: 50%;
+    opacity: .5;
+  }
+  .hero-ornament::after {
+    content: '';
+    position: absolute; inset: 60px;
+    border: 1px solid var(--divider);
+    border-radius: 50%;
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    padding: 5rem 10%;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--aqua); margin-bottom: 2rem;
+    opacity: 0; animation: fadeIn .6s .2s forwards;
+  }
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 7vw, 8rem);
+    font-weight: 700; line-height: 1;
+    letter-spacing: -.04em;
+    color: var(--navy);
+    opacity: 0; animation: fadeIn .85s .35s forwards;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--aqua);
+  }
+  .hero-sub {
+    margin-top: 2.5rem;
+    font-size: 1.15rem; font-weight: 300;
+    line-height: 1.85; color: var(--muted);
+    max-width: 500px;
+    opacity: 0; animation: fadeIn .7s .5s forwards;
+  }
+  .hero-btns {
+    margin-top: 3rem;
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeIn .6s .65s forwards;
+  }
+  .btn-primary {
+    background: var(--aqua);
+    color: var(--white);
+    padding: .95rem 2.2rem;
+    border: none; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 600;
+    letter-spacing: .02em;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--aqua-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,151,178,.25); }
+  .btn-outline {
+    background: transparent; color: var(--navy);
+    padding: .95rem 2.2rem;
+    border: 1.5px solid var(--divider);
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 500;
+    cursor: pointer; transition: border-color .2s, color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--aqua); color: var(--aqua); }
+  .hero-promise {
+    margin-top: 2.5rem;
+    display: flex; align-items: center; gap: 2rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--divider);
+    flex-wrap: wrap;
+    opacity: 0; animation: fadeIn .6s .8s forwards;
+  }
+  .promise-item {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .8rem; font-weight: 500; color: var(--muted);
+  }
+  .promise-check { color: var(--aqua); font-size: .9rem; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 768px) { .hero-inner { padding: 4rem 5%; } .hero-ornament { display: none; } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 9rem 10%; }
+  .section-eyebrow {
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--aqua); margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 700; letter-spacing: -.03em;
+    line-height: 1.1; color: var(--navy);
+  }
+  .section-title em { font-style: italic; color: var(--aqua); }
+
+  .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity .7s, transform .7s;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── TRUST BAR ─── */
+  .trust-bar {
+    background: var(--navy);
+    padding: 1.8rem 10%;
+    display: flex; align-items: center; gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .trust-bar p {
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+    margin-right: .5rem;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .82rem; font-weight: 500;
+    color: rgba(255,255,255,.7);
+  }
+  .trust-item-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--aqua); }
+
+  /* ─── SERVICES — Style C horizontal list ─── */
+  #services { background: var(--white); }
+  .services-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 7rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+  .services-intro p {
+    margin-top: 1.2rem;
+    font-size: 1rem; line-height: 1.9; color: var(--muted);
+  }
+  .services-intro .btn-primary { margin-top: 2.5rem; }
+  /* Horizontal list with thin rule separators */
+  .services-list { display: flex; flex-direction: column; }
+  .service-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 1.5rem;
+    padding: 2.2rem 0;
+    border-bottom: 1px solid var(--divider);
+    align-items: start;
+    transition: background .2s;
+  }
+  .service-row:hover { }
+  .service-row:first-child { border-top: 1px solid var(--divider); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--divider); line-height: 1;
+    transition: color .3s;
+  }
+  .service-row:hover .service-num { color: var(--aqua); }
+  .service-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--navy); margin-bottom: .5rem;
+    letter-spacing: -.01em;
+    transition: color .2s;
+  }
+  .service-row:hover .service-content h3 { color: var(--aqua); }
+  .service-content p { font-size: .9rem; line-height: 1.8; color: var(--muted); }
+  .service-pill {
+    display: inline-block; margin-top: .6rem;
+    font-size: .68rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--aqua);
+    background: var(--aqua-dim);
+    border: 1px solid var(--aqua-border);
+    padding: .2rem .6rem; border-radius: 2px;
+  }
+  @media (max-width: 900px) { .services-layout { grid-template-columns: 1fr; gap: 3rem; } }
+
+  /* ─── SCENARIOS ─── */
+  #scenarios { background: var(--bg-2); }
+  .scenarios-header { margin-bottom: 4rem; }
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .scenario-card {
+    background: var(--white);
+    border: 1px solid var(--divider);
+    border-top: 3px solid var(--aqua);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    transition: box-shadow .3s;
+  }
+  .scenario-card:hover { box-shadow: 0 8px 30px rgba(11,28,51,.06); }
+  .scenario-type {
+    font-size: .68rem; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--aqua); margin-bottom: 1rem;
+  }
+  .scenario-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--navy); margin-bottom: .75rem;
+    line-height: 1.3;
+  }
+  .scenario-card p { font-size: .88rem; line-height: 1.8; color: var(--muted); }
+  .scenario-outcome {
+    margin-top: 1.2rem; padding-top: 1rem;
+    border-top: 1px solid var(--divider);
+    font-size: .8rem; color: var(--aqua);
+    font-weight: 500; line-height: 1.65;
+  }
+  @media (max-width: 768px) { .scenarios-grid { grid-template-columns: 1fr; } }
+
+  /* ─── WHY ─── */
+  #why { background: var(--white); }
+  .why-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem; align-items: center;
+  }
+  .why-right { }
+  .why-heading { margin-bottom: 3rem; }
+  .why-heading p { margin-top: 1rem; font-size: 1rem; line-height: 1.85; color: var(--muted); }
+  .why-points { display: flex; flex-direction: column; gap: 0; }
+  .why-point {
+    display: flex; gap: 1.5rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .why-point:first-child { border-top: 1px solid var(--divider); }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--divider); line-height: 1;
+    flex-shrink: 0; width: 44px;
+    transition: color .3s;
+  }
+  .why-point:hover .why-num { color: var(--aqua); }
+  .why-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--navy); margin-bottom: .4rem;
+  }
+  .why-text p { font-size: .88rem; line-height: 1.8; color: var(--muted); }
+  .why-image {
+    border-radius: 4px; overflow: hidden;
+    aspect-ratio: 3/4;
+    background: url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80') center/cover no-repeat;
+    position: relative;
+  }
+  .why-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(11,28,51,.2) 0%, transparent 50%);
+  }
+  @media (max-width: 900px) { .why-layout { grid-template-columns: 1fr; gap: 3rem; } .why-image { display: none; } }
+
+  /* ─── STATS ─── */
+  #stats {
+    background: var(--navy);
+    padding: 5.5rem 10%;
+  }
+  .stats-inner {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-right: 1px solid rgba(255,255,255,.06);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 4.5vw, 5rem);
+    font-weight: 700; color: var(--aqua); line-height: 1;
+  }
+  .stat-label {
+    margin-top: .4rem;
+    font-size: .72rem; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+  }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: 1fr 1fr; } .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding-bottom: 1.5rem; } }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--bg-2); }
+  .testi-header { margin-bottom: 3.5rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+  }
+  .testi-card {
+    background: var(--white);
+    border: 1px solid var(--divider);
+    border-radius: 4px; padding: 2.5rem;
+    transition: box-shadow .3s;
+  }
+  .testi-card:hover { box-shadow: 0 8px 30px rgba(0,151,178,.08); }
+  .stars { color: #F59E0B; font-size: .9rem; margin-bottom: 1.2rem; }
+  .testi-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem; line-height: 1.8;
+    color: var(--navy-2); margin-bottom: 1.8rem;
+  }
+  .testi-author { display: flex; align-items: center; gap: .9rem; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--aqua-dim);
+    border: 2px solid var(--aqua-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 700; color: var(--aqua);
+  }
+  .testi-name { font-size: .9rem; font-weight: 600; color: var(--navy); }
+  .testi-meta { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--aqua);
+    padding: 8rem 10%;
+  }
+  .cta-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem; align-items: center;
+  }
+  #cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 700; letter-spacing: -.03em;
+    line-height: 1.1; color: var(--white);
+  }
+  #cta p { margin-top: 1rem; font-size: 1rem; color: rgba(255,255,255,.75); line-height: 1.8; max-width: 480px; }
+  .cta-card {
+    background: var(--white);
+    border-radius: 8px; padding: 2.5rem;
+    text-align: center;
+  }
+  .cta-card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .cta-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--navy); margin-bottom: .5rem;
+  }
+  .cta-card p { font-size: .85rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
+  .cta-phone {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--aqua); text-decoration: none;
+    display: block; margin-bottom: 1rem;
+  }
+  .cta-note { font-size: .76rem; color: var(--muted); }
+  @media (max-width: 900px) { .cta-layout { grid-template-columns: 1fr; gap: 3rem; } }
+
+  /* footer */
+  footer {
+    background: var(--navy);
+    padding: 2.5rem 10%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--white); text-decoration: none;
+  }
+  .footer-logo span { color: var(--aqua-light); }
+  footer p { font-size: .76rem; color: rgba(255,255,255,.4); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--white);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--navy); text-decoration: none;
+  }
+  .mobile-menu a:hover { color: var(--aqua); }
+  .close-menu { position: absolute; top: 2rem; right: 7%; background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
+  @media (max-width: 760px) { .hamburger { display: flex; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Stream<span>line</span> Plumbing</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#scenarios">Situations</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#cta" class="nav-cta">Book a Plumber</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#scenarios" onclick="this.closest('.mobile-menu').classList.remove('open')">Situations</a>
+  <a href="#why" onclick="this.closest('.mobile-menu').classList.remove('open')">Why Us</a>
+  <a href="#cta" onclick="this.closest('.mobile-menu').classList.remove('open')">Book a Plumber</a>
+</div>
+
+<section id="hero">
+  <div class="hero-ornament"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Streamline Plumbing · Serving the Metro Area</div>
+    <h1 class="hero-h1">Fix It Once.<br><em>Fix It Right.</em></h1>
+    <p class="hero-sub">Expert plumbing for emergencies, renovations, and installations. Upfront pricing before we start. No surprise fees. No upsells you didn't ask for.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Book a Plumber</a>
+      <a href="#services" class="btn-outline">Get Instant Estimate</a>
+    </div>
+    <div class="hero-promise">
+      <div class="promise-item"><span class="promise-check">✓</span> Upfront Pricing</div>
+      <div class="promise-item"><span class="promise-check">✓</span> Licensed & Insured</div>
+      <div class="promise-item"><span class="promise-check">✓</span> Same-Day Emergency Service</div>
+      <div class="promise-item"><span class="promise-check">✓</span> Work Guaranteed</div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <p>Trusted For</p>
+  <div class="trust-item"><div class="trust-item-dot"></div> Emergency Repairs</div>
+  <div class="trust-item"><div class="trust-item-dot"></div> Bathroom Remodels</div>
+  <div class="trust-item"><div class="trust-item-dot"></div> Water Heaters</div>
+  <div class="trust-item"><div class="trust-item-dot"></div> Sewer Line Work</div>
+  <div class="trust-item"><div class="trust-item-dot"></div> Commercial Plumbing</div>
+</div>
+
+<section id="services">
+  <div class="reveal">
+    <div class="section-eyebrow">Services</div>
+    <h2 class="section-title">Every Plumbing Problem.<br><em>One Phone Call.</em></h2>
+  </div>
+  <div class="services-layout">
+    <div class="services-intro reveal">
+      <p>We handle everything from a burst pipe at 2am to the rough-in for a full master bathroom remodel. Every job starts with a clear, written quote. You approve before we start — always.</p>
+      <a href="#cta" class="btn-primary">Get a Quote</a>
+    </div>
+    <div class="services-list">
+      <div class="service-row reveal">
+        <div class="service-num">01</div>
+        <div class="service-content">
+          <h3>Emergency Pipe Repair</h3>
+          <p>Burst pipes, active leaks, and water shutoff situations handled the same day. We respond to emergency calls seven days a week. Damage assessment and written scope before work begins.</p>
+          <span class="service-pill">Same-Day Response</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <div class="service-content">
+          <h3>Drain Cleaning & Hydro-Jetting</h3>
+          <p>Standard clog clearing through cable augering, or full hydro-jet treatment for stubborn blockages and root infiltration. Camera inspection available before and after to confirm clear lines.</p>
+          <span class="service-pill">Camera Inspection Available</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <div class="service-content">
+          <h3>Water Heater Installation</h3>
+          <p>Tank and tankless installation, replacement, and expansion tank upgrades. We size correctly for your household — most replacements completed same-day. All work permitted and inspected.</p>
+          <span class="service-pill">Same-Day in Most Cases</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-3">
+        <div class="service-num">04</div>
+        <div class="service-content">
+          <h3>Bathroom & Kitchen Remodel Plumbing</h3>
+          <p>Rough-in, fixture supply lines, drain repositioning, and tie-in work for full remodels. We coordinate directly with your contractor to hit their schedule. No delays from the plumbing side.</p>
+          <span class="service-pill">Contractor-Friendly Scheduling</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-4">
+        <div class="service-num">05</div>
+        <div class="service-content">
+          <h3>Sewer Line Inspection & Repair</h3>
+          <p>Video camera inspection to locate breaks, root infiltration, or collapse. Trenchless pipe lining and point repair available — less disruption, faster resolution, no unnecessary digging.</p>
+          <span class="service-pill">Trenchless Options Available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <div class="scenarios-header reveal">
+    <div class="section-eyebrow">Real Situations</div>
+    <h2 class="section-title">The Calls We Get<br>Every <em>Single Week.</em></h2>
+  </div>
+  <div class="scenarios-grid">
+    <div class="scenario-card reveal reveal-delay-1">
+      <div class="scenario-type">Emergency Repair</div>
+      <h3>Burst Pipe During a Cold Snap</h3>
+      <p>Finished basement. Copper supply line in the wall froze and ruptured during an overnight temperature drop. Homeowner shut the main water off and called us at 7am. We were on-site by 10. Pipe accessed through drywall, replaced, and water restored by noon.</p>
+      <div class="scenario-outcome">Same-day dispatch → pipe repaired → water restored before noon → $1,200 job, no secondary damage from delay</div>
+    </div>
+    <div class="scenario-card reveal reveal-delay-2">
+      <div class="scenario-type">Remodel Coordination</div>
+      <h3>Tile Goes In Friday — Plumbing Isn't Done</h3>
+      <p>GC called Tuesday. Master bath remodel, tile installation starting Friday, and the plumbing rough-in for the new shower and double vanity wasn't scheduled. We moved Thursday's schedule around, completed the rough-in Thursday afternoon, passed inspection Friday morning.</p>
+      <div class="scenario-outcome">Booked Thursday → roughed in same day → inspection passed → tile went in on schedule → GC has used us on 4 jobs since</div>
+    </div>
+    <div class="scenario-card reveal reveal-delay-3">
+      <div class="scenario-type">Sewer Diagnosis</div>
+      <h3>Every Drain Runs Slow</h3>
+      <p>1958 cast-iron house. Owner noticed all three bathrooms draining slowly for months. We ran a camera from the cleanout — tree root infiltration at 43 feet in the main line. Hydro-jetted and then trenchless-lined the damaged section. Problem solved without digging the yard.</p>
+      <div class="scenario-outcome">Camera found root cause → trenchless liner installed → $3,800 job → permanent fix vs recurring drain cleaning forever</div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="why-layout">
+    <div class="why-image reveal"></div>
+    <div class="why-right">
+      <div class="why-heading reveal">
+        <div class="section-eyebrow">Why Streamline</div>
+        <h2 class="section-title">Honest Work.<br><em>Clear Pricing.</em></h2>
+        <p>We built this company around one principle: no one should feel taken advantage of by a plumber. Upfront quotes, straight answers, and work that holds up.</p>
+      </div>
+      <div class="why-points">
+        <div class="why-point reveal reveal-delay-1">
+          <div class="why-num">01</div>
+          <div class="why-text">
+            <h4>You Approve the Price Before We Start</h4>
+            <p>Every job starts with a written quote. We explain what we found, what needs to be done, and what it costs. You sign off before a wrench moves.</p>
+          </div>
+        </div>
+        <div class="why-point reveal reveal-delay-2">
+          <div class="why-num">02</div>
+          <div class="why-text">
+            <h4>No Upsells You Didn't Ask For</h4>
+            <p>We fix what needs fixing. We tell you about issues we find, but we don't manufacture problems. If the water heater is fine, we'll tell you that too.</p>
+          </div>
+        </div>
+        <div class="why-point reveal reveal-delay-3">
+          <div class="why-num">03</div>
+          <div class="why-text">
+            <h4>All Work Warrantied in Writing</h4>
+            <p>Every repair and installation comes with a written warranty. If our work fails, we come back and fix it. No excuses, no call-backs that go to voicemail.</p>
+          </div>
+        </div>
+        <div class="why-point reveal reveal-delay-4">
+          <div class="why-num">04</div>
+          <div class="why-text">
+            <h4>Permits Pulled When Required</h4>
+            <p>Water heaters, sewer work, and remodel plumbing — we pull permits where required by code. Your work is documented correctly for resale and insurance purposes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">3,200+</div>
+      <div class="stat-label">Jobs Completed</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">Same Day</div>
+      <div class="stat-label">Emergency Response</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">14yr</div>
+      <div class="stat-label">In Business</div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Client Reviews</div>
+    <h2 class="section-title">Straight Talk.<br><em>Solid Work.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Pipe burst on a Saturday at 6am. Streamline was the only company I called that answered, and they were at my house by 9. Fixed, cleaned up, done. No drama, no upcharges. Exactly what you want in a plumber."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MH</div>
+        <div>
+          <div class="testi-name">Michael H.</div>
+          <div class="testi-meta">Emergency Repair · Towson, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Three other plumbers told me I needed to replace the entire sewer line for $12,000. Streamline ran a camera, found the actual problem, and fixed it for $3,800 with no digging. I don't think I'll ever use anyone else."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">KO</div>
+        <div>
+          <div class="testi-name">Karen O.</div>
+          <div class="testi-meta">Sewer Line Repair · Columbia, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"I'm a GC and I've worked with a dozen plumbers over the years. Streamline is the first one that shows up when they say they will, prices fairly, and doesn't create drama on the job. They're my first call on every project now."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">TC</div>
+        <div>
+          <div class="testi-name">Tom C.</div>
+          <div class="testi-meta">General Contractor · Multiple Projects</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta-layout reveal">
+    <div>
+      <h2>Ready to Get It Fixed?</h2>
+      <p>We'll give you an upfront quote before any work starts. Same-day service available for emergencies. Schedule online or call — we pick up.</p>
+    </div>
+    <div class="cta-card">
+      <div class="cta-card-icon">📞</div>
+      <h3>Talk to a Plumber Now</h3>
+      <p>Describe the problem and get an upfront estimate. No automated system, no hold music.</p>
+      <a href="tel:+14105550374" class="cta-phone">(410) 555-0374</a>
+      <p class="cta-note">Available 7 days · Emergency line 24 hours</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Stream<span>line</span> Plumbing</a>
+  <p>© 2025 Streamline Plumbing. Licensed · Insured · Master Plumber on Every Job</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

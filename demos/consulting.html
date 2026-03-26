@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Strategy Group | Business Consulting</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<meta name="description" content="Meridian Strategy Group — Growth consulting for founder-led businesses. Operations, go-to-market, and leadership structure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #12121E;
+    --bg-2: #1A1A2E;
+    --bg-3: #0E0E1A;
+    --purple: #8B5CF6;
+    --purple-dim: rgba(139,92,246,.12);
+    --purple-border: rgba(139,92,246,.22);
+    --indigo: #4F46E5;
+    --text: #E8E6F0;
+    --muted: #7A748A;
+    --muted-2: #A09AB8;
+    --divider: rgba(255,255,255,.06);
+    --divider-2: rgba(255,255,255,.04);
+    --nav-h: 80px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 7%;
+    transition: background .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(18,18,30,.95);
+    backdrop-filter: blur(20px);
+    border-color: var(--divider);
+  }
+  .nav-logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: .02em;
+  }
+  .nav-logo span { color: var(--purple); }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 500;
+    letter-spacing: .05em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    border: 1px solid var(--purple-border) !important;
+    color: var(--purple) !important;
+    padding: .5rem 1.3rem;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--purple-dim) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    padding: calc(var(--nav-h) + 6rem) 10% 8rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(139,92,246,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,92,246,.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  }
+  .hero-geo {
+    position: absolute; right: 8%; top: 50%;
+    transform: translateY(-50%);
+    width: 360px; height: 360px;
+    border: 1px solid var(--purple-border);
+    border-radius: 50%;
+    opacity: .25;
+  }
+  .hero-geo::before {
+    content: '';
+    position: absolute; inset: 30px;
+    border: 1px solid var(--purple-border);
+    border-radius: 50%;
+  }
+  .hero-geo::after {
+    content: '';
+    position: absolute; inset: 70px;
+    border: 1px solid var(--purple-border);
+    border-radius: 50%;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-eyebrow {
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .hero-h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(3rem, 5.5vw, 6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.03em;
+    color: var(--text);
+    opacity: 0; animation: fadeUp .8s .35s forwards;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--purple), var(--indigo));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1.1rem; font-weight: 300;
+    line-height: 1.85;
+    color: var(--muted-2);
+    max-width: 520px;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+  .hero-btns {
+    margin-top: 3rem;
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .6s .65s forwards;
+  }
+  .btn-primary {
+    background: var(--purple);
+    color: var(--bg);
+    padding: .95rem 2.2rem;
+    border: none; border-radius: 3px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: .88rem; font-weight: 600;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: #9D71F8; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(139,92,246,.3); }
+  .btn-outline {
+    background: transparent;
+    color: var(--muted-2);
+    padding: .95rem 2.2rem;
+    border: 1px solid var(--divider);
+    border-radius: 3px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: .88rem; font-weight: 500;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--purple-border); color: var(--text); }
+  .hero-note {
+    margin-top: 1.5rem;
+    font-size: .78rem; color: var(--muted);
+    opacity: 0; animation: fadeUp .5s .8s forwards;
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 768px) { #hero { padding: calc(var(--nav-h) + 4rem) 6% 5rem; } .hero-geo { display: none; } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 9rem 10%; }
+  .section-eyebrow {
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.15;
+    color: var(--text);
+  }
+  .section-title em { font-style: italic; color: var(--purple); }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .75s ease, transform .75s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .12s; }
+  .reveal-delay-2 { transition-delay: .24s; }
+  .reveal-delay-3 { transition-delay: .36s; }
+  .reveal-delay-4 { transition-delay: .48s; }
+
+  /* ─── DIVIDER ─── */
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: 0 10%;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--bg); }
+  .services-header { margin-bottom: 5rem; max-width: 640px; }
+  .services-header p { margin-top: 1.2rem; font-size: 1rem; line-height: 1.85; color: var(--muted-2); }
+  .services-numbered {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--divider);
+  }
+  .service-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--divider);
+    transition: background .2s;
+    cursor: default;
+  }
+  .service-item:hover { background: var(--divider-2); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
+  .service-index {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: var(--divider);
+    line-height: 1;
+    transition: color .3s;
+  }
+  .service-item:hover .service-index { color: var(--purple); }
+  .service-info h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--text); margin-bottom: .5rem;
+    letter-spacing: -.01em;
+  }
+  .service-info p { font-size: .9rem; line-height: 1.75; color: var(--muted-2); max-width: 480px; }
+  .service-arrow { color: var(--muted); font-size: 1.2rem; transition: color .2s, transform .2s; }
+  .service-item:hover .service-arrow { color: var(--purple); transform: translateX(4px); }
+  @media (max-width: 768px) {
+    .service-item { grid-template-columns: 50px 1fr; gap: 1.2rem; }
+    .service-arrow { display: none; }
+  }
+
+  /* ─── SCENARIOS ─── */
+  #scenarios {
+    background: var(--bg-2);
+    padding: 8rem 10%;
+  }
+  .scenarios-header { max-width: 600px; margin-bottom: 4rem; }
+  .scenarios-header p { margin-top: 1rem; font-size: 1rem; line-height: 1.8; color: var(--muted-2); }
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .scenario-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    transition: border-color .3s;
+  }
+  .scenario-card:hover { border-color: var(--purple-border); }
+  .scenario-label {
+    font-size: .68rem; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 1rem;
+  }
+  .scenario-card h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--text); margin-bottom: .75rem;
+    line-height: 1.35;
+  }
+  .scenario-card p { font-size: .86rem; line-height: 1.8; color: var(--muted-2); }
+  .scenario-outcome {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--divider);
+    font-size: .8rem; color: var(--purple);
+    font-weight: 500; line-height: 1.6;
+  }
+  @media (max-width: 900px) { .scenarios-grid { grid-template-columns: 1fr; } }
+
+  /* ─── APPROACH ─── */
+  #approach { background: var(--bg); }
+  .approach-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: start;
+  }
+  .approach-left .section-title { max-width: 400px; margin-bottom: 2rem; }
+  .approach-left p { font-size: 1rem; line-height: 1.85; color: var(--muted-2); margin-bottom: 1.5rem; }
+  .approach-left .btn-primary { margin-top: .5rem; }
+  .approach-right { display: flex; flex-direction: column; gap: 0; }
+  .approach-item {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--divider);
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 1.2rem;
+  }
+  .approach-item:first-child { border-top: 1px solid var(--divider); }
+  .approach-icon { color: var(--purple); font-size: .9rem; padding-top: .1rem; }
+  .approach-item h4 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); margin-bottom: .4rem;
+  }
+  .approach-item p { font-size: .86rem; line-height: 1.75; color: var(--muted-2); }
+  @media (max-width: 900px) { .approach-layout { grid-template-columns: 1fr; gap: 3rem; } }
+
+  /* ─── OUTCOMES ─── */
+  #outcomes {
+    background: var(--bg-3);
+    padding: 8rem 10%;
+  }
+  .outcomes-header { margin-bottom: 4rem; }
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .outcome-card {
+    border-left: 2px solid var(--purple);
+    padding: 0 0 0 1.8rem;
+  }
+  .outcome-num {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--text);
+    line-height: 1; margin-bottom: .5rem;
+  }
+  .outcome-num span { color: var(--purple); }
+  .outcome-desc { font-size: .88rem; line-height: 1.75; color: var(--muted-2); }
+  @media (max-width: 768px) { .outcomes-grid { grid-template-columns: 1fr; } }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--bg); }
+  .testi-header { margin-bottom: 4rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .testi-card {
+    background: var(--bg-2);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 2.5rem;
+    transition: border-color .3s;
+  }
+  .testi-card:hover { border-color: var(--purple-border); }
+  .testi-quote {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: .98rem; line-height: 1.85;
+    color: var(--muted-2);
+    margin-bottom: 2rem;
+  }
+  .testi-author { display: flex; align-items: center; gap: 1rem; }
+  .testi-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--purple-dim);
+    border: 1px solid var(--purple-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: .88rem; font-weight: 700; color: var(--purple);
+  }
+  .testi-name { font-size: .9rem; font-weight: 600; color: var(--text); }
+  .testi-meta { font-size: .76rem; color: var(--muted); margin-top: .15rem; }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--bg-2);
+    padding: 9rem 10%;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--purple), transparent);
+  }
+  #cta::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(139,92,246,.06) 0%, transparent 70%);
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+  .cta-eyebrow {
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 1.5rem;
+  }
+  #cta h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700; letter-spacing: -.03em;
+    line-height: 1.15; color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+  #cta h2 em { font-style: italic; color: var(--purple); }
+  #cta p { font-size: 1rem; color: var(--muted-2); line-height: 1.8; margin-bottom: 2.5rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cta-disclaimer { margin-top: 1.5rem; font-size: .78rem; color: var(--muted); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg-3);
+    padding: 2.5rem 10%;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--divider);
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); text-decoration: none;
+  }
+  .footer-logo span { color: var(--purple); }
+  footer p { font-size: .78rem; color: var(--muted); }
+
+  /* mobile */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(18,18,30,.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--text); text-decoration: none;
+  }
+  .mobile-menu a:hover { color: var(--purple); }
+  .close-menu { position: absolute; top: 2rem; right: 7%; background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
+  @media (max-width: 760px) { .hamburger { display: flex; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Meridian<span> Strategy</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Work</a></li>
+    <li><a href="#scenarios">Clients</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#cta" class="nav-cta">Start a Conversation</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Work</a>
+  <a href="#scenarios" onclick="this.closest('.mobile-menu').classList.remove('open')">Clients</a>
+  <a href="#approach" onclick="this.closest('.mobile-menu').classList.remove('open')">Approach</a>
+  <a href="#cta" onclick="this.closest('.mobile-menu').classList.remove('open')">Start a Conversation</a>
+</div>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-geo"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Meridian Strategy Group</div>
+    <h1 class="hero-h1">Strategy That<br><em>Moves</em><br>the Needle.</h1>
+    <p class="hero-sub">Growth consulting for founder-led businesses navigating operations, team structure, and market expansion. We work with the companies others consider too early.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Start a Conversation</a>
+      <a href="#services" class="btn-outline">Read Our Approach</a>
+    </div>
+    <p class="hero-note">We take on 4–6 new clients per year. Engagements start at 3 months.</p>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- Services -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-eyebrow">Engagement Areas</div>
+    <h2 class="section-title">What We<br><em>Actually Do.</em></h2>
+    <p>We don't offer a menu of services you pick from. Every engagement starts with understanding what's actually broken — then we build the work around that.</p>
+  </div>
+  <div class="services-numbered">
+    <div class="service-item reveal">
+      <div class="service-index">01</div>
+      <div class="service-info">
+        <h3>Operational Efficiency Audit</h3>
+        <p>We map every process in the business, find the bottlenecks and redundancies, and prioritize fixes by impact. Most founders discover that 3–4 changes free up 20+ hours a week across the leadership team.</p>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-item reveal reveal-delay-1">
+      <div class="service-index">02</div>
+      <div class="service-info">
+        <h3>Go-To-Market Strategy</h3>
+        <p>Positioning, channel selection, messaging hierarchy, and sales motion design. We've run GTM for B2B software, professional services, and marketplace businesses — and we know what actually converts at each stage.</p>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-item reveal reveal-delay-2">
+      <div class="service-index">03</div>
+      <div class="service-info">
+        <h3>Leadership Team Structure</h3>
+        <p>Org design, role definition, hiring sequence, and delegation frameworks. When the founder is still in every decision, this is usually the engagement that unlocks everything else.</p>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-item reveal reveal-delay-3">
+      <div class="service-index">04</div>
+      <div class="service-info">
+        <h3>M&A Readiness Assessment</h3>
+        <p>Clean books, clean ops, clean narrative — preparing for acquisition conversations 12–18 months before you want to have them. Most companies aren't ready when they think they are.</p>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-item reveal reveal-delay-4">
+      <div class="service-index">05</div>
+      <div class="service-info">
+        <h3>Investor Narrative Development</h3>
+        <p>Pitch deck logic, financial story architecture, and due diligence prep for Series A and beyond. We've sat in both chairs — as advisors and as operators — and we know what investors are actually evaluating.</p>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- Scenarios -->
+<section id="scenarios">
+  <div class="scenarios-header reveal">
+    <div class="section-eyebrow">Who We Work With</div>
+    <h2 class="section-title">The Conversations<br><em>That Start Engagements.</em></h2>
+    <p>Most of our clients find us when they've hit a ceiling. Revenue is growing, but something isn't scaling with it. Here are three we've seen recently.</p>
+  </div>
+  <div class="scenarios-grid">
+    <div class="scenario-card reveal reveal-delay-1">
+      <div class="scenario-label">Ops & Delegation</div>
+      <h3>The Founder Who Can't Step Back</h3>
+      <p>$4.2M ARR SaaS company. 22 employees. The CEO was still approving every customer discount, every hire, every significant product decision. Sales cycles were slowing because nothing moved without him. Three VPs were on the verge of leaving.</p>
+      <div class="scenario-outcome">Engagement outcome: Delegation framework built. CEO freed up 18 hours per week within 90 days. Two of three VPs retained.</div>
+    </div>
+    <div class="scenario-card reveal reveal-delay-2">
+      <div class="scenario-label">Market Expansion</div>
+      <h3>Expanding Without a Map</h3>
+      <p>B2B services firm with a dominant position in one mid-Atlantic market. Board wanted two new markets by end of year. The team had no framework for how to sequence entry, what success looked like in month 6, or how to staff without overextending.</p>
+      <div class="scenario-outcome">Engagement outcome: Phased 3-market expansion strategy built. First market entered 14% under projected cost with above-target pipeline in 90 days.</div>
+    </div>
+    <div class="scenario-card reveal reveal-delay-3">
+      <div class="scenario-label">M&A Readiness</div>
+      <h3>The PE Sponsor's 18-Month Clock</h3>
+      <p>Portfolio company with a PE sponsor who wanted an acquisition ready in 18 months. Operations were messy, financial reporting was inconsistent, and the leadership team wasn't clearly defined on paper. No one had been through an acquisition before.</p>
+      <div class="scenario-outcome">Engagement outcome: Company acquired at 2.4x initial valuation estimate. Clean ops and narrative preparation were cited by the buyer as key factors.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- Approach -->
+<section id="approach">
+  <div class="approach-layout">
+    <div class="approach-left reveal">
+      <div class="section-eyebrow">How We Work</div>
+      <h2 class="section-title">No Decks.<br><em>No Theater.</em><br>Just the Work.</h2>
+      <p>We're embedded in the business, not presenting to it. Our engagements involve working directly with the founding team and key operators — not producing deliverables that sit in a folder.</p>
+      <p>Every engagement starts with two weeks of observation and interviews before we recommend anything. We don't come in with prebuilt frameworks that get retrofitted onto your problem.</p>
+      <a href="#cta" class="btn-primary">Start a Conversation</a>
+    </div>
+    <div class="approach-right">
+      <div class="approach-item reveal reveal-delay-1">
+        <div class="approach-icon">◆</div>
+        <div>
+          <h4>Embedded, Not Advisory</h4>
+          <p>We work inside the business — in your Slack, your meetings, your data. We're accountable to outcomes, not to hours billed.</p>
+        </div>
+      </div>
+      <div class="approach-item reveal reveal-delay-2">
+        <div class="approach-icon">◆</div>
+        <div>
+          <h4>Observation Before Recommendation</h4>
+          <p>Two weeks of listening before we say anything prescriptive. We ask more questions than most clients expect. That's the work.</p>
+        </div>
+      </div>
+      <div class="approach-item reveal reveal-delay-3">
+        <div class="approach-icon">◆</div>
+        <div>
+          <h4>Small Client List, Concentrated Attention</h4>
+          <p>We work with 4–6 clients at a time. If we're at capacity, we tell you. The businesses we take on get real attention, not a junior team.</p>
+        </div>
+      </div>
+      <div class="approach-item reveal reveal-delay-4">
+        <div class="approach-icon">◆</div>
+        <div>
+          <h4>Outcomes Defined at the Start</h4>
+          <p>We agree on what success looks like in 90 days before we start. If we can't define it, we don't take the engagement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Outcomes -->
+<section id="outcomes">
+  <div class="outcomes-header reveal">
+    <div class="section-eyebrow">Results</div>
+    <h2 class="section-title">What Clients<br><em>Walk Away With.</em></h2>
+  </div>
+  <div class="outcomes-grid">
+    <div class="outcome-card reveal reveal-delay-1">
+      <div class="outcome-num">18<span>hrs</span></div>
+      <div class="outcome-desc">Average weekly hours returned to the founding team after a 90-day ops engagement — time that was previously spent in decisions that didn't require them.</div>
+    </div>
+    <div class="outcome-card reveal reveal-delay-2">
+      <div class="outcome-num">2.4<span>×</span></div>
+      <div class="outcome-desc">Valuation improvement in a recent acquisition engagement. M&A readiness work — clean financials, clean ops, clear narrative — moved the offer materially before LOI.</div>
+    </div>
+    <div class="outcome-card reveal reveal-delay-3">
+      <div class="outcome-num">14<span>%</span></div>
+      <div class="outcome-desc">Below-budget market entry for a services expansion client who came in with no framework. Sequenced entry and pre-built sales motion reduced burn in year one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Client Perspectives</div>
+    <h2 class="section-title">What It's Like<br><em>To Work With Us.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <p class="testi-quote">"I've worked with three consulting firms in eight years. Meridian is the first one that made me feel like they understood my business before they opened their mouth. The operational work we did together is still running two years later."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JC</div>
+        <div>
+          <div class="testi-name">James C., CEO</div>
+          <div class="testi-meta">B2B SaaS · $6M ARR at time of engagement</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <p class="testi-quote">"We were told we weren't acquisition-ready. Meridian came in, fixed what mattered, and 14 months later we closed a deal we didn't think was possible at our size. The prep work they did was the difference."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RG</div>
+        <div>
+          <div class="testi-name">Rachel G., Founder</div>
+          <div class="testi-meta">Professional Services · M&A Engagement</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <p class="testi-quote">"The GTM work Meridian did for our second market expansion was more thorough than anything our internal team would have produced. They weren't guessing — they had done it before and the sequencing showed."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">TM</div>
+        <div>
+          <div class="testi-name">Thomas M., COO</div>
+          <div class="testi-meta">Services Firm · Market Expansion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-eyebrow reveal">Engagements Starting Q3 2025</div>
+    <h2 class="reveal">Ready to Have<br>a <em>Real Conversation?</em></h2>
+    <p class="reveal">We do a 30-minute discovery call before anything else. No pitch, no deck. We want to understand what you're dealing with — and tell you honestly whether we can help.</p>
+    <div class="cta-btns reveal">
+      <a href="#" class="btn-primary">Schedule a Call</a>
+      <a href="#services" class="btn-outline">Read More First</a>
+    </div>
+    <p class="cta-disclaimer reveal">We take on 4–6 clients per year. If we're at capacity, we'll tell you on the first call.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <a href="#" class="footer-logo">Meridian<span> Strategy Group</span></a>
+  <p>© 2025 Meridian Strategy Group · Strategy · Operations · Growth</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearfield Commercial Services | Contract Cleaning</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+<meta name="description" content="Clearfield Commercial Services — Contract cleaning for offices, medical facilities, and commercial properties. Certified, insured, consistent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #F8FAFB;
+    --white-2: #EFF3F6;
+    --white-3: #E4EBF0;
+    --teal: #00897B;
+    --teal-light: #00A896;
+    --teal-dim: rgba(0,137,123,.1);
+    --teal-border: rgba(0,137,123,.18);
+    --navy: #0C1B33;
+    --navy-2: #1A2E4A;
+    --muted: #7A8FA0;
+    --muted-2: #5A6E80;
+    --divider: #DDE5EA;
+    --nav-h: 80px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--navy);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6%;
+    background: var(--white);
+    border-bottom: 1px solid var(--divider);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(12,27,51,.06); }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -.01em;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .88rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--teal) !important;
+    color: var(--white) !important;
+    padding: .55rem 1.4rem;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--teal-light) !important; color: var(--white) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    padding-top: var(--nav-h);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 5% 6rem 7%;
+    background: var(--white);
+  }
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: url('https://images.unsplash.com/photo-1527515545081-5db817172677?w=900&q=80') center/cover no-repeat;
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(248,250,251,.3) 0%, transparent 40%);
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.8rem;
+    opacity: 0; animation: fadeIn .6s .2s forwards;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--teal); }
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    color: var(--navy);
+    opacity: 0; animation: fadeIn .8s .35s forwards;
+  }
+  .hero-h1 em { font-style: italic; color: var(--teal); }
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted-2);
+    max-width: 420px;
+    opacity: 0; animation: fadeIn .7s .5s forwards;
+  }
+  .hero-btns {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeIn .6s .65s forwards;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: var(--white);
+    padding: .9rem 2rem;
+    border: none; border-radius: 4px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .9rem; font-weight: 700;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,137,123,.25); }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    padding: .9rem 2rem;
+    border: 1.5px solid var(--divider);
+    border-radius: 4px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .9rem; font-weight: 600;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+  .hero-trust {
+    margin-top: 3rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--divider);
+    opacity: 0; animation: fadeIn .6s .8s forwards;
+    flex-wrap: wrap;
+  }
+  .trust-badge {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .78rem; font-weight: 600;
+    color: var(--muted-2); letter-spacing: .04em;
+  }
+  .trust-badge svg { width: 16px; height: 16px; fill: var(--teal); }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { height: 50vw; min-height: 260px; }
+    .hero-left { padding: 4rem 5%; }
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 8rem 9%; }
+  .section-eyebrow {
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+    color: var(--navy);
+    max-width: 560px;
+  }
+  .section-title em { font-style: italic; color: var(--teal); }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── CLIENTS STRIP ─── */
+  .clients-strip {
+    background: var(--white-2);
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    padding: 2rem 9%;
+    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .clients-strip p {
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap;
+    margin-right: .5rem;
+  }
+  .client-tag {
+    font-size: .82rem; font-weight: 600;
+    color: var(--muted-2);
+    background: var(--white);
+    border: 1px solid var(--divider);
+    padding: .35rem .9rem;
+    border-radius: 3px;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--white); }
+  .services-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .services-intro p {
+    margin-top: 1.2rem;
+    font-size: 1rem; line-height: 1.85;
+    color: var(--muted-2);
+  }
+  .services-intro .btn-primary { margin-top: 2rem; }
+  .services-list { display: flex; flex-direction: column; }
+  .service-row {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--divider);
+    transition: background .2s;
+  }
+  .service-row:last-child { border-bottom: none; }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--divider);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 50px;
+    transition: color .3s;
+  }
+  .service-row:hover .service-num { color: var(--teal); }
+  .service-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--navy); margin-bottom: .5rem;
+  }
+  .service-content p { font-size: .9rem; line-height: 1.75; color: var(--muted-2); }
+  .service-tag {
+    display: inline-block; margin-top: .6rem;
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--teal);
+    background: var(--teal-dim);
+    border: 1px solid var(--teal-border);
+    padding: .2rem .6rem; border-radius: 2px;
+  }
+  @media (max-width: 900px) { .services-layout { grid-template-columns: 1fr; gap: 3rem; } }
+
+  /* ─── SCENARIOS ─── */
+  #scenarios {
+    background: var(--navy);
+    padding: 8rem 9%;
+  }
+  #scenarios .section-eyebrow { color: var(--teal-light); }
+  #scenarios .section-title { color: #FFFFFF; }
+  #scenarios .section-title em { color: var(--teal-light); }
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .scenario-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px;
+    padding: 2.2rem 2rem;
+    transition: border-color .3s, transform .3s;
+  }
+  .scenario-card:hover { border-color: rgba(0,168,150,.35); transform: translateY(-4px); }
+  .scenario-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .scenario-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: #FFFFFF; margin-bottom: .75rem;
+  }
+  .scenario-card p { font-size: .88rem; line-height: 1.75; color: rgba(255,255,255,.5); }
+  @media (max-width: 768px) { .scenarios-grid { grid-template-columns: 1fr; } }
+
+  /* ─── WHY ─── */
+  #why { background: var(--white-2); }
+  .why-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .why-points { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2rem; }
+  .why-point {
+    display: flex; gap: 1.2rem;
+  }
+  .why-check {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--teal-dim);
+    border: 1px solid var(--teal-border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal);
+    font-size: 1rem;
+    margin-top: .15rem;
+  }
+  .why-text h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--navy); margin-bottom: .35rem;
+  }
+  .why-text p { font-size: .88rem; line-height: 1.75; color: var(--muted-2); }
+  .why-image {
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: url('https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80') center/cover no-repeat;
+  }
+  @media (max-width: 900px) { .why-layout { grid-template-columns: 1fr; } .why-image { display: none; } }
+
+  /* ─── STATS ─── */
+  #stats {
+    background: var(--white);
+    padding: 5rem 9%;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat-item { padding: 1.5rem 0; border-right: 1px solid var(--divider); padding-right: 2rem; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .stat-label {
+    margin-top: .4rem;
+    font-size: .78rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: 1fr 1fr; } .stat-item { border-right: none; border-bottom: 1px solid var(--divider); padding-bottom: 1.5rem; } }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--white); }
+  .testi-header { margin-bottom: 3.5rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .testi-card {
+    background: var(--white-2);
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    padding: 2.5rem;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .testi-card:hover { border-color: var(--teal-border); box-shadow: 0 8px 30px rgba(0,137,123,.06); }
+  .stars { color: #F59E0B; font-size: .9rem; letter-spacing: .1em; margin-bottom: 1.2rem; }
+  .testi-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem; line-height: 1.8;
+    color: var(--navy-2);
+    margin-bottom: 1.8rem;
+  }
+  .testi-author { display: flex; align-items: center; gap: .9rem; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--teal-dim);
+    border: 2px solid var(--teal-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: .9rem; font-weight: 700; color: var(--teal);
+  }
+  .testi-name { font-size: .9rem; font-weight: 700; color: var(--navy); }
+  .testi-meta { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--teal);
+    padding: 7rem 9%;
+  }
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+  #cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -.02em;
+    color: var(--white);
+  }
+  #cta p {
+    margin-top: .8rem;
+    font-size: 1rem; color: rgba(255,255,255,.75);
+    line-height: 1.75; max-width: 500px;
+  }
+  .cta-actions { display: flex; flex-direction: column; gap: .8rem; align-items: flex-end; }
+  .btn-cta-white {
+    background: var(--white);
+    color: var(--teal);
+    padding: .9rem 2rem;
+    border: none; border-radius: 4px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .9rem; font-weight: 700;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+    white-space: nowrap;
+  }
+  .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+  .cta-sub { font-size: .8rem; color: rgba(255,255,255,.6); text-align: right; }
+  @media (max-width: 768px) { .cta-inner { grid-template-columns: 1fr; } .cta-actions { align-items: flex-start; } .cta-sub { text-align: left; } }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    padding: 2.5rem 9%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--white); text-decoration: none;
+  }
+  .footer-logo span { color: var(--teal-light); }
+  footer p { font-size: .78rem; color: rgba(255,255,255,.4); }
+
+  /* mobile */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--white);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--navy); text-decoration: none;
+  }
+  .mobile-menu a:hover { color: var(--teal); }
+  .close-menu { position: absolute; top: 2rem; right: 6%; background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
+  @media (max-width: 760px) { .hamburger { display: flex; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Clearfield<span> Commercial</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#scenarios">Industries</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#cta" class="nav-cta">Request Quote</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#scenarios" onclick="this.closest('.mobile-menu').classList.remove('open')">Industries</a>
+  <a href="#why" onclick="this.closest('.mobile-menu').classList.remove('open')">Why Us</a>
+  <a href="#cta" onclick="this.closest('.mobile-menu').classList.remove('open')">Request Quote</a>
+</div>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Commercial Cleaning Services</div>
+    <h1 class="hero-h1">A Cleaner Space.<br><em>A Stronger</em><br>Business.</h1>
+    <p class="hero-sub">Contract cleaning for offices, medical facilities, and commercial properties. Certified, insured, and consistent — every shift, without exception.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Request a Quote</a>
+      <a href="#services" class="btn-outline">View Service Plans</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+        Fully Insured
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+        ISSA Certified
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+        Background-Checked Staff
+      </div>
+    </div>
+  </div>
+  <div class="hero-right"></div>
+</section>
+
+<!-- Clients Strip -->
+<div class="clients-strip">
+  <p>Trusted By</p>
+  <span class="client-tag">Property Management Firms</span>
+  <span class="client-tag">Medical Offices</span>
+  <span class="client-tag">Law Firms</span>
+  <span class="client-tag">Dental Practices</span>
+  <span class="client-tag">Corporate Headquarters</span>
+  <span class="client-tag">Post-Construction Sites</span>
+</div>
+
+<!-- Services -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-title">Every Service.<br><em>Every Detail.</em></h2>
+  </div>
+  <div class="services-layout">
+    <div class="services-intro reveal">
+      <p>We work on contract schedules you can rely on — nightly, weekly, monthly, or one-time. Our teams are trained, bonded, and assigned to the same buildings consistently so nothing gets missed.</p>
+      <a href="#cta" class="btn-primary">Get a Custom Quote</a>
+    </div>
+    <div class="services-list">
+      <div class="service-row reveal">
+        <div class="service-num">01</div>
+        <div class="service-content">
+          <h3>Nightly Office Cleaning</h3>
+          <p>Vacuuming, hard surface disinfection, restroom service, trash and recycling. Performed on a fixed nightly schedule — same crew, same building, no surprises.</p>
+          <span class="service-tag">Recurring Contract</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <div class="service-content">
+          <h3>Medical-Grade Disinfection</h3>
+          <p>EPA-registered disinfectants, hospital-grade protocols for treatment rooms, waiting areas, and high-touch surfaces. Compliant with OSHA bloodborne pathogen standards.</p>
+          <span class="service-tag">Compliance Documented</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <div class="service-content">
+          <h3>Floor Care Programs</h3>
+          <p>VCT stripping and waxing, buffing and burnishing, hard surface scrubbing, and grout cleaning. Scheduled quarterly or as needed to maintain commercial-grade floors.</p>
+          <span class="service-tag">Quarterly or On-Demand</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-3">
+        <div class="service-num">04</div>
+        <div class="service-content">
+          <h3>Post-Construction Cleanup</h3>
+          <p>Full debris removal, drywall dust, window cleaning, surface polish, and fixture wipe-down after renovation or new build-out. One-time or staged by phase.</p>
+          <span class="service-tag">One-Time or Phased</span>
+        </div>
+      </div>
+      <div class="service-row reveal reveal-delay-4">
+        <div class="service-num">05</div>
+        <div class="service-content">
+          <h3>Carpet & Upholstery Extraction</h3>
+          <p>Commercial hot-water extraction for office carpet, waiting room seating, and conference furniture. Scheduling available to minimize business disruption.</p>
+          <span class="service-tag">Flexible Scheduling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scenarios -->
+<section id="scenarios">
+  <div class="reveal">
+    <div class="section-eyebrow">Real Situations</div>
+    <h2 class="section-title">The Calls<br><em>We Get Every Week.</em></h2>
+  </div>
+  <div class="scenarios-grid">
+    <div class="scenario-card reveal reveal-delay-1">
+      <div class="scenario-icon">🏢</div>
+      <h3>Property Manager — Inconsistent Vendor</h3>
+      <p>"Our current service doesn't show half the time and when they do, it's inconsistent. We manage 12,000 square feet and need something we can count on." Switched to Clearfield on a 12-month contract. Not a single missed shift.</p>
+    </div>
+    <div class="scenario-card reveal reveal-delay-2">
+      <div class="scenario-icon">🏥</div>
+      <h3>Dental Practice — Compliance Risk</h3>
+      <p>Staff filed a complaint about restroom and treatment room cleanliness before a state inspection. Practice needed a certified provider with documentation. Clearfield came in with a full compliance protocol the following week.</p>
+    </div>
+    <div class="scenario-card reveal reveal-delay-3">
+      <div class="scenario-icon">⚖️</div>
+      <h3>Law Firm — Post-Renovation Move-In</h3>
+      <p>New office build-out finished 3 days before the firm's move-in date. Drywall dust on every surface, windows covered in film, floors unfinished. Clearfield completed the full post-construction clean in one overnight shift.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Why -->
+<section id="why">
+  <div class="why-layout">
+    <div>
+      <div class="reveal">
+        <div class="section-eyebrow">Why Clearfield</div>
+        <h2 class="section-title">Consistent.<br><em>Documented.</em><br>Accountable.</h2>
+      </div>
+      <div class="why-points">
+        <div class="why-point reveal reveal-delay-1">
+          <div class="why-check">✓</div>
+          <div class="why-text">
+            <h4>Same Crew, Every Visit</h4>
+            <p>We assign dedicated teams to each facility. The same people clean the same building every time — they know the layout, the expectations, and what matters to you.</p>
+          </div>
+        </div>
+        <div class="why-point reveal reveal-delay-2">
+          <div class="why-check">✓</div>
+          <div class="why-text">
+            <h4>Quality Reports Included</h4>
+            <p>Every contract includes a monthly quality report with a checklist of completed work, any issues flagged, and next-visit notes. You have a record of every service.</p>
+          </div>
+        </div>
+        <div class="why-point reveal reveal-delay-3">
+          <div class="why-check">✓</div>
+          <div class="why-text">
+            <h4>No Third-Party Subcontractors</h4>
+            <p>Every technician is a direct Clearfield employee — background-checked, trained in-house, and covered by our liability insurance. No surprises from day one.</p>
+          </div>
+        </div>
+        <div class="why-point reveal reveal-delay-4">
+          <div class="why-check">✓</div>
+          <div class="why-text">
+            <h4>Flexible Contract Terms</h4>
+            <p>Month-to-month or annual. We earn your business every month — no locked-in contracts that protect us more than they protect you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-image reveal"></div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">340+</div>
+      <div class="stat-label">Active Contracts</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">99%</div>
+      <div class="stat-label">On-Time Service Rate</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">4.8★</div>
+      <div class="stat-label">Average Client Rating</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">12yr</div>
+      <div class="stat-label">In Business</div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Client Reviews</div>
+    <h2 class="section-title">What Our Clients<br><em>Say About Us.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"We had three cleaning vendors in two years before Clearfield. In 18 months with them, not a single missed service. The quality checklists they send each month are something none of the others ever offered."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PT</div>
+        <div>
+          <div class="testi-name">Patrick T.</div>
+          <div class="testi-meta">Property Manager · 6 Buildings</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Our dental practice passed its compliance inspection without a single issue. The documentation Clearfield provides covers every requirement. I genuinely do not think about cleaning anymore — it's handled."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">NN</div>
+        <div>
+          <div class="testi-name">Dr. N. Nguyen</div>
+          <div class="testi-meta">Practice Owner · Dental Clinic</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"We gave them 72 hours to clean our new space before move-in. They finished overnight on the first night and it looked better than we expected. We've had them on monthly contract ever since."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AW</div>
+        <div>
+          <div class="testi-name">Amanda W.</div>
+          <div class="testi-meta">Office Manager · Law Firm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner reveal">
+    <div>
+      <h2>Ready to Stop Thinking About Cleaning?</h2>
+      <p>We'll do a free walk-through of your space, build a custom scope, and send you a quote within 24 hours. No sales pressure. Just a number and a plan.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="tel:+14435550218" class="btn-cta-white">Request a Walk-Through</a>
+      <p class="cta-sub">Or call us at (443) 555-0218</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <a href="#" class="footer-logo">Clearfield<span> Commercial</span></a>
+  <p>© 2025 Clearfield Commercial Services. Licensed · Insured · ISSA Certified</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

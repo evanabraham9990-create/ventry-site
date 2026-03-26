@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Tree & Storm Services | Licensed Tree Care</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
+<meta name="description" content="Apex Tree & Storm Services — Emergency storm cleanup, hazard tree removal, and precision tree care. Licensed, insured, on-call.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #0B1A0D;
+    --forest-2: #0F2212;
+    --forest-3: #0D1E10;
+    --green: #7AB648;
+    --green-light: #8FCC58;
+    --green-dim: rgba(122,182,72,.1);
+    --green-border: rgba(122,182,72,.2);
+    --gold: #C8A045;
+    --gold-dim: rgba(200,160,69,.1);
+    --text: #E6EDE8;
+    --muted: #5A6E5C;
+    --muted-2: #8AA08C;
+    --divider: rgba(255,255,255,.06);
+    --nav-h: 72px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--forest);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6%;
+    transition: background .3s;
+  }
+  nav.scrolled {
+    background: rgba(11,26,13,.94);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 800;
+    letter-spacing: -.01em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-logo span { color: var(--green); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted-2); text-decoration: none;
+    font-size: .82rem; font-weight: 500;
+    letter-spacing: .06em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green) !important;
+    color: var(--forest) !important;
+    padding: .5rem 1.3rem;
+    border-radius: 3px;
+    font-weight: 700 !important;
+    font-size: .82rem !important;
+  }
+  .nav-cta:hover { background: var(--green-light) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted-2); }
+
+  /* ─── HERO — Style B asymmetric ─── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: flex-end;
+    overflow: hidden; padding-top: var(--nav-h);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(11,26,13,.99) 0%, rgba(11,26,13,.7) 40%, rgba(11,26,13,.3) 80%);
+  }
+  /* diagonal panel — Style B signature */
+  .hero-panel {
+    position: relative; z-index: 2;
+    width: 100%; padding: 5rem 6% 5rem;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: end;
+  }
+  .hero-content { }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .7rem; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: slideIn .6s .2s forwards;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 30px; height: 2px; background: var(--green); }
+  .hero-h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 800; line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--text);
+    opacity: 0; animation: slideIn .85s .35s forwards;
+  }
+  .hero-h1 em { font-style: normal; color: var(--green); }
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1rem; font-weight: 300;
+    line-height: 1.8; color: var(--muted-2);
+    max-width: 480px;
+    opacity: 0; animation: slideIn .7s .5s forwards;
+  }
+  .hero-btns {
+    margin-top: 2.2rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: slideIn .6s .65s forwards;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: var(--forest);
+    padding: .85rem 2rem;
+    border: none; border-radius: 3px;
+    font-family: 'Syne', sans-serif;
+    font-size: .9rem; font-weight: 700;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(122,182,72,.3); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    padding: .85rem 2rem;
+    border: 1.5px solid rgba(255,255,255,.15);
+    border-radius: 3px;
+    font-family: 'Syne', sans-serif;
+    font-size: .9rem; font-weight: 600;
+    cursor: pointer;
+    transition: border-color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+  /* hero sidebar card */
+  .hero-sidebar {
+    opacity: 0; animation: slideIn .8s .7s forwards;
+    align-self: end;
+  }
+  .hero-sidebar-inner {
+    background: rgba(15,34,18,.85);
+    border: 1px solid var(--green-border);
+    backdrop-filter: blur(24px);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .sidebar-header {
+    padding: 1rem 1.4rem;
+    background: rgba(122,182,72,.12);
+    border-bottom: 1px solid var(--green-border);
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .sidebar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .sidebar-header span {
+    font-family: 'Syne', sans-serif;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--green);
+  }
+  .sidebar-body { padding: 1.4rem; }
+  .sidebar-stat {
+    display: flex; align-items: center; gap: 1rem;
+    padding: .8rem 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .sidebar-stat:last-child { border-bottom: none; }
+  .sidebar-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem; font-weight: 800;
+    color: var(--green); line-height: 1;
+    min-width: 70px;
+  }
+  .sidebar-stat-label { font-size: .8rem; color: var(--muted-2); line-height: 1.5; }
+
+  @keyframes slideIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 960px) { .hero-panel { grid-template-columns: 1fr; } .hero-sidebar { display: none; } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 7rem 6%; }
+  .section-eyebrow {
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--green); margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -.02em;
+    color: var(--text); max-width: 620px;
+  }
+  .section-title em { font-style: normal; color: var(--green); }
+
+  .reveal {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── SERVICES — Style B offset grid ─── */
+  #services { background: var(--forest-2); }
+  .services-top { margin-bottom: 4rem; }
+  .services-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  /* Offset: right column starts lower */
+  .services-col-right { padding-top: 3rem; }
+  .service-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    padding: 2.2rem 2rem;
+    margin-bottom: 1.5rem;
+    transition: border-color .25s, transform .25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--green);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform .3s;
+  }
+  .service-card:hover { border-color: var(--green-border); transform: translateX(4px); }
+  .service-card:hover::before { transform: scaleY(1); }
+  .service-icon-wrap {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .service-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--text); line-height: 1.3;
+  }
+  .service-card p { font-size: .85rem; line-height: 1.75; color: var(--muted-2); }
+  .service-tag {
+    display: inline-block; margin-top: .8rem;
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    padding: .2rem .6rem; border-radius: 2px;
+  }
+  @media (max-width: 768px) { .services-split { grid-template-columns: 1fr; } .services-col-right { padding-top: 0; } }
+
+  /* ─── SCENARIOS ─── */
+  #scenarios { background: var(--forest-3); }
+  .scenarios-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .scenarios-intro p { margin-top: 1rem; font-size: .95rem; line-height: 1.85; color: var(--muted-2); }
+  .scenarios-intro .btn-primary { margin-top: 2rem; }
+  .scenario-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .scenario-item {
+    display: flex; gap: 1.2rem;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 1.6rem;
+    transition: border-color .25s;
+  }
+  .scenario-item:hover { border-color: var(--green-border); }
+  .scenario-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--green-dim);
+    color: rgba(122,182,72,.2);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 48px;
+    border-right: 1px solid var(--divider);
+    padding-right: 1.2rem;
+  }
+  .scenario-text h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: .95rem; font-weight: 700;
+    color: var(--text); margin-bottom: .5rem;
+  }
+  .scenario-text p { font-size: .84rem; line-height: 1.75; color: var(--muted-2); }
+  @media (max-width: 900px) { .scenarios-layout { grid-template-columns: 1fr; gap: 3rem; } }
+
+  /* ─── WHY ─── */
+  #why { background: var(--forest-2); }
+  .why-header { margin-bottom: 3.5rem; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .why-card {
+    padding: 2.2rem 2rem;
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    background: rgba(255,255,255,.02);
+    transition: border-color .25s, background .25s;
+  }
+  .why-card:hover { border-color: var(--green-border); background: rgba(122,182,72,.03); }
+  .why-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+  .why-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); margin-bottom: .5rem;
+  }
+  .why-card p { font-size: .84rem; line-height: 1.75; color: var(--muted-2); }
+  @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
+
+  /* ─── STATS ─── */
+  #stats {
+    background: var(--forest-3);
+    padding: 5rem 6%;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .stats-inner {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 800; color: var(--green); line-height: 1;
+  }
+  .stat-label {
+    margin-top: .4rem;
+    font-size: .75rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: 1fr 1fr; } }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--forest); }
+  .testi-header { margin-bottom: 3rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.5rem;
+  }
+  .testi-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 6px; padding: 2.2rem;
+    transition: border-color .3s;
+  }
+  .testi-card:hover { border-color: var(--green-border); }
+  .stars { color: var(--gold); font-size: .9rem; margin-bottom: 1rem; }
+  .testi-quote { font-size: .9rem; line-height: 1.8; color: var(--muted-2); font-style: italic; margin-bottom: 1.5rem; }
+  .testi-author { display: flex; align-items: center; gap: .8rem; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: .85rem; font-weight: 800; color: var(--green);
+  }
+  .testi-name { font-family: 'Syne', sans-serif; font-size: .88rem; font-weight: 700; color: var(--text); }
+  .testi-meta { font-size: .76rem; color: var(--muted); margin-top: .1rem; }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--green);
+    padding: 7rem 6%;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; right: -80px; top: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+  }
+  .cta-inner {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem; align-items: center;
+  }
+  #cta h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800; letter-spacing: -.02em;
+    line-height: 1.1; color: var(--forest);
+  }
+  #cta p { margin-top: .8rem; font-size: 1rem; color: rgba(11,26,13,.7); line-height: 1.75; max-width: 500px; }
+  .cta-action { flex-shrink: 0; display: flex; flex-direction: column; gap: .8rem; align-items: flex-end; }
+  .btn-dark {
+    background: var(--forest);
+    color: var(--green);
+    padding: .9rem 2.2rem;
+    border: none; border-radius: 3px;
+    font-family: 'Syne', sans-serif;
+    font-size: .9rem; font-weight: 700;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+    white-space: nowrap;
+  }
+  .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+  .cta-sub { font-size: .8rem; color: rgba(11,26,13,.6); text-align: right; }
+  @media (max-width: 768px) { .cta-inner { grid-template-columns: 1fr; } .cta-action { align-items: flex-start; } .cta-sub { text-align: left; } }
+
+  /* footer */
+  footer {
+    background: var(--forest-3);
+    border-top: 1px solid var(--divider);
+    padding: 2rem 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--text); text-decoration: none; }
+  .footer-logo span { color: var(--green); }
+  footer p { font-size: .76rem; color: var(--muted); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(11,26,13,.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text); text-decoration: none; }
+  .mobile-menu a:hover { color: var(--green); }
+  .close-menu { position: absolute; top: 1.5rem; right: 6%; background: none; border: none; font-size: 1.5rem; color: var(--muted-2); cursor: pointer; }
+  @media (max-width: 760px) { .hamburger { display: flex; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo"><span>Apex</span> Tree & Storm</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#scenarios">Scenarios</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#cta" class="nav-cta">Emergency Service</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#scenarios" onclick="this.closest('.mobile-menu').classList.remove('open')">Scenarios</a>
+  <a href="#why" onclick="this.closest('.mobile-menu').classList.remove('open')">Why Us</a>
+  <a href="#cta" onclick="this.closest('.mobile-menu').classList.remove('open')">Emergency Service</a>
+</div>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-panel">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Licensed · ISA Certified · Insured</div>
+      <h1 class="hero-h1">Your Property.<br><em>Our</em><br>Responsibility.</h1>
+      <p class="hero-sub">Storm cleanup, hazard removal, and precision tree care for residential and commercial properties. When there's a tree on your roof, we're the call that matters.</p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-primary">Request Emergency Service</a>
+        <a href="#services" class="btn-outline">Free Property Assessment</a>
+      </div>
+    </div>
+    <div class="hero-sidebar">
+      <div class="hero-sidebar-inner">
+        <div class="sidebar-header">
+          <div class="sidebar-dot"></div>
+          <span>Emergency crews available</span>
+        </div>
+        <div class="sidebar-body">
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num">2hr</div>
+            <div class="sidebar-stat-label">Emergency response target<br>after storm events</div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num">ISA</div>
+            <div class="sidebar-stat-label">Certified Arborist on<br>every assessment</div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num">1,600+</div>
+            <div class="sidebar-stat-label">Trees removed since 2014</div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-num">4.9★</div>
+            <div class="sidebar-stat-label">Google rating across<br>280+ reviews</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="services-top reveal">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-title">Every Tree Problem.<br><em>One Company.</em></h2>
+  </div>
+  <div class="services-split">
+    <div class="services-col-left">
+      <div class="service-card reveal">
+        <div class="service-icon-wrap">
+          <div class="service-icon">⚡</div>
+          <h3>Emergency Storm Cleanup</h3>
+        </div>
+        <p>Trees on structures, vehicles, fences, or blocking access — we respond within hours of a storm event. We carry chainsaws, rigging equipment, and a chipper on every emergency crew.</p>
+        <span class="service-tag">Priority Dispatch</span>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap">
+          <div class="service-icon">⚠️</div>
+          <h3>Hazard Tree Removal</h3>
+        </div>
+        <p>Dead, diseased, leaning, or structurally compromised trees removed before they become a liability. Full ISA-certified assessment, crane service available for complex removals.</p>
+        <span class="service-tag">ISA Certified Assessment</span>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap">
+          <div class="service-icon">✂️</div>
+          <h3>Crown Pruning & Shaping</h3>
+        </div>
+        <p>Selective removal of dead, crossing, and competing branches to improve health, clearance, and structure. Performed to ANSI A300 pruning standards.</p>
+        <span class="service-tag">ANSI A300 Standards</span>
+      </div>
+    </div>
+    <div class="services-col-right">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap">
+          <div class="service-icon">🪨</div>
+          <h3>Stump Grinding</h3>
+        </div>
+        <p>Complete below-grade stump removal with a commercial grinder. Grindings raked out, yard left clean and ready for seeding or replanting. Available as an add-on to any removal.</p>
+        <span class="service-tag">Full Site Cleanup</span>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap">
+          <div class="service-icon">🏗️</div>
+          <h3>Lot Clearing</h3>
+        </div>
+        <p>Full clearing of land for construction, landscaping projects, or property expansion. We handle permits, brush chipping, stump removal, and haul-away — turn-key from wooded to ready.</p>
+        <span class="service-tag">Permits Handled</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <div class="scenarios-layout">
+    <div class="scenarios-intro reveal">
+      <div class="section-eyebrow">Real Situations</div>
+      <h2 class="section-title">The Calls That Come After Storms.</h2>
+      <p>Most of our emergency work happens in the 48 hours after a major weather event. Here are three calls we get every storm season.</p>
+      <a href="#cta" class="btn-primary" style="margin-top:2rem;">Request Service</a>
+    </div>
+    <div class="scenario-list">
+      <div class="scenario-item reveal reveal-delay-1">
+        <div class="scenario-num">01</div>
+        <div class="scenario-text">
+          <h4>60-Foot Oak on the Roof</h4>
+          <p>A storm split a mature oak and one half landed across the front roof section. The other half is still standing but now structurally unstable. The homeowner needs both sections removed and the area secured before the next storm system arrives in two days.</p>
+        </div>
+      </div>
+      <div class="scenario-item reveal reveal-delay-2">
+        <div class="scenario-num">02</div>
+        <div class="scenario-text">
+          <h4>Dead Pine Nobody Wanted to Deal With</h4>
+          <p>A large pine in the backyard has been dead for 18 months. After a neighbor's tree collapsed onto a car last week, the homeowner finally called. The tree is 50 feet tall, leaning 12 degrees toward the driveway, and needs crane removal.</p>
+        </div>
+      </div>
+      <div class="scenario-item reveal reveal-delay-3">
+        <div class="scenario-num">03</div>
+        <div class="scenario-text">
+          <h4>Condemned Trees in a Property Inspection</h4>
+          <p>A buyer's inspection flagged two large silver maples as structurally compromised. The seller needs them removed and documented before closing — which is in 18 days. We provide written reports and photos for the transaction file.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="why-header reveal">
+    <div class="section-eyebrow">Why Apex</div>
+    <h2 class="section-title">What Separates a Tree Company<br>From the <em>Right</em> One.</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon">🎓</div>
+      <h3>ISA Certified Arborists</h3>
+      <p>Every assessment is done by an ISA Certified Arborist — not a salesperson. We give you an honest recommendation, even if that means the tree doesn't need to come down.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-icon">📋</div>
+      <h3>Written Reports for Transactions</h3>
+      <p>Real estate transactions, insurance claims, and neighbor disputes all require documentation. We provide written arborist reports and photo documentation standard with every assessment.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-icon">🚁</div>
+      <h3>Crane Service for Complex Removals</h3>
+      <p>When a tree is too large, too close to a structure, or in a tight space, we bring in a crane. Most tree companies subcontract this — we own and operate ours.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">1,600+</div>
+      <div class="stat-label">Trees Removed</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">11yr</div>
+      <div class="stat-label">In Operation</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Fully Insured</div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Client Reviews</div>
+    <h2 class="section-title">Trusted When<br><em>It Really Mattered.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"A massive oak came down on our fence after the storm on Tuesday. Apex was here Wednesday morning and had the whole thing cleared by 4pm. The team was professional and left the yard cleaner than they found it."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">BH</div>
+        <div>
+          <div class="testi-name">Brian H.</div>
+          <div class="testi-meta">Storm Cleanup · Annapolis, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"We had a 70-foot pine that needed to come down in a tight backyard. Other companies said they couldn't do it without damaging the fence. Apex brought their crane and removed it perfectly. Not a fence post touched."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">LW</div>
+        <div>
+          <div class="testi-name">Linda W.</div>
+          <div class="testi-meta">Hazard Removal · Lutherville, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"The inspection flagged two trees and we were terrified it would kill the deal. Apex came out the next day, wrote an arborist report, and had both trees removed in 3 days. The sale closed on time."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PK</div>
+        <div>
+          <div class="testi-name">Paul K.</div>
+          <div class="testi-meta">Pre-Sale Removal · Towson, MD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta-inner reveal">
+    <div>
+      <h2>Storm Damage or a Tree You're Worried About?</h2>
+      <p>Emergency response available 24/7 after storm events. Free assessments for hazard trees and pre-removal consultations. We'll tell you honestly what needs to happen.</p>
+    </div>
+    <div class="cta-action">
+      <a href="tel:+14435550177" class="btn-dark">Call (443) 555-0177</a>
+      <p class="cta-sub">Or request a free assessment online</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo"><span>Apex</span> Tree & Storm Services</a>
+  <p>© 2025 Apex Tree & Storm Services. ISA Certified · Fully Insured · Licensed MD Arborist</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

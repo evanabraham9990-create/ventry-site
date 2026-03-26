@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comfort Systems HVAC | Repair, Install & Maintain</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❄️</text></svg>">
+<meta name="description" content="Comfort Systems HVAC — Residential and commercial repair, installation, and maintenance. Same-day service available.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1E30;
+    --navy-2: #152639;
+    --navy-3: #0B1822;
+    --blue: #1E9BD7;
+    --blue-dim: rgba(30,155,215,.12);
+    --blue-border: rgba(30,155,215,.22);
+    --hot: #E05C2A;
+    --hot-dim: rgba(224,92,42,.1);
+    --hot-border: rgba(224,92,42,.2);
+    --text: #E4EDF7;
+    --muted: #4A6A82;
+    --muted-2: #7A9AB8;
+    --divider: rgba(255,255,255,.06);
+    --nav-h: 72px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6%;
+    transition: background .3s;
+  }
+  nav.scrolled {
+    background: rgba(15,30,48,.95);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.4rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-logo .cool { color: var(--blue); }
+  .nav-logo .hot { color: var(--hot); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted-2); text-decoration: none;
+    font-size: .82rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: linear-gradient(90deg, var(--blue), var(--hot)) !important;
+    color: var(--text) !important;
+    padding: .45rem 1.3rem;
+    border-radius: 3px;
+    font-weight: 700 !important;
+  }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted-2); }
+
+  /* ─── HERO — Style B temperature split ─── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden; padding-top: var(--nav-h);
+  }
+  /* Split background */
+  .hero-bg-cool {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 60%;
+    background: url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=900&q=80') center/cover no-repeat;
+  }
+  .hero-bg-cool::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(15,30,48,.98) 50%, rgba(15,30,48,.6) 100%);
+  }
+  .hero-bg-hot {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+    background: linear-gradient(135deg, rgba(224,92,42,.08) 0%, rgba(30,155,215,.08) 100%);
+  }
+  /* temp gradient divider line */
+  .hero-divider {
+    position: absolute; left: 60%; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--blue), var(--hot));
+    opacity: .3;
+    z-index: 2;
+  }
+  .hero-inner {
+    position: relative; z-index: 3;
+    width: 100%; padding: 3rem 6%;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 4rem; align-items: center;
+  }
+  .hero-content { }
+  .hero-temp-badge {
+    display: inline-flex; align-items: center; gap: .8rem;
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .temp-cool {
+    display: flex; align-items: center; gap: .4rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--blue);
+    background: var(--blue-dim);
+    border: 1px solid var(--blue-border);
+    padding: .3rem .8rem; border-radius: 2px;
+  }
+  .temp-hot {
+    display: flex; align-items: center; gap: .4rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--hot);
+    background: var(--hot-dim);
+    border: 1px solid var(--hot-border);
+    padding: .3rem .8rem; border-radius: 2px;
+  }
+  .hero-h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(3rem, 7vw, 7.5rem);
+    font-weight: 700; line-height: .95;
+    letter-spacing: .03em; text-transform: uppercase;
+    color: var(--text);
+    opacity: 0; animation: fadeUp .85s .35s forwards;
+  }
+  .hero-h1 .line-cool { color: var(--blue); }
+  .hero-h1 .line-hot { color: var(--hot); display: block; }
+  .hero-sub {
+    margin-top: 1.6rem;
+    font-size: 1rem; font-weight: 300;
+    line-height: 1.8; color: var(--muted-2);
+    max-width: 460px;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+  .hero-btns {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .6s .65s forwards;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--blue), #4FBAE0);
+    color: var(--navy);
+    padding: .85rem 2rem;
+    border: none; border-radius: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .2s, opacity .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(30,155,215,.4); opacity: .9; }
+  .btn-hot {
+    background: var(--hot);
+    color: var(--text);
+    padding: .85rem 2rem;
+    border: none; border-radius: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-hot:hover { background: #F06A35; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    padding: .85rem 2rem;
+    border: 1.5px solid rgba(255,255,255,.15);
+    border-radius: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer; transition: border-color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* hero right panel */
+  .hero-right-panel {
+    opacity: 0; animation: fadeUp .8s .7s forwards;
+  }
+  .panel-inner {
+    background: rgba(15,26,40,.85);
+    border: 1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(24px);
+    border-radius: 8px; overflow: hidden;
+  }
+  .panel-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .panel-half {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .panel-half.cool { border-right: 1px solid var(--blue-border); border-bottom: 1px solid var(--divider); }
+  .panel-half.hot { border-bottom: 1px solid var(--divider); }
+  .panel-half.cool-2 { border-right: 1px solid var(--blue-border); }
+  .panel-half-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+  .panel-half-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.8rem; font-weight: 700; line-height: 1;
+  }
+  .panel-half.cool .panel-half-num { color: var(--blue); }
+  .panel-half.hot .panel-half-num, .panel-half.hot-2 .panel-half-num { color: var(--hot); }
+  .panel-half.cool-2 .panel-half-num { color: var(--blue); }
+  .panel-half-label { font-size: .72rem; color: var(--muted-2); margin-top: .2rem; line-height: 1.4; }
+  .panel-cta {
+    padding: 1.2rem 1.5rem;
+    background: rgba(30,155,215,.08);
+    border-top: 1px solid var(--blue-border);
+    text-align: center;
+  }
+  .panel-cta p { font-size: .8rem; color: var(--blue); font-weight: 600; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 960px) { .hero-inner { grid-template-columns: 1fr; } .hero-right-panel { display: none; } .hero-bg-hot { display: none; } .hero-bg-cool { width: 100%; } .hero-divider { display: none; } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 7rem 6%; }
+  .section-eyebrow {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: .04em; line-height: 1;
+    color: var(--text); max-width: 640px;
+  }
+  .section-title .cool { color: var(--blue); }
+  .section-title .hot { color: var(--hot); }
+
+  .reveal {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity .65s, transform .65s;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── SERVICES — 2x3 offset grid ─── */
+  #services { background: var(--navy-2); }
+  .services-header { margin-bottom: 3.5rem; }
+  .services-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+  /* col B offset */
+  .services-col-b { padding-top: 2.5rem; }
+  .service-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 6px; padding: 2rem 1.8rem;
+    margin-bottom: 1.5rem;
+    transition: border-color .25s, transform .25s;
+  }
+  .service-card.cool:hover { border-color: var(--blue-border); transform: translateY(-4px); }
+  .service-card.hot-c:hover { border-color: var(--hot-border); transform: translateY(-4px); }
+  .service-card:last-child { margin-bottom: 0; }
+  .service-type {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    margin-bottom: .8rem;
+    display: inline-flex; align-items: center; gap: .4rem;
+  }
+  .service-type.cool { color: var(--blue); }
+  .service-type.hot-t { color: var(--hot); }
+  .service-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .05em;
+    color: var(--text); margin-bottom: .5rem;
+  }
+  .service-card p { font-size: .85rem; line-height: 1.75; color: var(--muted-2); }
+  .service-highlight {
+    margin-top: .8rem;
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+  .service-highlight.cool { color: var(--blue); }
+  .service-highlight.hot-h { color: var(--hot); }
+  @media (max-width: 768px) { .services-grid-2col { grid-template-columns: 1fr; } .services-col-b { padding-top: 0; } }
+
+  /* ─── SCENARIOS ─── */
+  #scenarios { background: var(--navy-3); }
+  .scenarios-header { margin-bottom: 3.5rem; }
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .scenario-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 4px; padding: 2rem;
+    transition: border-color .3s;
+  }
+  .scenario-card.cold:hover { border-color: var(--blue-border); }
+  .scenario-card.warm:hover { border-color: var(--hot-border); }
+  .scenario-season {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    margin-bottom: .8rem;
+  }
+  .scenario-season.cold { color: var(--blue); }
+  .scenario-season.warm { color: var(--hot); }
+  .scenario-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .05em;
+    color: var(--text); margin-bottom: .6rem;
+  }
+  .scenario-card p { font-size: .85rem; line-height: 1.75; color: var(--muted-2); }
+  .scenario-outcome {
+    margin-top: 1rem; padding-top: .8rem;
+    border-top: 1px solid var(--divider);
+    font-size: .78rem; font-weight: 600; color: var(--muted-2);
+    line-height: 1.6;
+  }
+  @media (max-width: 768px) { .scenarios-grid { grid-template-columns: 1fr; } }
+
+  /* ─── PLANS ─── */
+  #plans { background: var(--navy-2); }
+  .plans-header { margin-bottom: 3.5rem; }
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .plan-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 6px; overflow: hidden;
+    transition: border-color .25s, transform .25s;
+  }
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.featured {
+    border-color: var(--blue-border);
+    box-shadow: 0 0 40px rgba(30,155,215,.1);
+  }
+  .plan-header {
+    padding: 1.5rem 1.8rem;
+    background: rgba(30,155,215,.08);
+    border-bottom: 1px solid var(--blue-border);
+  }
+  .plan-header.hot-p {
+    background: rgba(224,92,42,.08);
+    border-color: var(--hot-border);
+  }
+  .plan-header h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text);
+  }
+  .plan-header .cool { color: var(--blue); }
+  .plan-header .hot-l { color: var(--hot); }
+  .plan-body { padding: 1.8rem; }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+  .plan-features li {
+    display: flex; align-items: flex-start; gap: .7rem;
+    font-size: .85rem; color: var(--muted-2); line-height: 1.6;
+  }
+  .plan-features li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+  .plan-features li.hot-item::before { color: var(--hot); }
+  .plan-cta { padding: 0 1.8rem 1.8rem; }
+  @media (max-width: 768px) { .plans-grid { grid-template-columns: 1fr; } }
+
+  /* ─── STATS ─── */
+  #stats {
+    background: var(--navy);
+    padding: 5rem 6%;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; }
+  .stat-item { padding: 1.5rem; border-right: 1px solid var(--divider); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+    font-weight: 700; line-height: 1;
+  }
+  .stat-num.cool { color: var(--blue); }
+  .stat-num.hot-s { color: var(--hot); }
+  .stat-label {
+    margin-top: .35rem;
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: 1fr 1fr; } .stat-item { border-right: none; border-bottom: 1px solid var(--divider); } }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--navy-3); }
+  .testi-header { margin-bottom: 3rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.2rem;
+  }
+  .testi-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--divider);
+    border-radius: 4px; padding: 2rem;
+    transition: border-color .3s;
+  }
+  .testi-card.cool-t:hover { border-color: var(--blue-border); }
+  .testi-card.hot-t:hover { border-color: var(--hot-border); }
+  .stars { color: #FFB800; font-size: .88rem; margin-bottom: .8rem; }
+  .testi-quote { font-size: .88rem; line-height: 1.8; color: var(--muted-2); font-style: italic; margin-bottom: 1.4rem; }
+  .testi-author { display: flex; align-items: center; gap: .75rem; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .9rem; font-weight: 700;
+  }
+  .testi-avatar.cool-av { background: var(--blue-dim); border: 1px solid var(--blue-border); color: var(--blue); }
+  .testi-avatar.hot-av { background: var(--hot-dim); border: 1px solid var(--hot-border); color: var(--hot); }
+  .testi-name { font-family: 'Rajdhani', sans-serif; font-size: .95rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text); }
+  .testi-meta { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+
+  /* ─── CTA ─── */
+  #cta {
+    padding: 7rem 6%; text-align: center;
+    background: linear-gradient(135deg, var(--navy-2) 0%, var(--navy-3) 100%);
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(30,155,215,.04) 0%, transparent 50%, rgba(224,92,42,.04) 100%);
+  }
+  .cta-inner { position: relative; z-index: 1; }
+  .cta-tags { display: flex; gap: .8rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .cta-tag {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    padding: .3rem .8rem; border-radius: 2px;
+  }
+  .cta-tag.cool { color: var(--blue); background: var(--blue-dim); border: 1px solid var(--blue-border); }
+  .cta-tag.hot { color: var(--hot); background: var(--hot-dim); border: 1px solid var(--hot-border); }
+  #cta h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: .03em; line-height: 1;
+    color: var(--text); margin-bottom: 1.2rem;
+  }
+  #cta p { font-size: 1rem; color: var(--muted-2); margin-bottom: 2.5rem; line-height: 1.75; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cta-note { margin-top: 1.5rem; font-size: .8rem; color: var(--muted); }
+
+  /* footer */
+  footer {
+    background: #080F18;
+    padding: 2rem 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    border-top: 1px solid var(--divider);
+  }
+  .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  footer p { font-size: .76rem; color: var(--muted); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(15,30,48,.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text); text-decoration: none; }
+  .mobile-menu a:hover { color: var(--blue); }
+  .close-menu { position: absolute; top: 1.5rem; right: 6%; background: none; border: none; font-size: 1.5rem; color: var(--muted-2); cursor: pointer; }
+  @media (max-width: 760px) { .hamburger { display: flex; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Comfort<span class="cool">·</span><span class="hot">Systems</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#plans">Maintenance Plans</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#cta" class="nav-cta">Schedule Service</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#plans" onclick="this.closest('.mobile-menu').classList.remove('open')">Plans</a>
+  <a href="#testimonials" onclick="this.closest('.mobile-menu').classList.remove('open')">Reviews</a>
+  <a href="#cta" onclick="this.closest('.mobile-menu').classList.remove('open')">Schedule Service</a>
+</div>
+
+<section id="hero">
+  <div class="hero-bg-cool"></div>
+  <div class="hero-bg-hot"></div>
+  <div class="hero-divider"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-temp-badge">
+        <div class="temp-cool">❄ Cooling</div>
+        <div class="temp-hot">🔥 Heating</div>
+      </div>
+      <h1 class="hero-h1">Comfort That<span class="line-hot">Never Breaks Down.</span></h1>
+      <p class="hero-sub">Residential and commercial HVAC repair, installation, and maintenance. Same-day service available year-round — cooling season and heating season.</p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-primary">Schedule AC Service</a>
+        <a href="#cta" class="btn-hot">Schedule Heating Service</a>
+      </div>
+    </div>
+    <div class="hero-right-panel">
+      <div class="panel-inner">
+        <div class="panel-row">
+          <div class="panel-half cool">
+            <div class="panel-half-icon">❄️</div>
+            <div class="panel-half-num">94°</div>
+            <div class="panel-half-label">Outside temp when<br>most AC calls happen</div>
+          </div>
+          <div class="panel-half hot">
+            <div class="panel-half-icon">🔥</div>
+            <div class="panel-half-num">19°</div>
+            <div class="panel-half-label">Outside temp when<br>most heating calls happen</div>
+          </div>
+        </div>
+        <div class="panel-row">
+          <div class="panel-half cool-2">
+            <div class="panel-half-num">Same Day</div>
+            <div class="panel-half-label">Service dispatch<br>when you call</div>
+          </div>
+          <div class="panel-half hot-2" style="border-bottom:none;">
+            <div class="panel-half-num">4.9★</div>
+            <div class="panel-half-label">Average customer<br>satisfaction rating</div>
+          </div>
+        </div>
+        <div class="panel-cta">
+          <p>📍 Dispatching technicians now in your area</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-eyebrow">Services</div>
+    <h2 class="section-title">Every HVAC Need.<br><span class="cool">Cool</span> Season. <span class="hot">Hot</span> Season.</h2>
+  </div>
+  <div class="services-grid-2col">
+    <div class="services-col-a">
+      <div class="service-card cool reveal">
+        <div class="service-type cool">❄ Cooling</div>
+        <h3>AC Repair & Refrigerant Service</h3>
+        <p>Full diagnostic, capacitor and contactor testing, refrigerant recharge, compressor and coil inspection. Most repairs completed same-day with parts on the truck.</p>
+        <div class="service-highlight cool">Same-Day · All Brands</div>
+      </div>
+      <div class="service-card cool reveal reveal-delay-1">
+        <div class="service-type cool">❄ Cooling</div>
+        <h3>New AC Installation</h3>
+        <p>Right-sized equipment selection based on a Manual J load calculation — not a guess. Full installation and commissioning with refrigerant charge verification.</p>
+        <div class="service-highlight cool">Manual J Sizing · Warrantied</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-type" style="color:var(--muted-2);">⚙ Year-Round</div>
+        <h3>Ductwork Cleaning & Sealing</h3>
+        <p>Camera inspection of duct system, debris removal, mold check, and aeroseal duct sealing for systems losing conditioned air. Typical efficiency improvement: 20–30%.</p>
+        <div class="service-highlight cool">Efficiency Guaranteed</div>
+      </div>
+    </div>
+    <div class="services-col-b">
+      <div class="service-card hot-c reveal reveal-delay-1">
+        <div class="service-type hot-t">🔥 Heating</div>
+        <h3>Furnace Repair & Tune-Up</h3>
+        <p>Heat exchanger inspection, ignitor and flame sensor testing, burner cleaning, gas pressure check, and efficiency tune-up. We do safety checks as standard — no charge.</p>
+        <div class="service-highlight hot-h">Safety Check Included</div>
+      </div>
+      <div class="service-card hot-c reveal reveal-delay-2">
+        <div class="service-type hot-t">🔥 Heating</div>
+        <h3>New Furnace Installation</h3>
+        <p>Variable-speed, two-stage, and high-efficiency options. Full installation including gas line connections, electrical, and flue. All work permitted and inspected.</p>
+        <div class="service-highlight hot-h">Permitted · High-Efficiency</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <div class="scenarios-header reveal">
+    <div class="section-eyebrow">Real Situations</div>
+    <h2 class="section-title">When It Breaks,<br>It Never Breaks at <span class="cool">a Good</span> Time.</h2>
+  </div>
+  <div class="scenarios-grid">
+    <div class="scenario-card cold reveal reveal-delay-1">
+      <div class="scenario-season cold">❄ Summer Emergency</div>
+      <h3>AC Down in August</h3>
+      <p>Family with a 3-year-old and a dog. It's 94 degrees outside. The AC stopped blowing cold air at 2pm on a Saturday. The call came in at 2:15. We were on-site by 4:45. Capacitor replacement, $385 total.</p>
+      <div class="scenario-outcome">Answered → dispatched same day → family had cool air by 5:30pm → vs calling three more companies on a Saturday</div>
+    </div>
+    <div class="scenario-card warm reveal reveal-delay-2">
+      <div class="scenario-season warm">🔥 Winter Emergency</div>
+      <h3>No Heat at 10pm in January</h3>
+      <p>Homeowner noticed the heat had been off for hours. Thermostat was calling but nothing was running. Outside temp was 19°F. Ignitor failure. We had a tech on-site within 90 minutes and the heat running by midnight.</p>
+      <div class="scenario-outcome">Night call answered → emergency dispatch → $420 repair + $189 maintenance plan added → customer didn't have to find a hotel</div>
+    </div>
+    <div class="scenario-card cold reveal reveal-delay-3">
+      <div class="scenario-season cold">⚙ Property Management</div>
+      <h3>Two Units Down Before Winter</h3>
+      <p>Property manager for a 16-unit building. Two furnaces failed in the same week in October. Tenants were already complaining and calling city code. We serviced both systems the same day and set the building up on a preventive maintenance program.</p>
+      <div class="scenario-outcome">Both units serviced same day → $2,400 job → PM added all 16 units to maintenance plan → $280/month recurring</div>
+    </div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="plans-header reveal">
+    <div class="section-eyebrow">Maintenance Plans</div>
+    <h2 class="section-title">Stay Ahead of the<br><span class="cool">Cold</span> and the <span class="hot">Heat.</span></h2>
+  </div>
+  <div class="plans-grid">
+    <div class="plan-card reveal reveal-delay-1">
+      <div class="plan-header">
+        <h3>Cool <span class="cool">Season Plan</span></h3>
+      </div>
+      <div class="plan-body">
+        <ul class="plan-features">
+          <li>Full AC tune-up every spring</li>
+          <li>Refrigerant level check and log</li>
+          <li>Coil and filter inspection</li>
+          <li>Priority scheduling in summer</li>
+          <li>10% discount on repairs</li>
+        </ul>
+      </div>
+      <div class="plan-cta"><a href="#cta" class="btn-primary" style="width:100%;display:block;text-align:center;">Add Plan</a></div>
+    </div>
+    <div class="plan-card featured reveal reveal-delay-2">
+      <div class="plan-header">
+        <h3>Full <span class="cool">Year</span> <span class="hot-l">Coverage</span></h3>
+      </div>
+      <div class="plan-body">
+        <ul class="plan-features">
+          <li>Spring AC tune-up + fall heating tune-up</li>
+          <li>Priority same-day dispatch year-round</li>
+          <li>Filter delivery every 90 days</li>
+          <li>15% discount on all repairs</li>
+          <li>Annual ductwork visual inspection</li>
+          <li class="hot-item">No overtime fees for emergency calls</li>
+        </ul>
+      </div>
+      <div class="plan-cta"><a href="#cta" class="btn-primary" style="width:100%;display:block;text-align:center;">Best Value — Add Plan</a></div>
+    </div>
+    <div class="plan-card reveal reveal-delay-3">
+      <div class="plan-header hot-p">
+        <h3>Heat <span class="hot-l">Season Plan</span></h3>
+      </div>
+      <div class="plan-body">
+        <ul class="plan-features">
+          <li>Full furnace tune-up every fall</li>
+          <li>Heat exchanger safety inspection</li>
+          <li>Gas pressure and combustion check</li>
+          <li>Priority scheduling in winter</li>
+          <li class="hot-item">10% discount on repairs</li>
+        </ul>
+      </div>
+      <div class="plan-cta"><a href="#cta" class="btn-hot" style="width:100%;display:block;text-align:center;">Add Plan</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num cool">90min</div>
+      <div class="stat-label">Avg Arrival Time</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num hot-s">4,200+</div>
+      <div class="stat-label">Systems Serviced</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num cool">96%</div>
+      <div class="stat-label">Same-Day Resolution</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num hot-s">4.9★</div>
+      <div class="stat-label">Customer Rating</div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Client Reviews</div>
+    <h2 class="section-title">Hot or Cold,<br><span class="cool">They Show Up.</span></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card cool-t reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Called at noon on a Saturday in August. Three other companies couldn't come until Monday. Comfort Systems had someone here by 3. Fixed in 45 minutes. Literally saved our weekend."</p>
+      <div class="testi-author">
+        <div class="testi-avatar cool-av">JT</div>
+        <div>
+          <div class="testi-name">Jennifer T.</div>
+          <div class="testi-meta">AC Repair · Timonium, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card hot-t reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Furnace died on a Tuesday night in February. 11pm call, tech at my door by 12:30am. They had the part on the truck. Heat was back on before 2am. I've told everyone I know about these guys."</p>
+      <div class="testi-author">
+        <div class="testi-avatar hot-av">DK</div>
+        <div>
+          <div class="testi-name">Derek K.</div>
+          <div class="testi-meta">Furnace Repair · Hunt Valley, MD</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card cool-t reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"I manage 8 rental properties. Comfort Systems handles all of them. The maintenance plans keep my tenants happy and I haven't had a major emergency failure in over two years. Best vendor I have."</p>
+      <div class="testi-author">
+        <div class="testi-avatar cool-av">AS</div>
+        <div>
+          <div class="testi-name">Angela S.</div>
+          <div class="testi-meta">Property Manager · 8 Units</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-tags reveal">
+      <span class="cta-tag cool">❄ Same-Day AC Service</span>
+      <span class="cta-tag hot">🔥 Same-Day Heating Service</span>
+    </div>
+    <h2 class="reveal">Don't Sweat It.<br>Don't Freeze.</h2>
+    <p class="reveal">Same-day dispatch, year-round. Call now and describe what's happening — we'll tell you if it's a quick fix or something bigger, before we come out.</p>
+    <div class="cta-btns reveal">
+      <a href="tel:+14105550286" class="btn-primary">Call (410) 555-0286</a>
+      <a href="#plans" class="btn-outline">View Maintenance Plans</a>
+    </div>
+    <p class="cta-note reveal">Available 7 days a week. Emergency line open 24 hours during extreme weather events.</p>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Comfort Systems HVAC</a>
+  <p>© 2025 Comfort Systems HVAC. Licensed · EPA 608 Certified · Fully Insured</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
