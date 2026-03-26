@@ -162,10 +162,10 @@
     if (!heroBg) return;
 
     var colors = [
-      'rgba(240,242,255,VAL)',
-      'rgba(196,181,253,VAL)',
-      'rgba(255,255,255,VAL)',
-      'rgba(168,156,247,VAL)'
+      'rgba(240,242,255,1)',
+      'rgba(196,181,253,1)',
+      'rgba(255,255,255,1)',
+      'rgba(168,156,247,1)'
     ];
 
     var count = 38;
@@ -173,11 +173,9 @@
       var dot = document.createElement('span');
       dot.className = 'hero-sprinkle';
 
-      var size = (Math.random() * 1.2 + 0.8).toFixed(1);
-      var opacity = (Math.random() * 0.2 + 0.25).toFixed(2);
-      var color = colors[Math.floor(Math.random() * colors.length)].replace('VAL', opacity);
+      var size = (Math.random() * 2 + 2).toFixed(1);
+      var color = colors[Math.floor(Math.random() * colors.length)];
 
-      // Weight positions toward edges
       var x, y;
       var edge = Math.random();
       if (edge < 0.35) {
@@ -204,6 +202,186 @@
 
       heroBg.appendChild(dot);
     }
+  })();
+
+  /* ----------------------------------------------------------
+     HERO ENERGY GRID (Canvas)
+  ---------------------------------------------------------- */
+  (function () {
+    var canvas = document.getElementById('hero-grid-canvas');
+    if (!canvas) return;
+
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    var W, H, cols, rows, cellW, cellH;
+    var time = 0;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = rect.height;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.scale(dpr, dpr);
+      cellW = 90;
+      cellH = 90;
+      cols = Math.ceil(W / cellW) + 1;
+      rows = Math.ceil(H / cellH) + 1;
+      initOrbs();
+    }
+
+    // Energy orbs that travel along grid lines
+    var orbs = [];
+    var NUM_ORBS = 10;
+
+    function initOrbs() {
+      orbs = [];
+      for (var i = 0; i < NUM_ORBS; i++) {
+        var col = Math.floor(Math.random() * (cols - 1));
+        var row = Math.floor(Math.random() * (rows - 1));
+        var dir = Math.random() < 0.5 ? 'h' : 'v'; // horizontal or vertical
+        orbs.push({
+          x: col * cellW,
+          y: row * cellH,
+          col: col,
+          row: row,
+          dir: dir,
+          speed: 40 + Math.random() * 45,
+          progress: Math.random(),
+          alpha: 0.5 + Math.random() * 0.5,
+          size: 2.5 + Math.random() * 2
+        });
+      }
+    }
+
+    var nodeFlashes = []; // {x, y, alpha}
+
+    function updateOrbs(dt) {
+      for (var i = 0; i < orbs.length; i++) {
+        var o = orbs[i];
+        o.progress += (o.speed * dt) / (o.dir === 'h' ? cellW : cellH);
+
+        if (o.progress >= 1) {
+          o.progress = 0;
+          // Flash the node we arrived at
+          var nx = o.dir === 'h' ? (o.col + 1) * cellW : o.col * cellW;
+          var ny = o.dir === 'h' ? o.row * cellH : (o.row + 1) * cellH;
+          nodeFlashes.push({ x: nx, y: ny, alpha: 1 });
+
+          // Move orb to next cell, pick new direction
+          if (o.dir === 'h') {
+            o.col = Math.min(o.col + 1, cols - 2);
+          } else {
+            o.row = Math.min(o.row + 1, rows - 2);
+          }
+          // Bounce at edges
+          if (o.col <= 0 || o.col >= cols - 2) o.dir = 'v';
+          else if (o.row <= 0 || o.row >= rows - 2) o.dir = 'h';
+          else o.dir = Math.random() < 0.5 ? 'h' : 'v';
+
+          o.x = o.col * cellW;
+          o.y = o.row * cellH;
+        }
+      }
+
+      // Decay node flashes
+      for (var j = nodeFlashes.length - 1; j >= 0; j--) {
+        nodeFlashes[j].alpha -= dt * 2.2;
+        if (nodeFlashes[j].alpha <= 0) nodeFlashes.splice(j, 1);
+      }
+    }
+
+    function draw(ts) {
+      var dt = Math.min((ts - (draw._last || ts)) / 1000, 0.05);
+      draw._last = ts;
+      time += dt;
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Draw grid lines with phase wave
+      var phaseSpeedX = 0.18;
+      var phaseSpeedY = 0.13;
+
+      // Vertical lines
+      for (var c = 0; c < cols; c++) {
+        var px = c * cellW;
+        var wave = Math.sin(time * phaseSpeedX * Math.PI * 2 - c * 0.4) * 0.5 + 0.5;
+        var alpha = 0.04 + wave * 0.13;
+        ctx.strokeStyle = 'rgba(124,111,247,' + alpha.toFixed(3) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(px, 0);
+        ctx.lineTo(px, H);
+        ctx.stroke();
+      }
+
+      // Horizontal lines
+      for (var r = 0; r < rows; r++) {
+        var py = r * cellH;
+        var waveH = Math.sin(time * phaseSpeedY * Math.PI * 2 - r * 0.4) * 0.5 + 0.5;
+        var alphaH = 0.04 + waveH * 0.13;
+        ctx.strokeStyle = 'rgba(124,111,247,' + alphaH.toFixed(3) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(0, py);
+        ctx.lineTo(W, py);
+        ctx.stroke();
+      }
+
+      // Draw node flashes
+      for (var f = 0; f < nodeFlashes.length; f++) {
+        var nf = nodeFlashes[f];
+        var a = Math.min(nf.alpha, 1);
+        var grad = ctx.createRadialGradient(nf.x, nf.y, 0, nf.x, nf.y, 8);
+        grad.addColorStop(0, 'rgba(196,181,253,' + (a * 0.9).toFixed(2) + ')');
+        grad.addColorStop(1, 'rgba(124,111,247,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(nf.x, nf.y, 8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Update and draw orbs
+      updateOrbs(dt);
+      for (var k = 0; k < orbs.length; k++) {
+        var o = orbs[k];
+        var ox, oy;
+        if (o.dir === 'h') {
+          ox = o.x + o.progress * cellW;
+          oy = o.y;
+        } else {
+          ox = o.x;
+          oy = o.y + o.progress * cellH;
+        }
+
+        // Glow halo
+        var glow = ctx.createRadialGradient(ox, oy, 0, ox, oy, o.size * 4);
+        glow.addColorStop(0, 'rgba(196,181,253,' + (o.alpha * 0.55).toFixed(2) + ')');
+        glow.addColorStop(1, 'rgba(196,181,253,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(ox, oy, o.size * 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core dot
+        ctx.fillStyle = 'rgba(220,210,255,' + o.alpha.toFixed(2) + ')';
+        ctx.beginPath();
+        ctx.arc(ox, oy, o.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    if (window.ResizeObserver) {
+      new ResizeObserver(resize).observe(canvas.parentElement);
+    } else {
+      window.addEventListener('resize', resize);
+    }
+    requestAnimationFrame(draw);
   })();
 
   /* ----------------------------------------------------------
