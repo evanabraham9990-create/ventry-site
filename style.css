@@ -2053,6 +2053,29 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   70%       { transform: rotate(-2deg); }
 }
 
+/* Cleaning — bubbles floating up */
+.bub-1 { animation: bubble-float 3s   ease-in-out infinite 0s;   }
+.bub-2 { animation: bubble-float 3.6s ease-in-out infinite 0.7s; }
+.bub-3 { animation: bubble-float 2.9s ease-in-out infinite 1.3s; }
+.bub-4 { animation: bubble-float 4.1s ease-in-out infinite 0.4s; }
+.bub-5 { animation: bubble-float 3.3s ease-in-out infinite 2s;   }
+@keyframes bubble-float {
+  0%   { transform: translateY(0);     opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 0.7; }
+  100% { transform: translateY(-58px); opacity: 0; }
+}
+
+/* HVAC — spinning fan */
+.fan-spin {
+  animation: fan-rotate 2.2s linear infinite;
+  transform-origin: 40px 30px;
+}
+@keyframes fan-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 /* Garage Door — open and close */
 .garage-door-panels {
   animation: garage-open 4s ease-in-out infinite;

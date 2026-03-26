@@ -188,14 +188,17 @@
 
         <!-- Cleaning -->
         <div class="demo-site-card fade-up" data-delay="180">
-          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-consulting" aria-label="View Cleaning Demo">
+          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-cleaning" aria-label="View Cleaning Demo">
             <div class="demo-anim-wrap">
               <svg class="demo-anim-icon" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="10" y="44" width="10" height="10" rx="1" fill="rgba(124,111,247,0.3)" stroke="rgba(124,111,247,0.6)" stroke-width="1.5"/>
-                <rect x="26" y="34" width="10" height="20" rx="1" fill="rgba(124,111,247,0.35)" stroke="rgba(124,111,247,0.6)" stroke-width="1.5"/>
-                <rect x="42" y="22" width="10" height="32" rx="1" fill="rgba(124,111,247,0.4)" stroke="rgba(124,111,247,0.6)" stroke-width="1.5"/>
-                <rect x="58" y="10" width="10" height="44" rx="1" fill="rgba(124,111,247,0.5)" stroke="rgba(124,111,247,0.7)" stroke-width="1.5"/>
-                <path d="M15 44 L31 34 L47 22 L63 10" stroke="rgba(200,180,255,0.6)" stroke-width="1.5" stroke-dasharray="3 3" stroke-linecap="round"/>
+                <circle cx="24" cy="52" r="5" fill="rgba(124,111,247,0.15)" stroke="rgba(124,111,247,0.55)" stroke-width="1.2" class="bub-1"/>
+                <circle cx="38" cy="54" r="7" fill="rgba(124,111,247,0.12)" stroke="rgba(124,111,247,0.5)"  stroke-width="1.2" class="bub-2"/>
+                <circle cx="54" cy="52" r="5" fill="rgba(124,111,247,0.15)" stroke="rgba(124,111,247,0.55)" stroke-width="1.2" class="bub-3"/>
+                <circle cx="30" cy="53" r="3" fill="rgba(124,111,247,0.18)" stroke="rgba(124,111,247,0.6)"  stroke-width="1"   class="bub-4"/>
+                <circle cx="58" cy="54" r="4" fill="rgba(124,111,247,0.13)" stroke="rgba(124,111,247,0.45)" stroke-width="1.2" class="bub-5"/>
+                <!-- shine dots -->
+                <circle cx="36" cy="51" r="1.5" fill="rgba(200,180,255,0.7)" class="bub-2"/>
+                <circle cx="52" cy="49" r="1"   fill="rgba(200,180,255,0.6)" class="bub-3"/>
               </svg>
               <div class="demo-anim-label">Cleaning</div>
             </div>
@@ -209,12 +212,19 @@
 
         <!-- HVAC -->
         <div class="demo-site-card fade-up" data-delay="60">
-          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-hvac" aria-label="View HVAC Demo">
+          <a href="https://demoroofingwebsite.com/" target="_blank" class="demo-site-thumb demo-thumb-hvac2" aria-label="View HVAC Demo">
             <div class="demo-anim-wrap">
               <svg class="demo-anim-icon" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="40" cy="28" r="16" fill="rgba(124,111,247,0.12)" stroke="rgba(124,111,247,0.6)" stroke-width="2"/>
-                <path d="M40 14 L40 8M40 42 L40 48M54 18 L58 14M26 38 L22 42M54 38 L58 42M26 18 L22 14" stroke="rgba(124,111,247,0.5)" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="40" cy="28" r="7" fill="rgba(124,111,247,0.3)" class="hvac-pulse"/>
+                <!-- Outer ring -->
+                <circle cx="40" cy="30" r="22" fill="rgba(124,111,247,0.06)" stroke="rgba(124,111,247,0.3)" stroke-width="1.5"/>
+                <!-- Spinning fan blades -->
+                <g class="fan-spin">
+                  <path d="M40,30 C42,22 48,16 42,8  C36,16 36,24 40,30Z" fill="rgba(124,111,247,0.32)" stroke="rgba(124,111,247,0.65)" stroke-width="1.2"/>
+                  <path d="M40,30 C48,32 54,38 60,34 C52,28 44,28 40,30Z" fill="rgba(124,111,247,0.32)" stroke="rgba(124,111,247,0.65)" stroke-width="1.2"/>
+                  <path d="M40,30 C32,32 26,38 20,34 C28,28 36,28 40,30Z" fill="rgba(124,111,247,0.32)" stroke="rgba(124,111,247,0.65)" stroke-width="1.2"/>
+                  <!-- Hub -->
+                  <circle cx="40" cy="30" r="4" fill="rgba(124,111,247,0.6)" stroke="rgba(200,180,255,0.8)" stroke-width="1.5"/>
+                </g>
               </svg>
               <div class="demo-anim-label">HVAC</div>
             </div>
