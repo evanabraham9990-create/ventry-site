@@ -413,6 +413,8 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   height: 100%;
   z-index: 2;
   pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 58% 62% at 50% 46%, transparent 0%, transparent 35%, black 70%);
+  mask-image: radial-gradient(ellipse 58% 62% at 50% 46%, transparent 0%, transparent 35%, black 70%);
 }
 
 /* ============================================================

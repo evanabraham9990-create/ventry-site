@@ -177,15 +177,21 @@
       var color = colors[Math.floor(Math.random() * colors.length)];
 
       var x, y;
-      var edge = Math.random();
-      if (edge < 0.35) {
-        x = Math.random() * 18;
-      } else if (edge < 0.70) {
-        x = 82 + Math.random() * 18;
+      // Keep dots in outer bands only — never over the center text
+      var zone = Math.random();
+      if (zone < 0.30) {
+        x = Math.random() * 17;           // left strip
+        y = Math.random() * 100;
+      } else if (zone < 0.60) {
+        x = 83 + Math.random() * 17;      // right strip
+        y = Math.random() * 100;
+      } else if (zone < 0.80) {
+        x = Math.random() * 100;
+        y = Math.random() * 16;           // top strip
       } else {
         x = Math.random() * 100;
+        y = 84 + Math.random() * 16;      // bottom strip
       }
-      y = Math.random() * 100;
 
       var duration = (Math.random() * 5 + 6).toFixed(1);
       var delay = (Math.random() * 10).toFixed(1);
