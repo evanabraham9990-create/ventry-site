@@ -69,7 +69,7 @@ section {
   padding: 120px 0;
 }
 
-.problem          { padding: 80px 0; }
+.problem          { padding: 80px 0; position: relative; overflow: hidden; }
 .solution-secondary { padding: 80px 0; }
 .demo             { padding: 100px 0; }
 .faq              { padding: 100px 0; }
@@ -1243,6 +1243,33 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   background: radial-gradient(circle, rgba(124, 111, 247, 0.12) 0%, transparent 70%);
   pointer-events: none;
   filter: blur(80px);
+}
+
+/* ── AMBIENT PAGE GLOWS ───────────────────────────────── */
+.page-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  z-index: 0;
+}
+
+/* Glow 1: behind Problem section — top-right */
+.page-glow-problem {
+  width: 500px;
+  height: 500px;
+  top: -60px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(124, 111, 247, 0.08) 0%, transparent 70%);
+}
+
+/* Glow 2: behind Final CTA — bottom-right, balances existing top-left glow */
+.page-glow-cta {
+  width: 460px;
+  height: 460px;
+  bottom: -40px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(67, 56, 202, 0.10) 0%, transparent 70%);
 }
 
 .cta-inner {
