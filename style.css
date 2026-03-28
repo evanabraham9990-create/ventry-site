@@ -3,9 +3,9 @@
    ============================================================ */
 
 :root {
-  --bg-base:        #080c20;
-  --bg-surface:     #0e1333;
-  --bg-elevated:    #141a3d;
+  --bg-base:        #0b0b1a;
+  --bg-surface:     #0f1230;
+  --bg-elevated:    #131830;
   --purple-core:    #7c6ff7;
   --purple-light:   #a89cf7;
   --purple-dim:     rgba(124, 111, 247, 0.12);
@@ -43,7 +43,9 @@ html {
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg-base);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(124, 111, 247, 0.05) 0%, transparent 68%),
+    var(--bg-base);
   color: var(--text-secondary);
   font-size: 17px;
   line-height: 1.7;
@@ -221,7 +223,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 }
 
 .site-header.scrolled {
-  background: rgba(8, 12, 32, 0.92);
+  background: rgba(11, 11, 26, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -322,7 +324,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   align-items: center;
   padding: 160px 0 140px;
   overflow: hidden;
-  background: linear-gradient(150deg, #0d0b26 0%, #080c20 55%, #060918 100%);
+  background: linear-gradient(150deg, #0e0b24 0%, #0b0b1a 55%, #08091a 100%);
 }
 
 .hero-bg {
@@ -391,8 +393,8 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.4; }
-  50%       { opacity: 1; }
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 0.85; }
 }
 
 .hero-sprinkle {
@@ -400,6 +402,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   border-radius: 50%;
   pointer-events: none;
   z-index: 5;
+  filter: blur(0.6px);
   animation: twinkle ease-in-out infinite;
 }
 
@@ -1229,7 +1232,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   position: relative;
   text-align: center;
   overflow: hidden;
-  background: linear-gradient(150deg, #0d0b26 0%, #080c20 55%, #060918 100%);
+  background: linear-gradient(150deg, #0e0b24 0%, #0b0b1a 55%, #08091a 100%);
   border-top: 1px solid var(--border);
 }
 
@@ -1367,7 +1370,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .page-hero {
   padding: 140px 0 80px;
   text-align: center;
-  background: linear-gradient(150deg, #0d0b26 0%, #080c20 55%, #060918 100%);
+  background: linear-gradient(150deg, #0e0b24 0%, #0b0b1a 55%, #08091a 100%);
   border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
@@ -1707,7 +1710,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .mid-cta {
   padding: 80px 0;
   text-align: center;
-  background: linear-gradient(150deg, #0d0b26 0%, #080c20 55%, #060918 100%);
+  background: linear-gradient(150deg, #0e0b24 0%, #0b0b1a 55%, #08091a 100%);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   position: relative;

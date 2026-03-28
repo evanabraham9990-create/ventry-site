@@ -161,11 +161,11 @@
     var heroBg = document.querySelector('.hero-bg');
     if (!heroBg) return;
 
-    var colors = [
-      'rgba(240,242,255,1)',
-      'rgba(196,181,253,1)',
-      'rgba(255,255,255,1)',
-      'rgba(168,156,247,1)'
+    var colorBases = [
+      'rgba(240,242,255,',
+      'rgba(196,181,253,',
+      'rgba(255,255,255,',
+      'rgba(168,156,247,'
     ];
 
     var count = 38;
@@ -173,8 +173,11 @@
       var dot = document.createElement('span');
       dot.className = 'hero-sprinkle';
 
-      var size = (Math.random() * 2 + 2).toFixed(1);
-      var color = colors[Math.floor(Math.random() * colors.length)];
+      var size = (Math.random() * 3.5 + 1.5).toFixed(1);
+      var opacity = (Math.random() * 0.45 + 0.45).toFixed(2);
+      var blur = (Math.random() * 1.2).toFixed(1);
+      var base = colorBases[Math.floor(Math.random() * colorBases.length)];
+      var color = base + opacity + ')';
 
       var x, y;
       // Keep dots in outer bands only — never over the center text
@@ -202,6 +205,7 @@
         'background:' + color,
         'left:' + x.toFixed(1) + '%',
         'top:' + y.toFixed(1) + '%',
+        'filter:blur(' + blur + 'px)',
         'animation-duration:' + duration + 's',
         'animation-delay:-' + delay + 's'
       ].join(';');
