@@ -359,7 +359,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   z-index: 4;
   background:
     linear-gradient(to right,  rgba(4, 6, 18, 0.18) 0%, transparent 28%),
-    linear-gradient(to left,   rgba(4, 6, 18, 0.20) 0%, transparent 28%),
+    linear-gradient(to left,   rgba(4, 6, 18, 0.10) 0%, transparent 20%),
     linear-gradient(to bottom, rgba(4, 6, 18, 0.10) 0%, transparent 22%),
     linear-gradient(to top,    rgba(4, 6, 18, 0.10) 0%, transparent 22%);
   pointer-events: none;
@@ -382,13 +382,13 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .hero-glow-fill {
   position: absolute;
   z-index: 2;
-  bottom: -10%;
-  right: -10%;
-  width: 900px;
-  height: 900px;
+  top: -15%;
+  right: -15%;
+  width: 1100px;
+  height: 1100px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(67, 56, 202, 0.05) 0%, transparent 60%);
-  filter: blur(140px);
+  background: radial-gradient(circle, rgba(67, 56, 202, 0.07) 0%, transparent 60%);
+  filter: blur(150px);
   pointer-events: none;
 }
 
@@ -454,7 +454,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .arc-4 {
   width: 760px;
   height: 722px;
-  opacity: 0.07;
+  opacity: 0.10;
   -webkit-mask: conic-gradient(from 215deg, transparent 0deg, white 20deg, white 196deg, transparent 216deg, transparent 360deg);
           mask: conic-gradient(from 215deg, transparent 0deg, white 20deg, white 196deg, transparent 216deg, transparent 360deg);
 }
@@ -462,7 +462,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .arc-5 {
   width: 940px;
   height: 893px;
-  opacity: 0.04;
+  opacity: 0.07;
   -webkit-mask: conic-gradient(from 230deg, transparent 0deg, white 22deg, white 182deg, transparent 204deg, transparent 360deg);
           mask: conic-gradient(from 230deg, transparent 0deg, white 22deg, white 182deg, transparent 204deg, transparent 360deg);
 }
