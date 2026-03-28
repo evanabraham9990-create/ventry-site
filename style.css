@@ -242,7 +242,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--text-primary);
   flex-shrink: 0;
