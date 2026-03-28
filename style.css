@@ -337,7 +337,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   inset: 0;
   pointer-events: none;
   isolation: isolate;
-  background: radial-gradient(ellipse 240% 200% at 46% 48%, rgba(100, 90, 210, 0.06) 0%, transparent 52%);
+  background: radial-gradient(ellipse 240% 200% at 50% 48%, rgba(100, 90, 210, 0.06) 0%, transparent 52%);
 }
 
 .hero-bg::before {
@@ -368,7 +368,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   position: absolute;
   z-index: 2;
   top: -20%;
-  left: -10%;
+  left: calc(50% - 550px);
   width: 1100px;
   height: 1100px;
   border-radius: 50%;
