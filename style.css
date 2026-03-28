@@ -329,7 +329,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   align-items: center;
   padding: 160px 0 140px;
   overflow: hidden;
-  background: linear-gradient(150deg, #0e0b24 0%, #0b0b1a 55%, #08091a 100%);
+  background: linear-gradient(150deg, #0e0b24 0%, #0b0b1a 50%, #090a1c 100%);
 }
 
 .hero-bg {
@@ -338,6 +338,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   pointer-events: none;
   overflow: hidden;
   isolation: isolate;
+  background: radial-gradient(ellipse 240% 200% at 46% 48%, rgba(100, 90, 210, 0.06) 0%, transparent 52%);
 }
 
 .hero-bg::before {
@@ -356,25 +357,24 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   position: absolute;
   inset: 0;
   z-index: 4;
-  background: radial-gradient(
-    ellipse 72% 58% at 50% 44%,
-    transparent 0%,
-    transparent 38%,
-    rgba(4, 6, 18, 0.38) 100%
-  );
+  background:
+    linear-gradient(to right,  rgba(4, 6, 18, 0.18) 0%, transparent 28%),
+    linear-gradient(to left,   rgba(4, 6, 18, 0.20) 0%, transparent 28%),
+    linear-gradient(to bottom, rgba(4, 6, 18, 0.10) 0%, transparent 22%),
+    linear-gradient(to top,    rgba(4, 6, 18, 0.10) 0%, transparent 22%);
   pointer-events: none;
 }
 
 .hero-glow-key {
   position: absolute;
   z-index: 2;
-  top: -10%;
-  left: -5%;
-  width: 600px;
-  height: 600px;
+  top: -20%;
+  left: -10%;
+  width: 1100px;
+  height: 1100px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(124, 111, 247, 0.13) 0%, transparent 70%);
-  filter: blur(80px);
+  background: radial-gradient(circle, rgba(124, 111, 247, 0.09) 0%, transparent 60%);
+  filter: blur(140px);
   pointer-events: none;
   animation: key-breathe 12s ease-in-out infinite;
 }
@@ -382,13 +382,13 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 .hero-glow-fill {
   position: absolute;
   z-index: 2;
-  bottom: 5%;
-  right: 0;
-  width: 380px;
-  height: 380px;
+  bottom: -10%;
+  right: -10%;
+  width: 900px;
+  height: 900px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(67, 56, 202, 0.07) 0%, transparent 70%);
-  filter: blur(60px);
+  background: radial-gradient(circle, rgba(67, 56, 202, 0.05) 0%, transparent 60%);
+  filter: blur(140px);
   pointer-events: none;
 }
 
