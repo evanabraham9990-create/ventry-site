@@ -155,67 +155,8 @@
   });
 
   /* ----------------------------------------------------------
-     HERO SPRINKLE DOTS
-  ---------------------------------------------------------- */
-  (function () {
-    var heroBg = document.querySelector('.hero-bg');
-    if (!heroBg) return;
-
-    var colorBases = [
-      'rgba(240,242,255,',
-      'rgba(196,181,253,',
-      'rgba(255,255,255,',
-      'rgba(168,156,247,'
-    ];
-
-    var count = 38;
-    for (var i = 0; i < count; i++) {
-      var dot = document.createElement('span');
-      dot.className = 'hero-sprinkle';
-
-      var size = (Math.random() * 3.5 + 1.5).toFixed(1);
-      var opacity = (Math.random() * 0.45 + 0.45).toFixed(2);
-      var blur = (Math.random() * 1.2).toFixed(1);
-      var base = colorBases[Math.floor(Math.random() * colorBases.length)];
-      var color = base + opacity + ')';
-
-      var x, y;
-      // Keep dots in outer bands only — never over the center text
-      var zone = Math.random();
-      if (zone < 0.30) {
-        x = Math.random() * 17;           // left strip
-        y = Math.random() * 100;
-      } else if (zone < 0.60) {
-        x = 83 + Math.random() * 17;      // right strip
-        y = Math.random() * 100;
-      } else if (zone < 0.80) {
-        x = Math.random() * 100;
-        y = Math.random() * 16;           // top strip
-      } else {
-        x = Math.random() * 100;
-        y = 84 + Math.random() * 16;      // bottom strip
-      }
-
-      var duration = (Math.random() * 5 + 6).toFixed(1);
-      var delay = (Math.random() * 10).toFixed(1);
-
-      dot.style.cssText = [
-        'width:' + size + 'px',
-        'height:' + size + 'px',
-        'background:' + color,
-        'left:' + x.toFixed(1) + '%',
-        'top:' + y.toFixed(1) + '%',
-        'filter:blur(' + blur + 'px)',
-        'animation-duration:' + duration + 's',
-        'animation-delay:-' + delay + 's'
-      ].join(';');
-
-      heroBg.appendChild(dot);
-    }
-  })();
-
-  /* ----------------------------------------------------------
-     HERO ENERGY GRID (Canvas)
+     GALAXY BACKGROUND (Canvas)
+     Stars = lost jobs drifting in space — subtle, fluid, never overlapping
   ---------------------------------------------------------- */
   (function () {
     var canvas = document.getElementById('hero-grid-canvas');
@@ -223,8 +164,10 @@
 
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
-    var W, H, cols, rows, cellW, cellH;
-    var time = 0;
+    var W, H;
+    var stars = [];
+    var NUM_STARS = 190;
+    var MIN_DIST = 12;
 
     function resize() {
       var rect = canvas.parentElement.getBoundingClientRect();
@@ -235,150 +178,110 @@
       canvas.style.width = W + 'px';
       canvas.style.height = H + 'px';
       ctx.scale(dpr, dpr);
-      cellW = 90;
-      cellH = 90;
-      cols = Math.ceil(W / cellW) + 1;
-      rows = Math.ceil(H / cellH) + 1;
-      initOrbs();
+      initStars();
     }
 
-    // Energy orbs that travel along grid lines
-    var orbs = [];
-    var NUM_ORBS = 10;
+    function initStars() {
+      stars = [];
+      var attempts = 0;
+      var maxAttempts = NUM_STARS * 25;
 
-    function initOrbs() {
-      orbs = [];
-      for (var i = 0; i < NUM_ORBS; i++) {
-        var col = Math.floor(Math.random() * (cols - 1));
-        var row = Math.floor(Math.random() * (rows - 1));
-        var dir = Math.random() < 0.5 ? 'h' : 'v'; // horizontal or vertical
-        orbs.push({
-          x: col * cellW,
-          y: row * cellH,
-          col: col,
-          row: row,
-          dir: dir,
-          speed: 40 + Math.random() * 45,
-          progress: Math.random(),
-          alpha: 0.5 + Math.random() * 0.5,
-          size: 2.5 + Math.random() * 2
+      while (stars.length < NUM_STARS && attempts < maxAttempts) {
+        attempts++;
+
+        var rand = Math.random();
+        var size;
+        if (rand < 0.58)       size = 0.4 + Math.random() * 0.7;   // tiny
+        else if (rand < 0.86)  size = 1.1 + Math.random() * 0.7;   // small
+        else if (rand < 0.96)  size = 1.8 + Math.random() * 0.7;   // medium
+        else                   size = 2.5 + Math.random() * 0.6;   // rare large
+
+        var x = size + Math.random() * (W - size * 2);
+        var y = size + Math.random() * (H - size * 2);
+
+        // Enforce minimum spacing
+        var tooClose = false;
+        for (var j = 0; j < stars.length; j++) {
+          var dx = stars[j].x - x;
+          var dy = stars[j].y - y;
+          var minD = MIN_DIST + stars[j].size + size;
+          if (dx * dx + dy * dy < minD * minD) { tooClose = true; break; }
+        }
+        if (tooClose) continue;
+
+        // Color palette: cool whites, lavenders, pale blues, rare warm
+        var cr = Math.random();
+        var r, g, b;
+        if (cr < 0.52) {
+          r = 215 + Math.floor(Math.random() * 40); g = 220 + Math.floor(Math.random() * 35); b = 255;
+        } else if (cr < 0.78) {
+          r = 185 + Math.floor(Math.random() * 30); g = 175 + Math.floor(Math.random() * 25); b = 248 + Math.floor(Math.random() * 7);
+        } else if (cr < 0.92) {
+          r = 175 + Math.floor(Math.random() * 35); g = 200 + Math.floor(Math.random() * 35); b = 255;
+        } else {
+          r = 255; g = 238 + Math.floor(Math.random() * 17); b = 205 + Math.floor(Math.random() * 35);
+        }
+
+        stars.push({
+          ox: x, oy: y, x: x, y: y,
+          size: size,
+          r: r, g: g, b: b,
+          baseOpacity: 0.1 + Math.random() * 0.35,
+          opacity: 0,
+          // Drift — very slow lissajous float
+          driftRx: 6 + Math.random() * 16,
+          driftRy: 5 + Math.random() * 14,
+          driftSpeedX: 0.025 + Math.random() * 0.055,
+          driftSpeedY: 0.020 + Math.random() * 0.045,
+          driftPhaseX: Math.random() * Math.PI * 2,
+          driftPhaseY: Math.random() * Math.PI * 2,
+          // Twinkle
+          twinkleRange: 0.08 + Math.random() * 0.18,
+          twinkleSpeed: 0.18 + Math.random() * 0.40,
+          twinklePhase: Math.random() * Math.PI * 2
         });
       }
     }
 
-    var nodeFlashes = []; // {x, y, alpha}
-
-    function updateOrbs(dt) {
-      for (var i = 0; i < orbs.length; i++) {
-        var o = orbs[i];
-        o.progress += (o.speed * dt) / (o.dir === 'h' ? cellW : cellH);
-
-        if (o.progress >= 1) {
-          o.progress = 0;
-          // Flash the node we arrived at
-          var nx = o.dir === 'h' ? (o.col + 1) * cellW : o.col * cellW;
-          var ny = o.dir === 'h' ? o.row * cellH : (o.row + 1) * cellH;
-          nodeFlashes.push({ x: nx, y: ny, alpha: 1 });
-
-          // Move orb to next cell, pick new direction
-          if (o.dir === 'h') {
-            o.col = Math.min(o.col + 1, cols - 2);
-          } else {
-            o.row = Math.min(o.row + 1, rows - 2);
-          }
-          // Bounce at edges
-          if (o.col <= 0 || o.col >= cols - 2) o.dir = 'v';
-          else if (o.row <= 0 || o.row >= rows - 2) o.dir = 'h';
-          else o.dir = Math.random() < 0.5 ? 'h' : 'v';
-
-          o.x = o.col * cellW;
-          o.y = o.row * cellH;
-        }
-      }
-
-      // Decay node flashes
-      for (var j = nodeFlashes.length - 1; j >= 0; j--) {
-        nodeFlashes[j].alpha -= dt * 2.2;
-        if (nodeFlashes[j].alpha <= 0) nodeFlashes.splice(j, 1);
-      }
-    }
+    var time = 0;
+    var lastTs = null;
 
     function draw(ts) {
-      var dt = Math.min((ts - (draw._last || ts)) / 1000, 0.05);
-      draw._last = ts;
+      if (lastTs === null) lastTs = ts;
+      var dt = Math.min((ts - lastTs) / 1000, 0.05);
+      lastTs = ts;
       time += dt;
 
       ctx.clearRect(0, 0, W, H);
 
-      // Draw grid lines with phase wave
-      var phaseSpeedX = 0.18;
-      var phaseSpeedY = 0.13;
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
 
-      // Vertical lines
-      for (var c = 0; c < cols; c++) {
-        var px = c * cellW;
-        var wave = Math.sin(time * phaseSpeedX * Math.PI * 2 - c * 0.4) * 0.5 + 0.5;
-        var alpha = 0.04 + wave * 0.13;
-        ctx.strokeStyle = 'rgba(124,111,247,' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(px, 0);
-        ctx.lineTo(px, H);
-        ctx.stroke();
-      }
+        // Smooth lissajous drift — no hard cuts, continuous curves
+        s.x = s.ox + Math.cos(time * s.driftSpeedX * Math.PI * 2 + s.driftPhaseX) * s.driftRx;
+        s.y = s.oy + Math.sin(time * s.driftSpeedY * Math.PI * 2 + s.driftPhaseY) * s.driftRy;
 
-      // Horizontal lines
-      for (var r = 0; r < rows; r++) {
-        var py = r * cellH;
-        var waveH = Math.sin(time * phaseSpeedY * Math.PI * 2 - r * 0.4) * 0.5 + 0.5;
-        var alphaH = 0.04 + waveH * 0.13;
-        ctx.strokeStyle = 'rgba(124,111,247,' + alphaH.toFixed(3) + ')';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(0, py);
-        ctx.lineTo(W, py);
-        ctx.stroke();
-      }
+        // Gentle twinkle
+        var tw = Math.sin(time * s.twinkleSpeed * Math.PI * 2 + s.twinklePhase) * 0.5 + 0.5;
+        s.opacity = s.baseOpacity - s.twinkleRange * 0.25 + tw * s.twinkleRange;
+        s.opacity = Math.max(0.03, Math.min(0.62, s.opacity));
 
-      // Draw node flashes
-      for (var f = 0; f < nodeFlashes.length; f++) {
-        var nf = nodeFlashes[f];
-        var a = Math.min(nf.alpha, 1);
-        var grad = ctx.createRadialGradient(nf.x, nf.y, 0, nf.x, nf.y, 8);
-        grad.addColorStop(0, 'rgba(196,181,253,' + (a * 0.9).toFixed(2) + ')');
-        grad.addColorStop(1, 'rgba(124,111,247,0)');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(nf.x, nf.y, 8, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Update and draw orbs
-      updateOrbs(dt);
-      for (var k = 0; k < orbs.length; k++) {
-        var o = orbs[k];
-        var ox, oy;
-        if (o.dir === 'h') {
-          ox = o.x + o.progress * cellW;
-          oy = o.y;
-        } else {
-          ox = o.x;
-          oy = o.y + o.progress * cellH;
+        // Soft glow halo for larger stars only
+        if (s.size >= 1.4) {
+          var gr = s.size * 4;
+          var glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, gr);
+          glow.addColorStop(0, 'rgba(' + s.r + ',' + s.g + ',' + s.b + ',' + (s.opacity * 0.28).toFixed(3) + ')');
+          glow.addColorStop(1, 'rgba(' + s.r + ',' + s.g + ',' + s.b + ',0)');
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, gr, 0, Math.PI * 2);
+          ctx.fill();
         }
 
-        // Glow halo
-        var glow = ctx.createRadialGradient(ox, oy, 0, ox, oy, o.size * 4);
-        glow.addColorStop(0, 'rgba(196,181,253,' + (o.alpha * 0.55).toFixed(2) + ')');
-        glow.addColorStop(1, 'rgba(196,181,253,0)');
-        ctx.fillStyle = glow;
+        // Core star
+        ctx.fillStyle = 'rgba(' + s.r + ',' + s.g + ',' + s.b + ',' + s.opacity.toFixed(3) + ')';
         ctx.beginPath();
-        ctx.arc(ox, oy, o.size * 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Core dot
-        ctx.fillStyle = 'rgba(220,210,255,' + o.alpha.toFixed(2) + ')';
-        ctx.beginPath();
-        ctx.arc(ox, oy, o.size, 0, Math.PI * 2);
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
       }
 

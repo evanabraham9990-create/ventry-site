@@ -219,6 +219,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   right: 0;
   z-index: 100;
   padding: 0;
+  background: transparent;
   transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
@@ -252,10 +253,14 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 }
 
 .logo-img {
-  height: 52px;
+  height: 38px;
   width: auto;
   display: block;
   flex-shrink: 0;
+}
+
+.logo-text {
+  display: none;
 }
 
 .logo-text span {
@@ -392,20 +397,6 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   50%       { opacity: 0.75; }
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.25; }
-  50%       { opacity: 0.85; }
-}
-
-.hero-sprinkle {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 5;
-  filter: blur(0.6px);
-  animation: twinkle ease-in-out infinite;
-}
-
 #hero-grid-canvas {
   position: absolute;
   inset: 0;
@@ -413,8 +404,6 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   height: 100%;
   z-index: 2;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 58% 62% at 50% 46%, transparent 0%, transparent 35%, black 70%);
-  mask-image: radial-gradient(ellipse 58% 62% at 50% 46%, transparent 0%, transparent 35%, black 70%);
 }
 
 /* ============================================================
