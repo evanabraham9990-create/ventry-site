@@ -336,7 +336,6 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   position: absolute;
   inset: 0;
   pointer-events: none;
-  overflow: hidden;
   isolation: isolate;
   background: radial-gradient(ellipse 240% 200% at 46% 48%, rgba(100, 90, 210, 0.06) 0%, transparent 52%);
 }
@@ -431,40 +430,40 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   width: 260px;
   height: 246px;
   opacity: 0.24;
-  -webkit-mask: conic-gradient(from 225deg, transparent 0deg, white 16deg, white 228deg, transparent 244deg, transparent 360deg);
-          mask: conic-gradient(from 225deg, transparent 0deg, white 16deg, white 228deg, transparent 244deg, transparent 360deg);
+  -webkit-mask: conic-gradient(from 225deg, transparent 0deg, white 14deg, white 216deg, transparent 260deg, transparent 360deg);
+          mask: conic-gradient(from 225deg, transparent 0deg, white 14deg, white 216deg, transparent 260deg, transparent 360deg);
 }
 
 .arc-2 {
   width: 420px;
   height: 399px;
   opacity: 0.16;
-  -webkit-mask: conic-gradient(from 218deg, transparent 0deg, white 16deg, white 218deg, transparent 234deg, transparent 360deg);
-          mask: conic-gradient(from 218deg, transparent 0deg, white 16deg, white 218deg, transparent 234deg, transparent 360deg);
+  -webkit-mask: conic-gradient(from 218deg, transparent 0deg, white 14deg, white 210deg, transparent 254deg, transparent 360deg);
+          mask: conic-gradient(from 218deg, transparent 0deg, white 14deg, white 210deg, transparent 254deg, transparent 360deg);
 }
 
 .arc-3 {
   width: 590px;
   height: 561px;
   opacity: 0.10;
-  -webkit-mask: conic-gradient(from 228deg, transparent 0deg, white 18deg, white 208deg, transparent 226deg, transparent 360deg);
-          mask: conic-gradient(from 228deg, transparent 0deg, white 18deg, white 208deg, transparent 226deg, transparent 360deg);
+  -webkit-mask: conic-gradient(from 228deg, transparent 0deg, white 16deg, white 202deg, transparent 248deg, transparent 360deg);
+          mask: conic-gradient(from 228deg, transparent 0deg, white 16deg, white 202deg, transparent 248deg, transparent 360deg);
 }
 
 .arc-4 {
   width: 760px;
   height: 722px;
   opacity: 0.10;
-  -webkit-mask: conic-gradient(from 215deg, transparent 0deg, white 20deg, white 196deg, transparent 216deg, transparent 360deg);
-          mask: conic-gradient(from 215deg, transparent 0deg, white 20deg, white 196deg, transparent 216deg, transparent 360deg);
+  -webkit-mask: conic-gradient(from 215deg, transparent 0deg, white 18deg, white 192deg, transparent 238deg, transparent 360deg);
+          mask: conic-gradient(from 215deg, transparent 0deg, white 18deg, white 192deg, transparent 238deg, transparent 360deg);
 }
 
 .arc-5 {
   width: 940px;
   height: 893px;
   opacity: 0.07;
-  -webkit-mask: conic-gradient(from 230deg, transparent 0deg, white 22deg, white 182deg, transparent 204deg, transparent 360deg);
-          mask: conic-gradient(from 230deg, transparent 0deg, white 22deg, white 182deg, transparent 204deg, transparent 360deg);
+  -webkit-mask: conic-gradient(from 230deg, transparent 0deg, white 20deg, white 176deg, transparent 222deg, transparent 360deg);
+          mask: conic-gradient(from 230deg, transparent 0deg, white 20deg, white 176deg, transparent 222deg, transparent 360deg);
 }
 
 .hero-beam {
