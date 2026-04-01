@@ -160,7 +160,7 @@
   ---------------------------------------------------------- */
   (function () {
     var canvas = document.getElementById('hero-grid-canvas');
-    if (!canvas) return;
+    if (!canvas || window.innerWidth < 768) return;
 
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;

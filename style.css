@@ -1888,6 +1888,15 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   .hero-actions .btn { width: 100%; justify-content: center; max-width: 320px; }
 
   .demo-cta .btn { width: 100%; }
+
+  /* Kill heavy GPU elements on mobile — blur(140px) on 1100px elements crashes phones */
+  .hero-glow-key,
+  .hero-glow-fill,
+  .hero-beam { display: none; }
+
+  .hero-arcs { display: none; }
+
+  #hero-grid-canvas { display: none; }
 }
 
 @media (max-width: 480px) {
