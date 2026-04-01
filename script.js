@@ -166,7 +166,7 @@
     var dpr = window.devicePixelRatio || 1;
     var W, H;
     var stars = [];
-    var NUM_STARS = 190;
+    var NUM_STARS = window.innerWidth < 768 ? 80 : 190;
     var MIN_DIST = 12;
 
     function resize() {
@@ -177,7 +177,7 @@
       canvas.height = H * dpr;
       canvas.style.width = W + 'px';
       canvas.style.height = H + 'px';
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       initStars();
     }
 
