@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ventry AI</title>
+  <meta name="description" content="Never miss another lead. Ventry AI answers calls, qualifies leads, and books appointments 24/7." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/transparentlogo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/transparentlogo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/transparentlogo.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ventry AI" />
+  <meta property="og:title" content="Ventry AI — AI Receptionist for Service Businesses" />
+  <meta property="og:description" content="Never miss another lead. Ventry AI answers calls, qualifies leads, and books appointments 24/7." />
+  <meta property="og:image" content="https://ventryxai.com/assets/logovx.png" />
+  <meta property="og:url" content="https://ventryxai.com" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ventry AI — AI Receptionist for Service Businesses" />
+  <meta name="twitter:description" content="Never miss another lead. Ventry AI answers calls, qualifies leads, and books appointments 24/7." />
+  <meta name="twitter:image" content="https://ventryxai.com/assets/logovx.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── HERO VIDEO ─────────────────────────────────────── */
+    .hero-video-section {
+      margin-top: 56px;
+      text-align: center;
+    }
+    .hero-video-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+      margin-bottom: 16px;
+    }
+    .hero-video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(124,111,247,.25);
+      box-shadow: 0 0 0 1px rgba(124,111,247,.1), 0 32px 80px rgba(0,0,0,.55), 0 0 60px rgba(124,111,247,.12);
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      display: block;
+      border-radius: 13px;
+    }
+
+    /* ── HERO BACKGROUND FIX ────────────────────────────── */
+    .hero-bg {
+      position: absolute !important;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-glow-key,
+    .hero-glow-fill {
+      position: absolute;
+      left: 50% !important;
+      top: 40% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+    .hero-glow-key { opacity: .55 !important; }
+    .hero-glow-fill { opacity: .3 !important; }
+    .hero-beam {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      opacity: .35 !important;
+    }
+    .hero-arcs {
+      position: absolute;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    /* ── MICRO-PROOF ────────────────────────────────────── */
+    .micro-proof {
+      padding: 96px 0;
+    }
+    .micro-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .micro-proof-card {
+      padding: 32px 28px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+    .micro-proof-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--purple-core, #7c6ff7);
+      background: rgba(124,111,247,.07);
+      box-shadow: 0 0 32px rgba(124,111,247,.18);
+    }
+    .micro-proof-card:hover h3 { color: var(--purple-light, #a89cf7); }
+    .micro-proof-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+      transition: color .25s ease;
+    }
+    .micro-proof-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.52);
+    }
+    /* "One call" card — slightly stronger border by default, NOT highlighted */
+    .micro-proof-card.emphasized {
+      border-color: rgba(124,111,247,.3);
+    }
+    @media (max-width: 768px) {
+      .micro-proof-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── REAL SCENARIO ──────────────────────────────────── */
+    .real-scenario {
+      padding: 96px 0;
+      background: rgba(255,255,255,.015);
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .scenario-timeline {
+      max-width: 560px;
+      margin: 48px auto 0;
+    }
+    .scenario-event {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+      padding-bottom: 32px;
+    }
+    .scenario-event:last-child { padding-bottom: 0; }
+    .scenario-event::after {
+      content: '';
+      position: absolute;
+      left: 72px;
+      top: 16px;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255,255,255,.07);
+    }
+    .scenario-event:last-child::after { display: none; }
+    .scenario-time {
+      flex-shrink: 0;
+      width: 72px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,.32);
+      padding-top: 1px;
+      text-align: right;
+      letter-spacing: .02em;
+    }
+    .scenario-dot {
+      flex-shrink: 0;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      border: 2px solid rgba(255,255,255,.12);
+      margin-top: 3px;
+    }
+    .scenario-event.bad .scenario-dot  { background: #FF4757; border-color: #FF4757; box-shadow: 0 0 8px rgba(255,71,87,.45); }
+    .scenario-event.lost .scenario-dot { background: #FF4757; border-color: #FF4757; box-shadow: 0 0 14px rgba(255,71,87,.65); }
+    .scenario-text {
+      font-size: 16px;
+      line-height: 1.5;
+      color: rgba(255,255,255,.75);
+    }
+    .scenario-event.bad  .scenario-text { color: rgba(255,255,255,.5); }
+    .scenario-event.lost .scenario-text { color: #FF4757; font-weight: 600; }
+    .scenario-closer {
+      text-align: center;
+      margin-top: 44px;
+      font-size: 18px;
+      font-weight: 500;
+      color: rgba(255,255,255,.45);
+      font-style: italic;
+    }
+
+    /* ── SOLUTION extras ────────────────────────────────── */
+    .solution-stop-label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--purple-light, #a89cf7);
+      margin-bottom: 12px;
+    }
+    .solution-closing {
+      margin-top: 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,.4);
+      font-style: italic;
+    }
+
+    /* ── PROBLEM extras ─────────────────────────────────── */
+    .problem-intro-line {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 40px;
+    }
+
+    /* ── DEMO TRANSCRIPT ────────────────────────────────── */
+    .demo-transcript {
+      max-width: 580px;
+      margin: 0 auto 40px;
+      background: var(--bg-elevated, #141a3d);
+      border: 1px solid var(--border, rgba(124,111,247,.15));
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .demo-transcript-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(124,111,247,.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted, #5a6290);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .demo-transcript-header .rec-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #FF4757;
+      box-shadow: 0 0 6px rgba(255,71,87,.6);
+      animation: pulse-rec 1.5s infinite;
+    }
+    @keyframes pulse-rec {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+    .demo-transcript-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tline {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .tline-speaker {
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      min-width: 72px;
+    }
+    .tline-speaker.ai  { color: var(--purple-light, #a89cf7); }
+    .tline-speaker.caller { color: rgba(255,255,255,.4); }
+    .tline-text {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text-primary, #f0f2ff);
+    }
+    .tline-speaker.caller ~ .tline-text { color: rgba(255,255,255,.6); }
+
+    /* ── DEMO above label ───────────────────────────────── */
+    .demo-above-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,.42);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    /* ── FINAL CTA pre-heading ──────────────────────────── */
+    .cta-pre-heading {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,.38);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 20px;
+    }
+
+    /* ── CTA BUTTON ALIGNMENT FIX ───────────────────────── */
+    .solution-content .btn {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="Ventry AI home">
+        <img src="assets/transparentlogo.png" class="logo-img" alt="Ventry AI logo"/>
+        <span class="logo-text">Ventry <span>AI</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="ai-receptionist.html">AI Receptionist</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="demo.html">Demo</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <a href="https://calendar.app.google/cdGG6buvu7Xe8JiE9" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm nav-cta">Get Your Free Audit</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1. HERO
+    ============================================================ -->
+    <section class="hero" id="hero">
+      <div class="hero-bg">
+        <canvas id="hero-grid-canvas"></canvas>
+        <div class="hero-arcs">
+          <div class="arc arc-1"></div>
+          <div class="arc arc-2"></div>
+          <div class="arc arc-3"></div>
+          <div class="arc arc-4"></div>
+          <div class="arc arc-5"></div>
+        </div>
+        <div class="hero-glow-key"></div>
+        <div class="hero-glow-fill"></div>
+        <div class="hero-beam"></div>
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <h1>
+            <span class="fade-up hero-line" data-delay="60">Every Missed Call</span>
+            <span class="fade-up hero-line" data-delay="160"><span class="hero-highlight">Is a Lost Job.</span></span>
+          </h1>
+          <p class="fade-up" data-delay="210" style="font-size:14px;font-weight:500;color:rgba(255,255,255,.42);margin-top:14px;letter-spacing:.03em;">For service businesses that rely on inbound calls</p>
+          <p class="hero-sub fade-up" data-delay="280">Ventry AI answers every call, qualifies every lead, and books appointments 24/7 — so your business is always first to respond.</p>
+          <div class="hero-actions fade-up" data-delay="400">
+            <a href="https://calendar.app.google/cdGG6buvu7Xe8JiE9" target="_blank" rel="noopener noreferrer" class="btn btn-primary">See How It Works</a>
+          </div>
+          <!-- Hero Video -->
+          <div class="hero-video-section fade-up" data-delay="500">
+            <p class="hero-video-label">Watch what happens when you miss a call</p>
+            <div class="hero-video-wrap">
+              <video controls preload="metadata" poster="assets/callcover.png">
+                <source src="assets/ventryxai-demo-no-music.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-badge hero-badge-left fade-up" data-delay="560">
+        <span class="hero-badge-dot"></span>
+        AI Receptionist — Active
+      </div>
+      <div class="hero-badge hero-badge-right fade-up" data-delay="640">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Call Captured — Lead Logged
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. MICRO-PROOF
+    ============================================================ -->
+    <section class="micro-proof" id="micro-proof">
+      <div class="container">
+        <div class="section-header fade-up">
+          <h2>What happens when nobody answers</h2>
+        </div>
+        <div class="micro-proof-grid">
+          <div class="micro-proof-card fade-up">
+            <h3>Missed calls don't stay missed</h3>
+            <p>They don't leave a message. They call the next business that answers.</p>
+          </div>
+          <div class="micro-proof-card fade-up" data-delay="80">
+            <h3>Speed decides who gets the job</h3>
+            <p>The first business to respond usually wins — not the best one.</p>
+          </div>
+          <div class="micro-proof-card emphasized fade-up" data-delay="160">
+            <h3>One call can be worth thousands</h3>
+            <p>An estimate request or emergency job goes to whoever answers first.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. REAL SCENARIO
+    ============================================================ -->
+    <section class="real-scenario" id="real-scenario">
+      <div class="container">
+        <div class="section-header fade-up" style="text-align:center;">
+          <h2>This is what losing a job looks like</h2>
+        </div>
+        <div class="scenario-timeline">
+          <div class="scenario-event fade-up">
+            <div class="scenario-time">2:14 PM</div>
+            <div class="scenario-dot"></div>
+            <div class="scenario-text">Your phone rings. You're on a job.</div>
+          </div>
+          <div class="scenario-event bad fade-up" data-delay="60">
+            <div class="scenario-time">2:15 PM</div>
+            <div class="scenario-dot"></div>
+            <div class="scenario-text">Missed call. No voicemail.</div>
+          </div>
+          <div class="scenario-event bad fade-up" data-delay="120">
+            <div class="scenario-time">2:18 PM</div>
+            <div class="scenario-dot"></div>
+            <div class="scenario-text">Customer calls a competitor.</div>
+          </div>
+          <div class="scenario-event bad fade-up" data-delay="160">
+            <div class="scenario-time">2:31 PM</div>
+            <div class="scenario-dot"></div>
+            <div class="scenario-text">They answer. Job booked.</div>
+          </div>
+          <div class="scenario-event lost fade-up" data-delay="180">
+            <div class="scenario-time">Same day</div>
+            <div class="scenario-dot"></div>
+            <div class="scenario-text">You lose the job.</div>
+          </div>
+        </div>
+        <p class="scenario-closer fade-up" data-delay="200">"That call could've been your next job."</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. PROBLEM
+    ============================================================ -->
+    <section class="problem" id="problem">
+      <div class="page-glow page-glow-problem"></div>
+      <div class="container">
+        <div class="section-header fade-up">
+          <h2>You're paying for leads you're not capturing</h2>
+        </div>
+        <p class="problem-intro-line fade-up">This is where your revenue is leaking.</p>
+        <div class="problem-grid">
+          <div class="problem-card card fade-up">
+            <div class="problem-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 003.41 2.6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.42 19.42 0 01-3.33-2.67m-2.67-3.34a19.79 19.79 0 01-3.07-8.63A2 2 0 014 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg>
+            </div>
+            <h3>Missed Calls = Missed Jobs</h3>
+            <p>Every unanswered call is a job someone else got — the same day.</p>
+          </div>
+          <div class="problem-card card fade-up" data-delay="80">
+            <div class="problem-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Slow Response = Lost Bids</h3>
+            <p>Calling back later doesn't recover the lead. It confirms you lost it.</p>
+          </div>
+          <div class="problem-card card fade-up" data-delay="160">
+            <div class="problem-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <h3>You Paid for That Call</h3>
+            <p>Ads, SEO, referrals — you paid for that lead. Then sent it to voicemail.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MID-PAGE CTA
+    ============================================================ -->
+    <section class="mid-cta">
+      <div class="container">
+        <div class="label fade-up">Missed Call Audit</div>
+        <h2 class="fade-up" data-delay="60">See where your missed calls are costing you jobs</h2>
+        <p class="section-sub fade-up" data-delay="100">We'll review how your calls are being handled and show you what could be slipping through.</p>
+        <div class="fade-up" data-delay="140">
+          <a href="https://calendar.app.google/cdGG6buvu7Xe8JiE9" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Your Free Audit</a>
+          <p class="friction-note">No pressure. Just clarity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. SOLUTION — AI RECEPTIONIST
+    ============================================================ -->
+    <section class="solution-primary section-alt" id="solution-primary">
+      <div class="container">
+        <div class="solution-layout">
+          <div class="solution-content fade-up">
+            <div class="solution-stop-label">Here's how you stop it.</div>
+            <h2>Your AI Receptionist, Always On</h2>
+            <p class="section-sub">Ventry AI answers every inbound call, qualifies leads, and books appointments — 24/7, without you lifting a finger.</p>
+            <ul class="feature-list">
+              <li>
+                <span class="feature-check">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div><strong>24/7 answering</strong></div>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div><strong>Lead qualification</strong></div>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div><strong>Appointment booking</strong></div>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div><strong>Call summaries</strong></div>
+              </li>
+            </ul>
+            <p class="solution-closing">Even when you don't pick up — your business does.</p>
+            <a href="https://calendar.app.google/cdGG6buvu7Xe8JiE9" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:28px;display:inline-block;">Get Your Free Missed Call Audit</a>
+            <a href="ai-receptionist.html" class="learn-more-link">See all features →</a>
+          </div>
+          <div class="solution-visual fade-up" data-delay="100">
+            <div class="call-flow">
+              <div class="call-flow-step">
+                <div class="call-flow-dot dot-ring"></div>
+                <div class="call-flow-content">
+                  <span class="call-flow-label">Inbound Call</span>
+                  <span class="call-flow-desc">Customer calls your number</span>
+                </div>
+              </div>
+              <div class="call-flow-connector"></div>
+              <div class="call-flow-step">
+                <div class="call-flow-dot dot-active"></div>
+                <div class="call-flow-content">
+                  <span class="call-flow-label">AI Answers</span>
+                  <span class="call-flow-desc">Greets, qualifies, captures details</span>
+                </div>
+              </div>
+              <div class="call-flow-connector"></div>
+              <div class="call-flow-step">
+                <div class="call-flow-dot dot-ring"></div>
+                <div class="call-flow-content">
+                  <span class="call-flow-label">Lead Qualified</span>
+                  <span class="call-flow-desc">Intent confirmed, info captured</span>
+                </div>
+              </div>
+              <div class="call-flow-connector"></div>
+              <div class="call-flow-step">
+                <div class="call-flow-dot dot-success"></div>
+                <div class="call-flow-content">
+                  <span class="call-flow-label">Appointment Booked</span>
+                  <span class="call-flow-desc">Lands directly on your calendar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ALTERNATIVES COMPARISON
+    ============================================================ -->
+    <section class="section-alt" id="alternatives">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="label label-accent">Why It Works</div>
+          <h2>Hiring someone won't fix missed calls. Calling back won't either.</h2>
+        </div>
+        <div class="compare-grid">
+
+          <div class="compare-card fade-up">
+            <div class="compare-card-title">Hiring someone</div>
+            <p style="font-size:17px;font-weight:600;color:var(--text-primary);margin-bottom:10px;">People miss calls. It's that simple.</p>
+            <p style="font-size:15px;color:var(--text-muted);line-height:1.6;">They take breaks, leave after hours, and can't cover nights or weekends. The phone still rings when no one's there.</p>
+          </div>
+
+          <div class="compare-card fade-up" data-delay="80">
+            <div class="compare-card-title">Calling back later</div>
+            <p style="font-size:17px;font-weight:600;color:var(--text-primary);margin-bottom:10px;">Calling back doesn't win the job. Answering first does.</p>
+            <p style="font-size:15px;color:var(--text-muted);line-height:1.6;">Most customers call multiple companies. The one who answers gets the job. Everyone else gets ignored.</p>
+          </div>
+
+          <div class="compare-card is-best fade-up" data-delay="160">
+            <div class="compare-card-title">Ventry AI</div>
+            <p style="font-size:17px;font-weight:600;color:var(--text-primary);margin-bottom:10px;">Every call gets handled immediately — even when you can't answer.</p>
+            <p style="font-size:15px;color:var(--text-muted);line-height:1.6;">It picks up instantly, qualifies the caller, and books the job while you're still on-site.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TENSION LINE
+    ============================================================ -->
+    <div class="tension-line fade-up">
+      <p>"While you're on the job, your competitors are answering the phone."</p>
+    </div>
+
+    <!-- ============================================================
+         6. PROCESS
+    ============================================================ -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="label">The Process</div>
+          <h2>Up and running in 48 hours</h2>
+          <p class="section-sub">No technical setup on your end. We handle everything.</p>
+          <a href="how-it-works.html" class="learn-more-link">Full process breakdown →</a>
+        </div>
+        <div class="steps">
+          <div class="step fade-up">
+            <div class="step-number-bg">01</div>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.63a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.92z"/></svg>
+            </div>
+            <h3>Connect your number</h3>
+            <p>We plug into your existing number. No new hardware, no forwarding headaches. Just a 30-minute onboarding call.</p>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step fade-up" data-delay="80">
+            <div class="step-number-bg">02</div>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h3>AI answers and qualifies</h3>
+            <p>Your AI receptionist answers calls, qualifies leads, and books appointments automatically — around the clock, with no breaks.</p>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step fade-up" data-delay="160">
+            <div class="step-number-bg">03</div>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h3>Jobs land on your calendar</h3>
+            <p>Booked appointments, qualified lead summaries, and call logs all delivered directly to you. You show up, do the work, get paid.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. DEMO
+    ============================================================ -->
+    <section class="demo section-alt" id="demo">
+      <div class="container">
+        <div class="demo-inner">
+          <div class="section-header fade-up">
+            <div class="label">Live Demo</div>
+            <h2>See How It Works — Step by Step</h2>
+          </div>
+          <p class="demo-above-label fade-up">Watch how Ventry AI handles an inbound call, captures the lead, and books the job automatically.</p>
+          <p class="demo-above-label fade-up" style="margin-top:-8px;opacity:0.75;">This walkthrough shows exactly what happens when a customer calls your business — from first ring to confirmed appointment.</p>
+          <div class="demo-transcript fade-up">
+            <div class="demo-transcript-header">
+              Example walkthrough — how a real call gets handled
+            </div>
+            <div class="demo-transcript-body">
+              <div class="tline">
+                <span class="tline-speaker ai">Ventry AI</span>
+                <span class="tline-text">"Thanks for calling. What's your name?"</span>
+              </div>
+              <div class="tline">
+                <span class="tline-speaker caller">Caller</span>
+                <span class="tline-text">"Mike Johnson."</span>
+              </div>
+              <div class="tline">
+                <span class="tline-speaker ai">Ventry AI</span>
+                <span class="tline-text">"Best number to reach you?"</span>
+              </div>
+              <div class="tline">
+                <span class="tline-speaker caller">Caller</span>
+                <span class="tline-text">"248-555-4821."</span>
+              </div>
+              <div class="tline">
+                <span class="tline-speaker ai">Ventry AI</span>
+                <span class="tline-text">"What's the issue you're calling about?"</span>
+              </div>
+              <div class="tline">
+                <span class="tline-speaker caller">Caller</span>
+                <span class="tline-text">"It's urgent — we need someone out today."</span>
+              </div>
+            </div>
+          </div>
+          <div class="demo-cta fade-up">
+            <a href="https://calendar.app.google/cdGG6buvu7Xe8JiE9" target="_blank" rel="noopener noreferrer" class="btn btn-primary">See What Calls You're Missing</a>
+            <p class="friction-note">We'll audit your current call volume and show you what's slipping through.</p>
+            <a href="demo.html" class="learn-more-link">Open full demo page →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. ADD-ON
+    ============================================================ -->
+    <section class="solution-secondary" id="solution-secondary">
+      <div class="container">
+        <div class="secondary-inner">
+          <div class="secondary-content fade-up">
+            <div class="label">Add-On</div>
+            <h2>Website + AI Chatbot</h2>
+            <p class="section-sub">Pair your AI receptionist with a high-converting website that works around the clock. Capture leads from web visitors the same way you capture them from calls.</p>
+            <ul class="secondary-list">
+              <li>
+                <span class="dot-bullet"></span>
+                Custom-built site designed for your service business
+              </li>
+              <li>
+                <span class="dot-bullet"></span>
+                AI chatbot qualifies web visitors and routes them to booking
+              </li>
+              <li>
+                <span class="dot-bullet"></span>
+                Every channel — calls and web — unified into one system
+              </li>
+            </ul>
+            <a href="demo-sites.html" class="btn btn-primary">View Demo Websites</a>
+          </div>
+          <div class="secondary-visual fade-up" data-delay="80">
+            <div class="chat-mockup">
+              <div class="chat-header">
+                <div class="chat-avatar"></div>
+                <div>
+                  <div class="chat-name">Ventry AI</div>
+                  <div class="chat-status"><span class="status-dot"></span> Online now</div>
+                </div>
+              </div>
+              <div class="chat-messages">
+                <div class="chat-msg chat-msg-in">Hi! Looking for a quote or want to book a service?</div>
+                <div class="chat-msg chat-msg-out">I need someone out here as soon as possible.</div>
+                <div class="chat-msg chat-msg-in">Got it. What's the best number to reach you? I can get you booked today.</div>
+                <div class="chat-msg chat-msg-typing">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. FINAL CTA
+    ============================================================ -->
+    <section class="final-cta" id="cta">
+      <div class="cta-bg-glow"></div>
+      <div class="page-glow page-glow-cta"></div>
+      <div class="container">
+        <div class="cta-inner fade-up">
+          <p class="cta-pre-heading">If you're getting calls — this is already happening.</p>
+          <div class="label">Free Missed Call Audit</div>
+          <h2>Stop Losing Jobs to a Missed Call</h2>
+          <p class="cta-sub">We'll show you exactly what you're losing — and how to fix it.</p>
+          <a href="https://calendar.app.google/cdGG6buvu7Xe8JiE9" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Book a Free Demo</a>
+          <p class="friction-note">No commitment. No pitch. Just clarity on what you're leaving on the table.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10. FAQ
+    ============================================================ -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="faq-inner">
+          <div class="section-header fade-up">
+            <div class="label">FAQ</div>
+            <h2>Common questions</h2>
+          </div>
+          <div class="faq-list">
+
+            <div class="faq-item fade-up">
+              <button class="faq-question" aria-expanded="false">
+                <span>What happens during the free audit?</span>
+                <span class="faq-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                <p>We review your current call volume, identify where leads are slipping through, and show you — in plain numbers — what that's costing your business. The whole thing takes about 10 minutes and comes with zero obligation.</p>
+              </div>
+            </div>
+
+            <div class="faq-item fade-up" data-delay="60">
+              <button class="faq-question" aria-expanded="false">
+                <span>What happens after the audit?</span>
+                <span class="faq-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                <p>We walk you through a custom setup plan built specifically for your business. You'll know exactly what the AI will say, how it will handle your calls, and what gets sent to you after each conversation. No pressure — you decide if it's a fit.</p>
+              </div>
+            </div>
+
+            <div class="faq-item fade-up" data-delay="120">
+              <button class="faq-question" aria-expanded="false">
+                <span>How does the setup process work?</span>
+                <span class="faq-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                <p>We connect directly to your existing phone system — no new hardware, no tech headaches on your end. One 30-minute onboarding call, and you're live within 48 hours. We handle all the configuration and testing before anything goes live.</p>
+              </div>
+            </div>
+
+            <div class="faq-item fade-up" data-delay="180">
+              <button class="faq-question" aria-expanded="false">
+                <span>What if the AI can't answer a question?</span>
+                <span class="faq-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                <p>The AI captures the lead, takes a message, and escalates to you with a full summary of the conversation. You get the contact details and context — so your follow-up call is warm, not cold.</p>
+              </div>
+            </div>
+
+            <div class="faq-item fade-up" data-delay="240">
+              <button class="faq-question" aria-expanded="false">
+                <span>What industries do you work with?</span>
+                <span class="faq-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                <p>Any service business that relies on inbound calls to generate revenue — HVAC, plumbing, cleaning, pest control, electrical, law firms, med spas, and more. If your phone rings and jobs come through it, Ventry AI can help.</p>
+              </div>
+            </div>
+
+          </div>
+          <a href="faq.html" class="learn-more-link" style="margin-top:32px;display:flex;justify-content:center;">See all questions →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       11. FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="Ventry AI">
+          <img src="assets/transparentlogo.png" class="logo-img" alt="Ventry AI logo"/>
+          <span class="logo-text">Ventry <span>AI</span></span>
+        </a>
+        <p class="footer-tagline">AI-powered revenue capture for service businesses.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-head">Product</div>
+          <a href="ai-receptionist.html">AI Receptionist</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="demo.html">Demo</a>
+          <a href="faq.html">FAQ</a>
+          <a href="https://calendar.app.google/cdGG6buvu7Xe8JiE9" target="_blank" rel="noopener noreferrer">Get Started</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-head">Legal</div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Ventry AI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
