@@ -1,7 +1,7 @@
 # Ventry AI — Project Status
 
 Last Updated: 2026-04-02
-Version: 1.2.0
+Version: 1.2.1
 
 ## Current Phase
 
@@ -17,8 +17,8 @@ Visitor -> Voiceflow Chat Widget -> Lead Captured -> n8n Webhook -> Alert to Eva
 
 | Service | Purpose | Status |
 |---|---|---|
-| Voiceflow | Website chat widget | Placeholder in code — needs account + project ID |
-| n8n Cloud | Automation hub, lead routing | Needs account signup ($24/mo Starter) |
+| Voiceflow | Website chat widget | Live — project ID deployed, branding set, instructions ready to paste |
+| n8n Cloud | Automation hub, lead routing | Live — workflow imported, webhook active |
 | Cal.com | Scheduling with webhooks (syncs to Google Calendar) | Live — event type created, links deployed |
 | Vapi | AI phone agent | Phase 3 — not started |
 | Twilio | Phone number + SMS | Phase 3 — not started |

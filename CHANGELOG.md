@@ -4,6 +4,17 @@ All notable changes to this project are documented here.
 
 ---
 
+## [1.2.1] - 2026-04-02
+
+### Added
+- Production Voiceflow agent instructions with sales-focused conversation strategy, objection handling, lead capture flow, and n8n webhook integration (`docs/voiceflow-agent-instructions.md`)
+- n8n lead capture workflow JSON for import (`docs/n8n-lead-capture-workflow.json`)
+
+### Changed
+- Voiceflow widget branding updated via API: title "Ventry AI", color #6C63FF, text-only chat
+
+---
+
 ## [1.2.0] - 2026-04-02
 
 ### Added

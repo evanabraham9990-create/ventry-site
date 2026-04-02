@@ -1,0 +1,174 @@
+{
+  "name": "Ventry AI — Chat Lead Capture",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ventry-lead-capture",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Lead Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\", \"timestamp\": \"{{ $now.toISO() }}\"}",
+        "options": {}
+      },
+      "id": "respond-ok",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [475, 175]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "name",
+              "name": "name",
+              "value": "={{ $json.body.lead.name || 'Unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "business",
+              "name": "business",
+              "value": "={{ $json.body.lead.business || 'Unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "phone",
+              "name": "phone",
+              "value": "={{ $json.body.lead.phone || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "email",
+              "name": "email",
+              "value": "={{ $json.body.lead.email || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "service_needed",
+              "name": "service_needed",
+              "value": "={{ $json.body.lead.service_needed || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "source",
+              "name": "source",
+              "value": "={{ $json.body.source || 'voiceflow-chat' }}",
+              "type": "string"
+            },
+            {
+              "id": "page_url",
+              "name": "page_url",
+              "value": "={{ $json.body.page_url || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "timestamp",
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "parse-lead",
+      "name": "Parse Lead Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [475, 425]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {}
+        },
+        "options": {}
+      },
+      "id": "google-sheets",
+      "name": "Append to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "sendTo": "evan@ventryxai.com",
+        "subject": "=New Lead from Ventry AI: {{ $json.name }} ({{ $json.business }})",
+        "message": "=<h2>New Lead Captured</h2><table style=\"border-collapse:collapse;font-family:sans-serif;\"><tr><td style=\"padding:8px;font-weight:bold;\">Name</td><td style=\"padding:8px;\">{{ $json.name }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Business</td><td style=\"padding:8px;\">{{ $json.business }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Phone</td><td style=\"padding:8px;\">{{ $json.phone }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Email</td><td style=\"padding:8px;\">{{ $json.email }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Service Needed</td><td style=\"padding:8px;\">{{ $json.service_needed }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Page</td><td style=\"padding:8px;\">{{ $json.page_url }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Source</td><td style=\"padding:8px;\">{{ $json.source }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Time</td><td style=\"padding:8px;\">{{ $json.timestamp }}</td></tr></table>",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Email Alert to Evan",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [925, 300]
+    }
+  ],
+  "connections": {
+    "Lead Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Parse Lead Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Lead Data": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append to Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Email Alert to Evan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
