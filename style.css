@@ -23,6 +23,8 @@
   --radius-lg:      16px;
   --radius-xl:      24px;
   --transition:     0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-heading:   'Instrument Serif', Georgia, serif;
+  --font-body:      'Inter', system-ui, sans-serif;
 }
 
 /* ============================================================
@@ -42,7 +44,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-body);
   background:
     radial-gradient(ellipse 90% 55% at 50% 0%, rgba(124, 111, 247, 0.05) 0%, transparent 68%),
     var(--bg-base);
@@ -105,8 +107,8 @@ h1, h2, h3, h4 {
   line-height: 1.15;
 }
 
-h1 { font-size: clamp(42px, 6vw, 76px); font-weight: 800; }
-h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 700; }
+h1 { font-family: var(--font-heading); font-size: clamp(46px, 6.5vw, 82px); font-weight: 400; font-style: italic; letter-spacing: -0.03em; line-height: 1.05; }
+h2 { font-family: var(--font-heading); font-size: clamp(34px, 4.5vw, 56px); font-weight: 400; font-style: italic; letter-spacing: -0.02em; }
 h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 
 .label {
@@ -242,10 +244,13 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: var(--font-heading);
+  font-style: italic;
   color: var(--text-primary);
   flex-shrink: 0;
+  letter-spacing: -0.01em;
 }
 
 .logo-mark {
