@@ -154,6 +154,23 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
   margin-top: 14px;
 }
 
+.cta-phone {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 18px;
+}
+
+.cta-phone a {
+  color: var(--purple-light);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.cta-phone a:hover {
+  color: var(--text-primary);
+}
+
 /* ============================================================
    BUTTONS
    ============================================================ */
@@ -296,6 +313,23 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 
 .nav-links a:hover { color: var(--text-primary); }
 .nav-links a:hover::after { width: 100%; }
+
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+  flex-shrink: 0;
+}
+
+.nav-phone:hover {
+  color: var(--purple-light);
+}
 
 .nav-cta {
   margin-left: 8px;
@@ -1342,6 +1376,24 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 
 .footer-col a:hover { color: var(--text-primary); }
 
+.footer-contact-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-contact-link:hover {
+  color: var(--purple-light);
+}
+
+.footer-contact-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 .footer-bottom {
   border-top: 1px solid var(--border);
   padding: 24px 32px;
@@ -1826,6 +1878,7 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
 
   .nav-links { display: none; }
   .nav-cta   { display: none; }
+  .nav-phone { display: none; }
 
   .nav-toggle {
     display: flex;
@@ -1852,6 +1905,18 @@ h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
     font-size: 16px;
     width: 100%;
     border-bottom: 1px solid var(--border);
+  }
+
+  .site-header.nav-open .nav-phone {
+    display: flex;
+    justify-content: center;
+    padding: 12px 20px 0;
+    font-size: 15px;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    z-index: 1;
   }
 
   .site-header.nav-open .nav-cta {
