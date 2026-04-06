@@ -2387,30 +2387,51 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
    ============================================================ */
 
 .industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.industry-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.industry-card:hover {
+  border-color: rgba(124, 111, 247, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(124, 111, 247, 0.1);
+}
+
+.industry-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(168, 85, 247, 0.12), rgba(249, 115, 22, 0.08));
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-top: 48px;
-  flex-wrap: wrap;
+  margin: 0 auto 14px;
+  color: var(--purple-light);
 }
 
-.industry-tag {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 20px;
-  transition: border-color var(--transition), transform var(--transition), color var(--transition);
-}
-
-.industry-tag:hover {
-  border-color: rgba(124, 111, 247, 0.3);
+.industry-card h3 {
+  font-size: 15px;
+  font-weight: 700;
   color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(124, 111, 247, 0.08);
+  margin-bottom: 6px;
+}
+
+.industry-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* (tension line removed) */
@@ -2421,6 +2442,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 
 @media (max-width: 1024px) {
   .hero-badge { display: none; }
+  .industries-grid { grid-template-columns: repeat(3, 1fr); }
 
   .solution-layout,
   .secondary-inner {
@@ -2552,8 +2574,11 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   .badge-slide { gap: 36px; }
   .badge-item span { font-size: 13px; }
 
-  .industries-grid { gap: 8px; }
-  .industry-tag { font-size: 13px; padding: 8px 16px; }
+  .industries-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .industry-card { padding: 18px 14px; }
+  .industry-icon { width: 44px; height: 44px; margin-bottom: 10px; }
+  .industry-card h3 { font-size: 14px; }
+  .industry-card p { font-size: 12px; }
 }
 
 @media (max-width: 480px) {
