@@ -297,6 +297,28 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   color: var(--text-primary);
 }
 
+.btn-ghost-brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(var(--bg-base), var(--bg-base)) padding-box,
+              linear-gradient(135deg, #3B82F6, #A855F7, #F97316) border-box;
+  border: 1.5px solid transparent;
+  color: #c4b5fd;
+  transition: color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-ghost-brand:hover {
+  color: var(--text-primary);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
 .btn-sm {
   padding: 10px 20px;
   font-size: 14px;
@@ -599,6 +621,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   margin: 20px auto 36px;
   max-width: 560px;
 }
+
 
 .hero-actions {
   display: flex;
