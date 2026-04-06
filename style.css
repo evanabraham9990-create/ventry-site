@@ -1179,7 +1179,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0.35;
+  opacity: 0.75;
   line-height: 1;
   pointer-events: none;
   user-select: none;
