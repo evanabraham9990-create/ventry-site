@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Ventry AI</title>
+  <meta name="description" content="Simple, transparent pricing for Ventry AI. No contracts, no hidden fees. Choose the plan that fits your business." />
+  <link rel="icon" type="image/x-icon" href="assets/transparentlogo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/transparentlogo.png" />
+  <link rel="apple-touch-icon" href="assets/transparentlogo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      border-color: rgba(124, 111, 247, 0.2);
+      box-shadow: 0 8px 32px rgba(124, 111, 247, 0.06);
+    }
+
+    .pricing-card.is-popular {
+      border-color: rgba(124, 111, 247, 0.4);
+      background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(124, 111, 247, 0.04) 100%);
+      box-shadow: 0 0 48px rgba(124, 111, 247, 0.08);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #3B82F6, #A855F7, #F97316);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .pricing-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .pricing-price {
+      margin-bottom: 24px;
+    }
+
+    .pricing-amount {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .pricing-period {
+      font-size: 15px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .pricing-features li svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .pricing-cta {
+      width: 100%;
+      text-align: center;
+    }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .pricing-note strong {
+      color: var(--text-secondary);
+    }
+
+    /* Feature comparison table */
+    .feature-compare {
+      margin-top: 80px;
+    }
+
+    .feature-compare table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .feature-compare th,
+    .feature-compare td {
+      padding: 14px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .feature-compare th {
+      font-weight: 700;
+      color: var(--text-primary);
+      background: var(--bg-surface);
+    }
+
+    .feature-compare th:first-child,
+    .feature-compare td:first-child {
+      text-align: left;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .feature-compare td:nth-child(3) {
+      background: rgba(124, 111, 247, 0.03);
+    }
+
+    .feature-compare th:nth-child(3) {
+      color: var(--purple-light);
+      background: rgba(124, 111, 247, 0.06);
+    }
+
+    .check-icon { color: var(--purple-light); }
+    .dash-icon { color: var(--text-muted); opacity: 0.4; }
+
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+      .feature-compare { overflow-x: auto; }
+      .feature-compare table { min-width: 600px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="Ventry AI home">
+        <img src="assets/transparentlogo.png" class="logo-img" alt="Ventry AI logo"/>
+        <span class="logo-text">Ventry <span>AI</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="ai-receptionist.html">AI Receptionist</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="demo.html">Demo</a>
+        <a href="pricing.html" aria-current="page">Pricing</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <a href="tel:+14109959730" class="nav-phone btn-ghost-brand">(410) 995-9730</a>
+      <a href="https://cal.com/evan-abraham-9cfgui/missed-call-audit" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm nav-cta">Get Your Free Audit</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="gradient-mesh mesh-indigo"></div>
+      <div class="container">
+        <div class="page-hero-content fade-up">
+          <div class="label">Pricing</div>
+          <h1>Simple, <span class="gradient-text-brand">transparent</span> pricing</h1>
+          <p class="page-hero-sub">No hidden fees. No contracts. No surprises. Pick the plan that fits your call volume.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING CARDS -->
+    <section id="plans">
+      <div class="container">
+        <div class="pricing-grid fade-up">
+
+          <!-- STARTER -->
+          <div class="pricing-card">
+            <div class="pricing-name">Starter</div>
+            <div class="pricing-desc">For businesses just getting started with AI call handling.</div>
+            <div class="pricing-price">
+              <span class="pricing-amount">$149</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Up to 100 calls/month
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                24/7 call answering
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Lead qualification
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Call summaries via email
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Calendar integration
+              </li>
+            </ul>
+            <a href="index.html#get-started" class="btn btn-ghost pricing-cta">Get Started</a>
+          </div>
+
+          <!-- GROWTH (POPULAR) -->
+          <div class="pricing-card is-popular">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-name">Growth</div>
+            <div class="pricing-desc">For growing businesses that can't afford to miss a single call.</div>
+            <div class="pricing-price">
+              <span class="pricing-amount">$299</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Up to 300 calls/month
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Everything in Starter
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Custom greeting & scripts
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Emergency call routing
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                CRM integration
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Priority support
+              </li>
+            </ul>
+            <a href="index.html#get-started" class="btn btn-primary pricing-cta">Get Started</a>
+          </div>
+
+          <!-- ENTERPRISE -->
+          <div class="pricing-card">
+            <div class="pricing-name">Enterprise</div>
+            <div class="pricing-desc">For high-volume operations that need full customization.</div>
+            <div class="pricing-price">
+              <span class="pricing-amount">Custom</span>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Unlimited calls
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Everything in Growth
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Multi-location support
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Dedicated account manager
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Custom API integrations
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                White-glove onboarding
+              </li>
+            </ul>
+            <a href="https://cal.com/evan-abraham-9cfgui/missed-call-audit" target="_blank" rel="noopener noreferrer" class="btn btn-ghost pricing-cta">Contact Sales</a>
+          </div>
+
+        </div>
+
+        <p class="pricing-note fade-up">
+          <strong>No contracts.</strong> Cancel anytime. All plans include a free missed-call audit to get started.<br>
+          Need something different? <a href="tel:+14109959730" style="color:var(--purple-light);">Call us</a> and we'll build a plan that fits.
+        </p>
+
+        <!-- FEATURE COMPARISON -->
+        <div class="feature-compare fade-up">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Starter</th>
+                <th>Growth</th>
+                <th>Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>24/7 Call Answering</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Lead Qualification</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Calendar Integration</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Call Summaries</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Custom Greeting & Scripts</td>
+                <td class="dash-icon">—</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Emergency Call Routing</td>
+                <td class="dash-icon">—</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>CRM Integration</td>
+                <td class="dash-icon">—</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Priority Support</td>
+                <td class="dash-icon">—</td>
+                <td class="check-icon">&#10003;</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Multi-Location Support</td>
+                <td class="dash-icon">—</td>
+                <td class="dash-icon">—</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Dedicated Account Manager</td>
+                <td class="dash-icon">—</td>
+                <td class="dash-icon">—</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+              <tr>
+                <td>Custom API Integrations</td>
+                <td class="dash-icon">—</td>
+                <td class="dash-icon">—</td>
+                <td class="check-icon">&#10003;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <hr class="glow-divider" aria-hidden="true">
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="cta">
+      <div class="cta-bg-glow"></div>
+      <div class="container">
+        <div class="cta-inner fade-up">
+          <div class="label">Free Missed Call Audit</div>
+          <h2>Stop Losing Jobs to a <span class="gradient-text-brand">Missed Call</span></h2>
+          <p class="cta-sub">In 10 minutes, we'll show you exactly how many calls you're missing, what they're worth, and how to fix it.</p>
+          <a href="https://cal.com/evan-abraham-9cfgui/missed-call-audit" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Get Your Free Missed Call Audit</a>
+          <p class="friction-note">No contracts. No credit card required. 100% risk-free.</p>
+          <p class="cta-phone">Prefer to talk? <a href="tel:+14109959730">(410) 995-9730</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="Ventry AI">
+          <img src="assets/transparentlogo.png" class="logo-img" alt="Ventry AI logo"/>
+          <span class="logo-text">Ventry <span>AI</span></span>
+        </a>
+        <p class="footer-tagline">AI-powered revenue capture for service businesses.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-head">Product</div>
+          <a href="ai-receptionist.html">AI Receptionist</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="demo.html">Demo</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="faq.html">FAQ</a>
+          <a href="index.html#get-started">Get Started</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-head">Legal</div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-head">Contact</div>
+          <a href="tel:+14109959730" class="footer-contact-link">(410) 995-9730</a>
+          <p class="footer-contact-desc">AI receptionist answers 24/7</p>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Ventry AI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

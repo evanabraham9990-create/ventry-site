@@ -197,7 +197,32 @@
     });
   }
 
-  /* Canvas animation removed — clean hero */
+  /* ----------------------------------------------------------
+     ROI CALCULATOR
+  ---------------------------------------------------------- */
+  const roiCalls = document.getElementById('roi-calls');
+  const roiClose = document.getElementById('roi-close');
+  const roiValue = document.getElementById('roi-value');
+  const roiMonthly = document.getElementById('roi-monthly');
+  const roiYearly = document.getElementById('roi-yearly');
+
+  function updateROI() {
+    if (!roiCalls || !roiClose || !roiValue) return;
+    const calls = parseFloat(roiCalls.value) || 0;
+    const close = (parseFloat(roiClose.value) || 0) / 100;
+    const value = parseFloat(roiValue.value) || 0;
+    const monthly = Math.round(calls * 4.33 * close * value);
+    const yearly = monthly * 12;
+    roiMonthly.textContent = '$' + monthly.toLocaleString();
+    roiYearly.textContent = '$' + yearly.toLocaleString();
+  }
+
+  if (roiCalls) {
+    [roiCalls, roiClose, roiValue].forEach(function (input) {
+      input.addEventListener('input', updateROI);
+    });
+    updateROI();
+  }
 
   /* ----------------------------------------------------------
      SCROLL TO TOP BUTTON
