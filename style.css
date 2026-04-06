@@ -169,9 +169,16 @@ hr.glow-divider {
   filter: blur(8px);
 }
 
-/* --- Gradient Text Accent --- */
+/* --- Gradient Text Accents --- */
 .gradient-text {
   background-image: linear-gradient(135deg, var(--purple-core) 0%, #a78bfa 40%, #c084fc 70%, var(--purple-core) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-brand {
+  background-image: linear-gradient(135deg, #3B82F6 0%, #6366F1 30%, #A855F7 55%, #EC4899 75%, #F97316 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
