@@ -156,6 +156,47 @@
     });
   });
 
+  /* ----------------------------------------------------------
+     LEAD CAPTURE FORM
+  ---------------------------------------------------------- */
+  const leadForm = document.getElementById('lead-capture-form');
+  if (leadForm) {
+    leadForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = leadForm.querySelector('.lead-capture-btn');
+      const successEl = document.getElementById('form-success');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      const data = {
+        firstName: leadForm.firstName.value.trim(),
+        lastName: leadForm.lastName.value.trim(),
+        email: leadForm.email.value.trim(),
+        company: leadForm.company.value.trim(),
+        phone: leadForm.phone.value.trim(),
+      };
+
+      try {
+        const res = await fetch('/api/lead-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          leadForm.style.display = 'none';
+          successEl.style.display = 'flex';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    });
+  }
+
   /* Canvas animation removed — clean hero */
 
   /* ----------------------------------------------------------

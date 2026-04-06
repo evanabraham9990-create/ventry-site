@@ -1,4 +1,9 @@
 {
+  "crons": [
+    { "path": "/api/cron/morning-digest", "schedule": "57 12 * * *" },
+    { "path": "/api/cron/health-check", "schedule": "0 15 * * *" },
+    { "path": "/api/cron/weekly-rollup", "schedule": "0 14 * * 0" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
