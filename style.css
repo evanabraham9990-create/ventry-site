@@ -423,23 +423,22 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   gap: 6px;
   font-size: 14px;
   font-weight: 600;
+  background: linear-gradient(var(--bg-base), var(--bg-base)) padding-box,
+              linear-gradient(135deg, #3B82F6, #A855F7, #F97316) border-box;
   color: var(--text-primary);
   text-decoration: none;
   letter-spacing: 0.01em;
   transition: color var(--transition), border-color var(--transition);
   flex-shrink: 0;
   padding: 8px 16px;
-  border: 1px solid var(--border);
+  border: 1.5px solid transparent;
   border-radius: 8px;
 }
 
 .nav-phone:hover {
-  color: var(--purple-light);
-  border-color: var(--border-bright);
+  color: var(--text-primary);
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.15);
 }
-
-.hero-phone {
-  font-size: 16px;
   padding: 12px 24px;
   border-radius: 10px;
 }
