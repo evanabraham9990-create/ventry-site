@@ -56,6 +56,20 @@ a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 ul { list-style: none; }
 
+/* --- Film Grain Overlay --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px;
+}
+
 /* ============================================================
    LAYOUT
    ============================================================ */
@@ -93,6 +107,75 @@ section {
 
 .section-alt::before { top: 0; }
 .section-alt::after  { bottom: 0; }
+
+/* --- Ambient Floating Orbs --- */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0;
+  animation: orb-fade-in 1s ease-out forwards;
+}
+
+.ambient-orb.orb-violet {
+  background: radial-gradient(circle, rgba(124, 111, 247, 0.18) 0%, transparent 70%);
+}
+.ambient-orb.orb-indigo {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+}
+.ambient-orb.orb-fuchsia {
+  background: radial-gradient(circle, rgba(192, 38, 211, 0.12) 0%, transparent 70%);
+}
+
+@keyframes orb-fade-in {
+  to { opacity: 1; }
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -20px); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-25px, 15px); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(15px, 25px); }
+  66% { transform: translate(-20px, -10px); }
+}
+
+/* --- Glowing Section Dividers --- */
+hr.glow-divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(124, 111, 247, 0.3) 20%, rgba(168, 85, 247, 0.5) 50%, rgba(124, 111, 247, 0.3) 80%, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+
+.glow-divider::after {
+  content: '';
+  position: absolute;
+  top: -6px; left: 10%;
+  width: 80%; height: 12px;
+  background: linear-gradient(90deg, transparent, rgba(124, 111, 247, 0.15), rgba(168, 85, 247, 0.2), rgba(124, 111, 247, 0.15), transparent);
+  filter: blur(8px);
+}
+
+/* --- Gradient Text Accent --- */
+.gradient-text {
+  background-image: linear-gradient(135deg, var(--purple-core) 0%, #a78bfa 40%, #c084fc 70%, var(--purple-core) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* ============================================================
    TYPOGRAPHY
@@ -721,8 +804,8 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 
 .card:hover {
   transform: translateY(-3px);
-  border-color: var(--border-bright);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-color: rgba(124, 111, 247, 0.25);
+  box-shadow: 0 8px 32px rgba(124, 111, 247, 0.08), 0 12px 48px rgba(0, 0, 0, 0.25);
 }
 
 .problem-card.card {
@@ -2013,11 +2096,22 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 28px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.compare-card:hover {
+  border-color: rgba(124, 111, 247, 0.15);
+  box-shadow: 0 4px 24px rgba(124, 111, 247, 0.06);
 }
 
 .compare-card.is-best {
   border-color: rgba(124, 111, 247, 0.35);
   background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(124, 111, 247, 0.04) 100%);
+  box-shadow: 0 0 40px rgba(124, 111, 247, 0.06);
+}
+
+.compare-card.is-best:hover {
+  box-shadow: 0 8px 48px rgba(124, 111, 247, 0.12);
 }
 
 .compare-card-title {
@@ -2280,9 +2374,10 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 }
 
 .industry-tag:hover {
-  border-color: var(--border-bright);
+  border-color: rgba(124, 111, 247, 0.3);
   color: var(--text-primary);
   transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(124, 111, 247, 0.08);
 }
 
 /* (tension line removed) */
