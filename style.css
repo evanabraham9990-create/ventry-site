@@ -362,6 +362,8 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   background: var(--bg-base);
 }
 
+/* --- Gradient Mesh Base --- */
+.gradient-mesh,
 .hero-gradient-mesh {
   position: absolute;
   top: 0;
@@ -370,8 +372,11 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   height: 100%;
   overflow: hidden;
   opacity: 0.45;
+  pointer-events: none;
 }
 
+.gradient-mesh::before,
+.gradient-mesh::after,
 .hero-gradient-mesh::before,
 .hero-gradient-mesh::after {
   content: '';
@@ -382,6 +387,8 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   left: -15%;
 }
 
+/* --- Variant: Violet (homepage, FAQ) --- */
+.mesh-violet::before,
 .hero-gradient-mesh::before {
   background:
     radial-gradient(ellipse 600px 500px at 20% 30%, rgba(124, 111, 247, 0.7) 0%, transparent 70%),
@@ -390,6 +397,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   animation: mesh-drift-1 15s ease-in-out infinite;
 }
 
+.mesh-violet::after,
 .hero-gradient-mesh::after {
   background:
     radial-gradient(ellipse 550px 450px at 65% 25%, rgba(147, 51, 234, 0.5) 0%, transparent 65%),
@@ -398,6 +406,41 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   animation: mesh-drift-2 18s ease-in-out infinite;
 }
 
+/* --- Variant: Indigo (How It Works, AI Receptionist) --- */
+.mesh-indigo::before {
+  background:
+    radial-gradient(ellipse 550px 600px at 70% 25%, rgba(79, 70, 229, 0.65) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 450px at 25% 65%, rgba(99, 102, 241, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 500px at 55% 85%, rgba(55, 48, 163, 0.45) 0%, transparent 70%);
+  animation: mesh-drift-3 20s ease-in-out infinite;
+}
+
+.mesh-indigo::after {
+  background:
+    radial-gradient(ellipse 480px 520px at 35% 35%, rgba(67, 56, 202, 0.5) 0%, transparent 65%),
+    radial-gradient(ellipse 600px 400px at 80% 70%, rgba(129, 140, 248, 0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 450px 550px at 15% 50%, rgba(99, 102, 241, 0.4) 0%, transparent 65%);
+  animation: mesh-drift-4 14s ease-in-out infinite;
+}
+
+/* --- Variant: Fuchsia (Demo, AI vs Virtual, Demo Sites) --- */
+.mesh-fuchsia::before {
+  background:
+    radial-gradient(ellipse 580px 480px at 75% 35%, rgba(192, 38, 211, 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 550px at 20% 55%, rgba(168, 85, 247, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 650px 420px at 45% 80%, rgba(219, 39, 119, 0.35) 0%, transparent 70%);
+  animation: mesh-drift-5 17s ease-in-out infinite;
+}
+
+.mesh-fuchsia::after {
+  background:
+    radial-gradient(ellipse 520px 480px at 60% 20%, rgba(236, 72, 153, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 450px 520px at 25% 75%, rgba(147, 51, 234, 0.4) 0%, transparent 65%),
+    radial-gradient(ellipse 580px 380px at 85% 55%, rgba(217, 70, 239, 0.3) 0%, transparent 65%);
+  animation: mesh-drift-6 22s ease-in-out infinite;
+}
+
+/* --- Mesh Drift Keyframes --- */
 @keyframes mesh-drift-1 {
   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
   33% { transform: translate(3%, -2%) rotate(1deg) scale(1.02); }
@@ -408,6 +451,32 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
   33% { transform: translate(-3%, 2%) rotate(-1.5deg) scale(1.03); }
   66% { transform: translate(2%, -1%) rotate(1deg) scale(0.97); }
+}
+
+@keyframes mesh-drift-3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(-2%, -3%) rotate(1.5deg) scale(1.03); }
+  50% { transform: translate(3%, 1%) rotate(-0.5deg) scale(0.97); }
+  75% { transform: translate(-1%, 2%) rotate(-1deg) scale(1.01); }
+}
+
+@keyframes mesh-drift-4 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  30% { transform: translate(2%, -1%) rotate(-1deg) scale(1.02); }
+  70% { transform: translate(-3%, 2%) rotate(1.5deg) scale(0.98); }
+}
+
+@keyframes mesh-drift-5 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  20% { transform: translate(2%, 2%) rotate(0.5deg) scale(1.01); }
+  50% { transform: translate(-3%, -1%) rotate(-1.5deg) scale(1.03); }
+  80% { transform: translate(1%, -2%) rotate(1deg) scale(0.98); }
+}
+
+@keyframes mesh-drift-6 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  40% { transform: translate(-2%, 3%) rotate(1deg) scale(0.97); }
+  60% { transform: translate(3%, -2%) rotate(-1.5deg) scale(1.04); }
 }
 
 .hero-inner {
@@ -1801,19 +1870,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   overflow: hidden;
 }
 
-.page-hero::before {
-  content: '';
-  position: absolute;
-  top: -15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(124, 111, 247, 0.10) 0%, transparent 65%);
-  filter: blur(60px);
-  pointer-events: none;
-}
+/* Static glow replaced by .gradient-mesh variants */
 
 .page-hero-content {
   position: relative;
