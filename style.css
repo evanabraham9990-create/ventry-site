@@ -993,42 +993,60 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 48px;
+  gap: 40px;
   margin-top: 64px;
-  padding: 40px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  padding: 0;
+  border: none;
 }
 
 .proof-item {
   text-align: center;
+  background: var(--bg-surface);
+  border: 1px solid rgba(124, 111, 247, 0.15);
+  border-radius: 16px;
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.proof-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3B82F6, #A855F7, #F97316);
+  border-radius: 16px 16px 0 0;
 }
 
 .proof-number {
   font-size: 56px;
   font-weight: 800;
-  color: var(--text-primary);
+  background: linear-gradient(135deg, #3B82F6 0%, #6366F1 30%, #A855F7 55%, #EC4899 75%, #F97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: -0.03em;
   line-height: 1;
 }
 
 .proof-number span {
   font-size: 28px;
-  color: var(--purple-light);
   font-weight: 700;
 }
 
 .proof-desc {
   font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 8px;
+  color: var(--text-secondary);
+  margin-top: 10px;
   line-height: 1.5;
 }
 
 .proof-divider {
   width: 1px;
   height: 60px;
-  background: var(--border);
+  background: linear-gradient(180deg, transparent, var(--purple-core), transparent);
 }
 
 
@@ -1325,7 +1343,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
   gap: 0;
-  align-items: start;
+  align-items: stretch;
   margin-top: 0;
 }
 
@@ -1336,7 +1354,14 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   padding: 32px 28px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.step p {
+  flex-grow: 1;
 }
 
 .step:hover {
@@ -1382,7 +1407,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 52px 16px 0;
+  padding: 0 16px;
 }
 
 .step-connector::after {
@@ -2562,14 +2587,79 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
    INDUSTRIES SECTION
    ============================================================ */
 
-.industries-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+/* --- Industries Carousel --- */
+.industries-carousel-wrap {
+  position: relative;
   margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.industries-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 8px 0;
+}
+
+.industries-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  z-index: 2;
+}
+
+.carousel-arrow:hover {
+  border-color: var(--purple-core);
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-bright);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: var(--purple-core);
+  transform: scale(1.25);
 }
 
 .industry-card {
+  flex: 0 0 calc(25% - 12px);
+  min-width: calc(25% - 12px);
+  scroll-snap-align: start;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -2919,13 +3009,54 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   letter-spacing: -0.02em;
 }
 
+.roi-loss-value {
+  background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ROI left-side stats */
+.roi-stats-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.roi-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.roi-stat-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.roi-stat-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 
 @media (max-width: 1024px) {
   .hero-badge { display: none; }
-  .industries-grid { grid-template-columns: repeat(3, 1fr); }
+  .industry-card { flex: 0 0 calc(33.333% - 11px); min-width: calc(33.333% - 11px); }
 
   .solution-layout,
   .secondary-inner {
@@ -3043,9 +3174,9 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   .loss-amount-year { font-size: 44px; }
   .loss-cta-row { flex-direction: column; gap: 8px; }
 
-  .problem-proof { flex-direction: column; gap: 28px; }
-  .proof-divider { width: 60px; height: 1px; }
-  .proof-number { font-size: 44px; }
+  .problem-proof { flex-wrap: wrap; gap: 16px; }
+  .proof-item { flex: 1 1 calc(50% - 8px); min-width: 140px; }
+  .proof-divider { display: none; }
 
   .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
 
@@ -3076,11 +3207,14 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   .badge-slide { gap: 36px; }
   .badge-item span { font-size: 13px; }
 
-  .industries-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .industry-card { padding: 18px 14px; }
+  .industry-card { flex: 0 0 calc(50% - 8px); min-width: calc(50% - 8px); padding: 18px 14px; }
   .industry-icon { width: 44px; height: 44px; margin-bottom: 10px; }
   .industry-card h3 { font-size: 14px; }
   .industry-card p { font-size: 12px; }
+  .carousel-arrow { width: 36px; height: 36px; }
+  .problem-proof { gap: 16px; }
+  .proof-item { padding: 20px 16px; }
+  .proof-number { font-size: 44px; }
 }
 
 @media (max-width: 480px) {

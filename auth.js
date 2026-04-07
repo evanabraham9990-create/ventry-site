@@ -79,7 +79,7 @@
       // Logged out — show Login + Sign Up
       if (navAuthLinks) {
         navAuthLinks.innerHTML =
-          '<a href="/login.html" class="nav-link">Login</a>';
+          '<a href="/login.html" class="btn btn-ghost btn-sm">Login</a>';
       }
       if (navCta) {
         navCta.textContent = 'Sign Up Free';

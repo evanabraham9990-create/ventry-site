@@ -211,7 +211,7 @@
     const calls = parseFloat(roiCalls.value) || 0;
     const close = (parseFloat(roiClose.value) || 0) / 100;
     const value = parseFloat(roiValue.value) || 0;
-    const monthly = Math.round(calls * 4.33 * close * value);
+    const monthly = Math.round(calls * 4.33 * close * value / 100) * 100;
     const yearly = monthly * 12;
     roiMonthly.textContent = '$' + monthly.toLocaleString();
     roiYearly.textContent = '$' + yearly.toLocaleString();
