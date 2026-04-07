@@ -28,7 +28,8 @@
         <a href="faq.html">FAQ</a>
       </nav>
       <a href="tel:+14109959730" class="nav-phone">(410) 995-9730</a>
-      <a href="https://cal.com/evan-abraham-9cfgui/missed-call-audit" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm nav-cta">Get Your Free Audit</a>
+      <span id="nav-auth-links"></span>
+      <a href="signup.html" class="btn btn-primary btn-sm nav-cta" id="nav-cta-audit">Sign Up Free</a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -328,5 +329,11 @@
 
   <script src="chat-widget.js"></script>
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.__VENTRY_SUPABASE_URL = 'https://qcrvqpodoajupccfxlyo.supabase.co';
+    window.__VENTRY_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjcnZxcG9kb2FqdXBjY2Z4bHlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MzI2MDgsImV4cCI6MjA5MTEwODYwOH0.rFKo3VKds4cu7w1kprLq3X_LOGZLRwtgK84v3NRmulU';
+  </script>
+  <script src="auth.js"></script>
 </body>
 </html>

@@ -49,7 +49,8 @@
         <a href="faq.html">FAQ</a>
       </nav>
       <a href="tel:+14109959730" class="nav-phone btn-ghost-brand">(410) 995-9730</a>
-      <a href="#get-started" class="btn btn-primary btn-sm nav-cta">Get Your Free Audit</a>
+      <span id="nav-auth-links"></span>
+      <a href="signup.html" class="btn btn-primary btn-sm nav-cta" id="nav-cta-audit">Sign Up Free</a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -180,29 +181,81 @@
           <div class="label">The Problem</div>
           <h2>Every missed call is <span class="gradient-text-brand">revenue walking out the door</span></h2>
         </div>
-        <div class="problem-grid">
-          <div class="problem-card card blur-in">
-            <div class="problem-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 003.41 2.6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.42 19.42 0 01-3.33-2.67m-2.67-3.34a19.79 19.79 0 01-3.07-8.63A2 2 0 014 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg>
+
+        <!-- Revenue Loss Calculator -->
+        <div class="revenue-loss blur-in">
+          <div class="revenue-loss-left">
+            <div class="loss-scenario">
+              <div class="loss-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.63a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </div>
+              <div class="loss-text">
+                <strong>62% of calls</strong> to small businesses go unanswered
+                <span class="loss-source">— Forbes, 2024</span>
+              </div>
             </div>
-            <h3>Missed Calls = Missed Jobs</h3>
-            <p>Most callers won't leave a voicemail. They hang up and call the next company that answers. That job is gone the same day.</p>
+            <div class="loss-scenario">
+              <div class="loss-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="loss-text">
+                <strong>85% of callers</strong> who hit voicemail never call back
+                <span class="loss-source">— InsideSales.com</span>
+              </div>
+            </div>
+            <div class="loss-scenario">
+              <div class="loss-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="loss-text">
+                <strong>The first business</strong> to answer wins the job 78% of the time
+                <span class="loss-source">— Lead Connect</span>
+              </div>
+            </div>
           </div>
-          <div class="problem-card card blur-in" data-delay="150">
-            <div class="problem-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+
+          <div class="revenue-loss-right">
+            <div class="loss-calculator">
+              <div class="loss-calc-header">Your missed calls are costing you</div>
+              <div class="loss-numbers">
+                <div class="loss-stat">
+                  <div class="loss-amount" data-value="4500">$4,500</div>
+                  <div class="loss-period">lost per month</div>
+                  <div class="loss-breakdown">~15 missed calls &times; $300 avg job</div>
+                </div>
+                <div class="loss-divider-v"></div>
+                <div class="loss-stat">
+                  <div class="loss-amount loss-amount-year" data-value="54000">$54,000</div>
+                  <div class="loss-period">lost per year</div>
+                  <div class="loss-breakdown">That's a truck, a hire, or your next vacation</div>
+                </div>
+              </div>
+              <div class="loss-cta-row">
+                <a href="https://cal.com/evan-abraham-9cfgui/missed-call-audit" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">See What You're Losing</a>
+                <span class="loss-cta-note">Free 10-min audit — no strings</span>
+              </div>
             </div>
-            <h3>Slow Response = Lost Bids</h3>
-            <p>The first business to pick up usually wins. By the time you call back, someone else already booked it.</p>
-          </div>
-          <div class="problem-card card blur-in" data-delay="300">
-            <div class="problem-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-            </div>
-            <h3>You Already Paid for That Lead</h3>
-            <p>Google Ads, SEO, yard signs, referrals — every lead costs money to generate. When it goes to voicemail, that spend is wasted.</p>
           </div>
         </div>
+
+        <!-- Problem Proof Points -->
+        <div class="problem-proof blur-in" data-delay="200">
+          <div class="proof-item">
+            <div class="proof-number">80<span>%</span></div>
+            <div class="proof-desc">of callers hang up<br>when they hit voicemail</div>
+          </div>
+          <div class="proof-divider"></div>
+          <div class="proof-item">
+            <div class="proof-number">5<span>min</span></div>
+            <div class="proof-desc">is all it takes for a<br>lead to go cold</div>
+          </div>
+          <div class="proof-divider"></div>
+          <div class="proof-item">
+            <div class="proof-number">$0</div>
+            <div class="proof-desc">return on ad spend<br>when nobody answers</div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -469,47 +522,54 @@
     <section class="call-recordings" id="hear-it">
       <div class="container">
         <div class="section-header blur-in">
-          <div class="label">Hear It Live</div>
-          <h2>Listen to <span class="gradient-text-brand">real AI calls</span></h2>
-          <p class="section-sub">These are actual calls handled by Ventry AI. No scripts, no editing — just the AI doing its job.</p>
+          <div class="label">Meet Your Receptionist</div>
+          <h2>Choose the voice that <span class="gradient-text-brand">represents your brand</span></h2>
+          <p class="section-sub">Each voice has a distinct personality. Listen, then pick the one your customers should hear.</p>
         </div>
-        <div class="recordings-grid blur-in" data-delay="150">
-          <div class="recording-card">
-            <div class="recording-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+        <div class="voice-showcase blur-in" data-delay="150">
+
+          <div class="voice-character">
+            <div class="voice-avatar voice-avatar-alex">
+              <span>A</span>
             </div>
-            <div class="recording-info">
-              <h3>Roofing Inspection Request</h3>
-              <p>Storm damage call — AI captures details and books same-week appointment</p>
-            </div>
-            <audio controls preload="none" class="recording-audio">
-              <source src="assets/calls/roofing-call.mp3" type="audio/mpeg">
-            </audio>
-          </div>
-          <div class="recording-card">
-            <div class="recording-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/><path d="M12 8v4l3 3"/></svg>
-            </div>
-            <div class="recording-info">
-              <h3>Cleaning Service Booking</h3>
-              <p>Move-out cleaning — AI qualifies, confirms square footage, books the job</p>
+            <div class="voice-profile">
+              <h3>Alex</h3>
+              <div class="voice-trait">Confident &bull; Polished &bull; Authoritative</div>
+              <p>Sounds like your best senior rep — handles complex questions with ease. Ideal for law firms, consulting, and B2B.</p>
             </div>
             <audio controls preload="none" class="recording-audio">
-              <source src="assets/calls/cleaning-call.mp3" type="audio/mpeg">
+              <source src="assets/voices/professional.mp3" type="audio/mpeg">
             </audio>
           </div>
-          <div class="recording-card">
-            <div class="recording-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+
+          <div class="voice-character">
+            <div class="voice-avatar voice-avatar-sam">
+              <span>S</span>
             </div>
-            <div class="recording-info">
-              <h3>After-Hours Emergency</h3>
-              <p>11 PM plumbing call — AI flags urgency, captures info, escalates immediately</p>
+            <div class="voice-profile">
+              <h3>Sam</h3>
+              <div class="voice-trait">Friendly &bull; Upbeat &bull; Relatable</div>
+              <p>Your customers feel like they're talking to a neighbor. Perfect for home services, restaurants, and retail.</p>
             </div>
             <audio controls preload="none" class="recording-audio">
-              <source src="assets/calls/emergency-call.mp3" type="audio/mpeg">
+              <source src="assets/voices/friendly.mp3" type="audio/mpeg">
             </audio>
           </div>
+
+          <div class="voice-character">
+            <div class="voice-avatar voice-avatar-jamie">
+              <span>J</span>
+            </div>
+            <div class="voice-profile">
+              <h3>Jamie</h3>
+              <div class="voice-trait">Calm &bull; Reassuring &bull; Patient</div>
+              <p>Puts anxious callers at ease immediately. Great for healthcare, dental, wellness, and senior care.</p>
+            </div>
+            <audio controls preload="none" class="recording-audio">
+              <source src="assets/voices/warm.mp3" type="audio/mpeg">
+            </audio>
+          </div>
+
         </div>
       </div>
     </section>
@@ -921,5 +981,11 @@
 
   <script src="chat-widget.js"></script>
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.__VENTRY_SUPABASE_URL = 'https://qcrvqpodoajupccfxlyo.supabase.co';
+    window.__VENTRY_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjcnZxcG9kb2FqdXBjY2Z4bHlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MzI2MDgsImV4cCI6MjA5MTEwODYwOH0.rFKo3VKds4cu7w1kprLq3X_LOGZLRwtgK84v3NRmulU';
+  </script>
+  <script src="auth.js"></script>
 </body>
 </html>

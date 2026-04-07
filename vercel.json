@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "crons": [
     { "path": "/api/cron/morning-digest", "schedule": "57 12 * * *" },
     { "path": "/api/cron/health-check", "schedule": "0 15 * * *" },
@@ -30,7 +31,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.voiceflow.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://general-runtime.voiceflow.com https://*.voiceflow.com https://hooks.n8n.cloud; frame-src https://calendar.google.com https://calendar.app.google https://cal.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.voiceflow.com https://cdn.jsdelivr.net https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://general-runtime.voiceflow.com https://*.voiceflow.com https://hooks.n8n.cloud https://*.supabase.co https://api.stripe.com; frame-src https://calendar.google.com https://calendar.app.google https://cal.com https://checkout.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com"
         }
       ]
     }

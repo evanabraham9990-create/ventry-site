@@ -168,6 +168,26 @@
       background: rgba(124, 111, 247, 0.06);
     }
 
+    .pricing-setup {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      padding: 6px 12px;
+      background: rgba(124, 111, 247, 0.06);
+      border: 1px solid rgba(124, 111, 247, 0.12);
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .feature-missing {
+      opacity: 0.55;
+      color: var(--text-muted) !important;
+    }
+
+    .feature-missing svg {
+      filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.4));
+    }
+
     .check-icon { color: var(--purple-light); }
     .dash-icon { color: var(--text-muted); opacity: 0.4; }
 
@@ -194,7 +214,8 @@
         <a href="faq.html">FAQ</a>
       </nav>
       <a href="tel:+14109959730" class="nav-phone btn-ghost-brand">(410) 995-9730</a>
-      <a href="https://cal.com/evan-abraham-9cfgui/missed-call-audit" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm nav-cta">Get Your Free Audit</a>
+      <span id="nav-auth-links"></span>
+      <a href="signup.html" class="btn btn-primary btn-sm nav-cta" id="nav-cta-audit">Sign Up Free</a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -228,6 +249,7 @@
               <span class="pricing-amount">$149</span>
               <span class="pricing-period">/month</span>
             </div>
+            <div class="pricing-setup">$1,000 one-time setup</div>
             <ul class="pricing-features">
               <li>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -249,8 +271,24 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 Calendar integration
               </li>
+              <li class="feature-missing">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Custom greeting & scripts
+              </li>
+              <li class="feature-missing">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Emergency call routing
+              </li>
+              <li class="feature-missing">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                CRM integration
+              </li>
+              <li class="feature-missing">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Priority support
+              </li>
             </ul>
-            <a href="index.html#get-started" class="btn btn-ghost pricing-cta">Get Started</a>
+            <a href="/signup?plan=starter" class="btn btn-ghost pricing-cta">Get Started</a>
           </div>
 
           <!-- GROWTH (POPULAR) -->
@@ -262,6 +300,7 @@
               <span class="pricing-amount">$299</span>
               <span class="pricing-period">/month</span>
             </div>
+            <div class="pricing-setup">$2,000 one-time setup</div>
             <ul class="pricing-features">
               <li>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -269,7 +308,19 @@
               </li>
               <li>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Everything in Starter
+                24/7 call answering
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Lead qualification
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Call summaries via email
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Calendar integration
               </li>
               <li>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -288,7 +339,7 @@
                 Priority support
               </li>
             </ul>
-            <a href="index.html#get-started" class="btn btn-primary pricing-cta">Get Started</a>
+            <a href="/signup?plan=growth" class="btn btn-primary pricing-cta">Get Started</a>
           </div>
 
           <!-- ENTERPRISE -->
@@ -458,8 +509,8 @@
         </div>
         <div class="footer-col">
           <div class="footer-col-head">Legal</div>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-head">Contact</div>
@@ -474,5 +525,11 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.__VENTRY_SUPABASE_URL = 'https://qcrvqpodoajupccfxlyo.supabase.co';
+    window.__VENTRY_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjcnZxcG9kb2FqdXBjY2Z4bHlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MzI2MDgsImV4cCI6MjA5MTEwODYwOH0.rFKo3VKds4cu7w1kprLq3X_LOGZLRwtgK84v3NRmulU';
+  </script>
+  <script src="auth.js"></script>
 </body>
 </html>
