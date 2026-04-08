@@ -319,6 +319,19 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
 }
 
+.btn-outline-brand {
+  background: transparent;
+  color: var(--purple-light);
+  border: 1.5px solid var(--purple-core);
+}
+
+.btn-outline-brand:hover {
+  background: rgba(124, 111, 247, 0.10);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(124, 111, 247, 0.25);
+  transform: translateY(-1px);
+}
+
 .btn-sm {
   padding: 10px 20px;
   font-size: 14px;
@@ -675,7 +688,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 .badge-carousel {
   position: relative;
   overflow: hidden;
-  padding: 56px 0;
+  padding: 64px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--bg-surface);
@@ -712,8 +725,8 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 .badge-slide {
   display: flex;
   align-items: center;
-  gap: 64px;
-  padding: 0 32px;
+  gap: 80px;
+  padding: 0 40px;
 }
 
 .badge-item {
@@ -735,18 +748,17 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   background: transparent;
 }
 
-.badge-item.badge-visual img {
-  height: 120px;
+.badge-item.badge-visual svg {
+  height: 160px;
   width: auto;
   display: block;
-  border-radius: 10px;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
-  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+  transition: filter 0.4s ease, transform 0.4s ease;
 }
 
-.badge-item.badge-visual:hover img {
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 20px rgba(124, 111, 247, 0.2));
-  transform: scale(1.06);
+.badge-item.badge-visual:hover svg {
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 24px rgba(124, 111, 247, 0.3));
+  transform: scale(1.08);
 }
 
 .badge-item svg {
@@ -3227,6 +3239,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   .badge-carousel::before, .badge-carousel::after { width: 60px; }
   .badge-slide { gap: 36px; }
   .badge-item span { font-size: 13px; }
+  .badge-item.badge-visual svg { height: 120px; }
 
   .industry-card { flex: 0 0 calc(50% - 8px); min-width: calc(50% - 8px); padding: 18px 14px; }
   .industry-icon { width: 44px; height: 44px; margin-bottom: 10px; }
