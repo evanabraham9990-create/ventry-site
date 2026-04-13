@@ -101,9 +101,18 @@
 .logo-item svg text { fill: #2d2d42; }
 .logo-item { opacity: 0.6; }
 
-/* Logo strip — dark mode: white text */
-html:not([data-theme]) .logo-item svg text { fill: rgba(255,255,255,0.9); }
-html:not([data-theme]) .logo-item { opacity: 0.55; }
+/* Logo strip — dark mode: elevated bg + high-opacity white logos */
+html:not([data-theme]) .badge-carousel {
+  background: var(--bg-elevated);
+}
+html:not([data-theme]) .badge-carousel::before {
+  background: linear-gradient(to right, var(--bg-elevated) 0%, transparent 100%);
+}
+html:not([data-theme]) .badge-carousel::after {
+  background: linear-gradient(to left, var(--bg-elevated) 0%, transparent 100%);
+}
+html:not([data-theme]) .logo-item svg text { fill: rgba(255,255,255,0.95); }
+html:not([data-theme]) .logo-item { opacity: 0.82; }
 
 [data-theme="light"] .site-footer {
   background: var(--bg-surface);
@@ -995,7 +1004,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 }
 
 .logo-item svg {
-  height: 26px;
+  height: 28px;
   width: auto;
 }
 
