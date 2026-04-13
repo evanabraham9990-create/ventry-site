@@ -32,6 +32,13 @@ Incoming call/chat
   → Greeting: "Thanks for calling [Business Name], how can I help you?"
   → Identify need: "Are you looking for [service type] or something else?"
   → Qualify: urgency, location, job type
+  → If caller asks pricing ("how much does it cost?"):
+       → Collect job details: type, size/scope, location
+       → Match to owner-defined estimate table
+       → Send text: "Based on what you described, [job type] typically runs $X–$Y.
+          We'll confirm exact pricing when we meet."
+       → Log: estimate_sent = true
+       → If job is complex/multi-service: flag for owner manual quote, continue to booking
   → Booking attempt: "Let me get you on the calendar..."
   → If booking fails: capture name + phone/email for callback
   → Call summary sent to owner
@@ -54,7 +61,7 @@ The AI escalates to human callback when:
 
 ## What the AI Does NOT Do
 
-- No pricing quotes — always routes to owner for pricing discussions
+- No custom pricing quotes — only sends owner-configured estimate ranges (templated). Complex jobs always route to owner
 - No same-day schedule changes — "I'll have the team reach out to confirm"
 - No claims about warranties or guarantees
 - No competitor comparisons
@@ -64,7 +71,7 @@ The AI escalates to human callback when:
 
 ## What Happens After Every Call/Chat
 
-1. Lead info logged (name, phone, email, business, service needed, outcome)
+1. Lead info logged (name, phone, email, business, service needed, outcome, estimate_sent)
 2. Call summary sent to `evan@ventryxai.com` via email
 3. Slack notification posted to #hot-leads (if qualified)
 4. n8n triggers:

@@ -32,49 +32,49 @@
           "assignments": [
             {
               "id": "name",
-              "name": "name",
-              "value": "={{ $json.body.lead.name || 'Unknown' }}",
+              "name": "Name",
+              "value": "={{ $json.body.name || $json.body.lead?.name || 'Unknown' }}",
               "type": "string"
             },
             {
               "id": "business",
-              "name": "business",
-              "value": "={{ $json.body.lead.business || 'Unknown' }}",
+              "name": "Business",
+              "value": "={{ $json.body.business || $json.body.lead?.business || 'Unknown' }}",
               "type": "string"
             },
             {
               "id": "phone",
-              "name": "phone",
-              "value": "={{ $json.body.lead.phone || '' }}",
+              "name": "Phone",
+              "value": "={{ $json.body.phone || $json.body.lead?.phone || '' }}",
               "type": "string"
             },
             {
               "id": "email",
-              "name": "email",
-              "value": "={{ $json.body.lead.email || '' }}",
+              "name": "Email",
+              "value": "={{ $json.body.email || $json.body.lead?.email || '' }}",
               "type": "string"
             },
             {
               "id": "service_needed",
-              "name": "service_needed",
-              "value": "={{ $json.body.lead.service_needed || '' }}",
+              "name": "Service Needed",
+              "value": "={{ $json.body.service_needed || $json.body.lead?.service_needed || '' }}",
               "type": "string"
             },
             {
               "id": "source",
-              "name": "source",
+              "name": "Source",
               "value": "={{ $json.body.source || 'voiceflow-chat' }}",
               "type": "string"
             },
             {
               "id": "page_url",
-              "name": "page_url",
-              "value": "={{ $json.body.page_url || '' }}",
+              "name": "Page URL",
+              "value": "={{ $json.body.page_url || 'ventryxai.com' }}",
               "type": "string"
             },
             {
               "id": "timestamp",
-              "name": "timestamp",
+              "name": "Timestamp",
               "value": "={{ $now.toISO() }}",
               "type": "string"
             }
@@ -102,8 +102,18 @@
           "mode": "list"
         },
         "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {}
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Business": "={{ $json.Business }}",
+            "Phone": "={{ $json.Phone }}",
+            "Email": "={{ $json.Email }}",
+            "Service Needed": "={{ $json['Service Needed'] }}",
+            "Source": "={{ $json.Source }}",
+            "Page URL": "={{ $json['Page URL'] }}",
+            "Timestamp": "={{ $json.Timestamp }}"
+          },
+          "matchingColumns": []
         },
         "options": {}
       },
@@ -116,8 +126,8 @@
     {
       "parameters": {
         "sendTo": "evan@ventryxai.com",
-        "subject": "=New Lead from Ventry AI: {{ $json.name }} ({{ $json.business }})",
-        "message": "=<h2>New Lead Captured</h2><table style=\"border-collapse:collapse;font-family:sans-serif;\"><tr><td style=\"padding:8px;font-weight:bold;\">Name</td><td style=\"padding:8px;\">{{ $json.name }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Business</td><td style=\"padding:8px;\">{{ $json.business }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Phone</td><td style=\"padding:8px;\">{{ $json.phone }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Email</td><td style=\"padding:8px;\">{{ $json.email }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Service Needed</td><td style=\"padding:8px;\">{{ $json.service_needed }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Page</td><td style=\"padding:8px;\">{{ $json.page_url }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Source</td><td style=\"padding:8px;\">{{ $json.source }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Time</td><td style=\"padding:8px;\">{{ $json.timestamp }}</td></tr></table>",
+        "subject": "=New Lead from Ventry AI: {{ $json.Name }} ({{ $json.Business }})",
+        "message": "=<h2>New Lead Captured</h2><table style=\"border-collapse:collapse;font-family:sans-serif;\"><tr><td style=\"padding:8px;font-weight:bold;\">Name</td><td style=\"padding:8px;\">{{ $json.Name }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Business</td><td style=\"padding:8px;\">{{ $json.Business }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Phone</td><td style=\"padding:8px;\">{{ $json.Phone }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Email</td><td style=\"padding:8px;\">{{ $json.Email }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Service Needed</td><td style=\"padding:8px;\">{{ $json['Service Needed'] }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Page</td><td style=\"padding:8px;\">{{ $json['Page URL'] }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Source</td><td style=\"padding:8px;\">{{ $json.Source }}</td></tr><tr><td style=\"padding:8px;font-weight:bold;\">Time</td><td style=\"padding:8px;\">{{ $json.Timestamp }}</td></tr></table>",
         "options": {}
       },
       "id": "send-email",

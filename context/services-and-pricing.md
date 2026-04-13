@@ -11,6 +11,8 @@
 - Lead qualification
 - Call summaries via email
 - Calendar integration
+- Estimate Accelerator (up to 3 job types with owner-defined price ranges)
+- Client dashboard (calls, bookings, estimates sent)
 
 **Does NOT include:**
 - Custom greeting & scripts
@@ -29,6 +31,7 @@
 - Emergency call routing
 - CRM integration
 - Priority support
+- Estimate Accelerator — unlimited job types, multi-service matching
 
 ---
 

@@ -76,14 +76,16 @@
         }
       }
     } else {
-      // Logged out — show Login + Sign Up
+      // Logged out — show Client Login + Book Free Audit
       if (navAuthLinks) {
         navAuthLinks.innerHTML =
-          '<a href="/login.html" class="btn btn-outline-brand btn-sm">Login</a>';
+          '<a href="/login.html" class="btn btn-outline-brand btn-sm">Client Login</a>';
       }
       if (navCta) {
-        navCta.textContent = 'Sign Up Free';
-        navCta.href = '/signup.html';
+        navCta.textContent = 'Book Free Audit';
+        navCta.href = 'https://cal.com/evan-abraham-9cfgui/missed-call-audit';
+        navCta.target = '_blank';
+        navCta.rel = 'noopener noreferrer';
       }
     }
   }

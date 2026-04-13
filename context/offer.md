@@ -9,6 +9,7 @@ An inbound revenue system for service businesses. Not just "AI answers your call
 3. Books the appointment directly into the owner's calendar
 4. Sends an instant call summary to the owner
 5. Triggers follow-up if the caller didn't book
+6. Sends templated estimate ranges on request — caller gets a ballpark price by text within minutes
 
 The customer never misses a job because they were on-site, after hours, or just busy.
 
@@ -16,9 +17,36 @@ The customer never misses a job because they were on-site, after hours, or just 
 
 ## Core Promise
 
-**Never miss a call. Every lead qualified. Every booking confirmed. Follow-up automated.**
+**Never miss a call. Every lead qualified. Every booking confirmed. Follow-up automated. Every outcome visible in your dashboard.**
 
-That's the four-part promise. Every piece of copy, every pitch, every Voiceflow message should reinforce at least one of these.
+Every piece of copy, every pitch, every Voiceflow message should reinforce at least one of these.
+
+---
+
+## Estimate Accelerator
+
+When a caller asks "how much does it cost?", the AI collects job details (type, scope, location) and sends a templated estimate range by text within minutes.
+
+**How it works:**
+- Owner configures price ranges per job type during onboarding (e.g., "roof inspection: $150–$300")
+- AI matches caller's described job to the closest range
+- Sends text: "Based on what you described, [job type] typically runs $X–$Y. We'll confirm exact pricing when we meet."
+- Complex or multi-service jobs are flagged and routed to the owner for a manual quote
+- Estimate logged in the client dashboard (estimate_sent: true)
+
+**What it is NOT:** A custom quoting engine. This is a templated range to keep the caller engaged and on the path to booking. It does not replace the owner's judgment on pricing.
+
+---
+
+## The Dashboard
+
+Every client gets a live dashboard showing:
+- Calls answered, missed, and in-progress
+- Lead qualifications and outcomes (booked, callback, lost)
+- Estimates sent
+- Booking rate and trends over time
+
+No black box — clients see exactly what Ventry AI is doing for their business in real time. Ventry sets it up and runs it. The client just watches it work.
 
 ---
 
