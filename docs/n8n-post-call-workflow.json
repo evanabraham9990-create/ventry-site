@@ -1,0 +1,169 @@
+{
+  "name": "Ventry — Post-Call Intelligence",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ventry-post-call",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook — Voiceflow POST",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "ventry-post-call"
+    },
+    {
+      "parameters": {
+        "url": "https://ventryxai.com/api/log-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "x-api-key",
+              "value": "={{ $env.VENTRY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "caller_phone", "value": "={{ $json.body.caller_phone }}" },
+            { "name": "caller_name", "value": "={{ $json.body.caller_name }}" },
+            { "name": "business_name", "value": "={{ $json.body.business_name }}" },
+            { "name": "service_needed", "value": "={{ $json.body.service_needed }}" },
+            { "name": "duration_seconds", "value": "={{ $json.body.duration_seconds }}" },
+            { "name": "outcome", "value": "={{ $json.body.outcome }}" },
+            { "name": "booked", "value": "={{ $json.body.booked }}" },
+            { "name": "summary", "value": "={{ $json.body.summary }}" },
+            { "name": "transcript_url", "value": "={{ $json.body.transcript_url }}" },
+            { "name": "booking_slot", "value": "={{ $json.body.booking_slot }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2",
+      "name": "Log Call — POST /api/log-call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $('Webhook — Voiceflow POST').item.json.body.booked }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "3",
+      "name": "Booked?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://hooks.slack.com/services/{{ $env.SLACK_WEBHOOK_HOT_LEADS_PATH }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "=📅 *New Booking*\nCaller: {{ $('Webhook — Voiceflow POST').item.json.body.caller_name || $('Webhook — Voiceflow POST').item.json.body.caller_phone }}\nService: {{ $('Webhook — Voiceflow POST').item.json.body.service_needed }}\nSlot: {{ $('Webhook — Voiceflow POST').item.json.body.booking_slot }}\nSummary: {{ $('Webhook — Voiceflow POST').item.json.body.summary }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4",
+      "name": "Slack — #hot-leads (booked)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [960, 180]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Webhook — Voiceflow POST').item.json.body.outcome }}",
+              "operation": "equals",
+              "value2": "qualified"
+            }
+          ]
+        }
+      },
+      "id": "5",
+      "name": "Qualified (not booked)?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [960, 420]
+    },
+    {
+      "parameters": {
+        "amount": 24,
+        "unit": "hours"
+      },
+      "id": "6",
+      "name": "Wait 24h",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1200, 420]
+    },
+    {
+      "parameters": {
+        "url": "https://hooks.slack.com/services/{{ $env.SLACK_WEBHOOK_HOT_LEADS_PATH }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "=⏰ *Follow-up Due*\nCaller: {{ $('Webhook — Voiceflow POST').item.json.body.caller_name || $('Webhook — Voiceflow POST').item.json.body.caller_phone }}\nService: {{ $('Webhook — Voiceflow POST').item.json.body.service_needed }}\nThey were qualified yesterday but didn't book. Call them back."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7",
+      "name": "Slack — Follow-up reminder",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1440, 420]
+    }
+  ],
+  "connections": {
+    "Webhook — Voiceflow POST": {
+      "main": [[{ "node": "Log Call — POST /api/log-call", "type": "main", "index": 0 }]]
+    },
+    "Log Call — POST /api/log-call": {
+      "main": [[{ "node": "Booked?", "type": "main", "index": 0 }]]
+    },
+    "Booked?": {
+      "main": [
+        [{ "node": "Slack — #hot-leads (booked)", "type": "main", "index": 0 }],
+        [{ "node": "Qualified (not booked)?", "type": "main", "index": 0 }]
+      ]
+    },
+    "Qualified (not booked)?": {
+      "main": [
+        [{ "node": "Wait 24h", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Wait 24h": {
+      "main": [[{ "node": "Slack — Follow-up reminder", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -4,7 +4,7 @@
 
 import { sendSlack } from './slack-notify.js';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 const OUTCOME_EMOJI = {
@@ -17,6 +17,12 @@ const OUTCOME_EMOJI = {
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Require API key from n8n/Voiceflow callers
+  const apiKey = req.headers['x-api-key'];
+  if (!apiKey || apiKey !== process.env.LOG_CALL_API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized' });
   }
 
   const {

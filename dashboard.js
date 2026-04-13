@@ -71,11 +71,10 @@
     // Load call logs
     try {
       var logsResult = await supabase
-        .from('call_logs')
+        .from('calls')
         .select('*')
-        .eq('user_id', user.id)
         .order('created_at', { ascending: false })
-        .limit(20);
+        .limit(10);
 
       if (logsResult.data && logsResult.data.length > 0) {
         var logs = logsResult.data;
@@ -86,9 +85,9 @@
         if (emptyEl) emptyEl.style.display = 'none';
         if (tableEl) tableEl.style.display = 'table';
 
-        // Stats
+        // Stats — use booked boolean field
         var totalCalls = logs.length;
-        var booked = logs.filter(function (l) { return l.summary && l.summary.toLowerCase().includes('booked'); }).length;
+        var bookedCount = logs.filter(function (l) { return l.booked === true; }).length;
         var totalDuration = logs.reduce(function (sum, l) { return sum + (l.duration_seconds || 0); }, 0);
         var avgDuration = Math.round(totalDuration / totalCalls);
 
@@ -98,26 +97,29 @@
         var statRate = document.getElementById('stat-rate');
 
         if (statTotal) statTotal.textContent = totalCalls;
-        if (statBooked) statBooked.textContent = booked;
+        if (statBooked) statBooked.textContent = bookedCount;
         if (statAvg) statAvg.textContent = avgDuration + 's';
-        if (statRate) statRate.textContent = Math.round((booked / totalCalls) * 100) + '%';
+        if (statRate) statRate.textContent = Math.round((bookedCount / totalCalls) * 100) + '%';
 
         // Populate table
+        var outcomeEmoji = { booked: '📅', qualified: '✅', lost: '❌', spam: '🚫' };
         if (tbody) {
           logs.forEach(function (log) {
             var tr = document.createElement('tr');
             var date = new Date(log.created_at);
+            var caller = log.caller_name || log.caller_phone || 'Unknown';
+            var outcome = log.outcome ? (outcomeEmoji[log.outcome] || '') + ' ' + log.outcome : '—';
             tr.innerHTML =
-              '<td>' + (log.caller_phone || 'Unknown') + '</td>' +
+              '<td>' + caller + '</td>' +
               '<td>' + (log.duration_seconds || 0) + 's</td>' +
-              '<td>' + (log.summary || '—') + '</td>' +
+              '<td>' + (log.summary || outcome) + '</td>' +
               '<td>' + date.toLocaleDateString() + '</td>';
             tbody.appendChild(tr);
           });
         }
       }
     } catch (err) {
-      // call_logs table may not exist yet
+      // calls table may not exist yet — create it in Supabase using docs/backend-actions.md schema
     }
 
     // Manage billing button
