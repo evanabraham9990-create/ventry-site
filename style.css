@@ -96,6 +96,8 @@
 }
 
 [data-theme="light"] .badge-item svg text { fill: #515154; }
+[data-theme="light"] .logo-item svg text { fill: #1a1a2e; }
+[data-theme="light"] .logo-item { opacity: 0.65; }
 
 [data-theme="light"] .site-footer {
   background: var(--bg-surface);
@@ -923,7 +925,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 .badge-carousel {
   position: relative;
   overflow: hidden;
-  padding: 64px 0;
+  padding: 40px 0 52px;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--bg-surface);
@@ -950,12 +952,21 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   background: linear-gradient(to left, var(--bg-surface) 0%, transparent 100%);
 }
 
+.logo-strip-label {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 28px;
+}
+
 .badge-track {
   display: flex;
   width: fit-content;
   animation: badge-scroll 40s linear infinite;
 }
-
 
 .badge-slide {
   display: flex;
@@ -964,6 +975,24 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   padding: 0 40px;
 }
 
+.logo-slide {
+  gap: 52px;
+  align-items: center;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.logo-item:hover {
+  opacity: 1;
+}
+
+/* keep existing pill-badge styles in case used elsewhere */
 .badge-item {
   display: flex;
   align-items: center;
@@ -974,26 +1003,6 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   border: 1px solid var(--border-bright);
   border-radius: 100px;
   background: var(--bg-elevated);
-}
-
-.badge-item.badge-visual {
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-}
-
-.badge-item.badge-visual svg {
-  height: 160px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
-  transition: filter 0.4s ease, transform 0.4s ease;
-}
-
-.badge-item.badge-visual:hover svg {
-  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 24px rgba(124, 111, 247, 0.3));
-  transform: scale(1.08);
 }
 
 .badge-item svg {
@@ -3492,11 +3501,12 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 
   .hero-trust-strip { gap: 20px; flex-direction: column; align-items: center; }
 
-  .badge-carousel { padding: 32px 0; }
+  .badge-carousel { padding: 28px 0 36px; }
   .badge-carousel::before, .badge-carousel::after { width: 60px; }
   .badge-slide { gap: 36px; }
+  .logo-slide { gap: 32px; }
+  .logo-item svg { height: 16px; }
   .badge-item span { font-size: 13px; }
-  .badge-item.badge-visual svg { height: 120px; }
 
   .industry-card { flex: 0 0 calc(50% - 8px); min-width: calc(50% - 8px); padding: 18px 14px; }
   .industry-icon { width: 44px; height: 44px; margin-bottom: 10px; }
