@@ -96,8 +96,14 @@
 }
 
 [data-theme="light"] .badge-item svg text { fill: #515154; }
-[data-theme="light"] .logo-item svg text { fill: #1a1a2e; }
-[data-theme="light"] .logo-item { opacity: 0.65; }
+
+/* Logo strip — light mode default: dark text */
+.logo-item svg text { fill: #2d2d42; }
+.logo-item { opacity: 0.6; }
+
+/* Logo strip — dark mode: white text */
+html:not([data-theme]) .logo-item svg text { fill: rgba(255,255,255,0.9); }
+html:not([data-theme]) .logo-item { opacity: 0.55; }
 
 [data-theme="light"] .site-footer {
   background: var(--bg-surface);
@@ -984,8 +990,12 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  opacity: 0.55;
   transition: opacity 0.3s ease;
+}
+
+.logo-item svg {
+  height: 26px;
+  width: auto;
 }
 
 .logo-item:hover {
