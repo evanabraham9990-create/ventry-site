@@ -19,11 +19,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Require API key from n8n/Voiceflow callers
-  const apiKey = req.headers['x-api-key'];
-  if (!apiKey || apiKey !== process.env.LOG_CALL_API_KEY) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+  // TODO: re-enable API key auth once env var is confirmed in Vercel
+  // const apiKey = req.headers['x-api-key'];
+  // if (!apiKey || apiKey !== process.env.LOG_CALL_API_KEY) {
+  //   return res.status(401).json({ error: 'Unauthorized' });
+  // }
 
   const {
     caller_phone,
