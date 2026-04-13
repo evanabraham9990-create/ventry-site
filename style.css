@@ -982,7 +982,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
 }
 
 .logo-slide {
-  gap: 52px;
+  gap: 0;
   align-items: center;
 }
 
@@ -990,6 +990,7 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  padding: 0 28px;
   transition: opacity 0.3s ease;
 }
 
@@ -3514,8 +3515,8 @@ h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.
   .badge-carousel { padding: 28px 0 36px; }
   .badge-carousel::before, .badge-carousel::after { width: 60px; }
   .badge-slide { gap: 36px; }
-  .logo-slide { gap: 32px; }
-  .logo-item svg { height: 16px; }
+  .logo-item { padding: 0 18px; }
+  .logo-item svg { height: 18px; }
   .badge-item span { font-size: 13px; }
 
   .industry-card { flex: 0 0 calc(50% - 8px); min-width: calc(50% - 8px); padding: 18px 14px; }
