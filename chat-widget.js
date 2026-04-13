@@ -9,6 +9,7 @@
         title: 'Ventry AI',
         description: 'Ask me anything about AI receptionists',
         color: '#6C63FF',
+        avatar: window.location.origin + '/assets/agent-avatar.svg',
       },
     });
   };

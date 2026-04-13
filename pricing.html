@@ -12,6 +12,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    (function(){var t=localStorage.getItem('ventryTheme');if(t!=='dark')document.documentElement.setAttribute('data-theme','light');})();
+  </script>
   <style>
     .pricing-grid {
       display: grid;
@@ -207,15 +210,47 @@
         <span class="logo-text">Ventry <span>AI</span></span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="ai-receptionist.html">AI Receptionist</a>
+        <div class="nav-dropdown" id="dd-products">
+          <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Products
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <span class="menu-label">Automate</span>
+            <a href="ai-receptionist.html" role="menuitem">Call &amp; Qualify</a>
+            <a href="how-it-works.html" role="menuitem">Follow-Up Engine</a>
+            <a href="how-it-works.html" role="menuitem">Estimate Accelerator</a>
+            <span class="menu-label">Insights</span>
+            <a href="demo.html" role="menuitem">Lead Intel</a>
+            <a href="how-it-works.html" role="menuitem">Job Wrap</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="dd-solutions">
+          <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Solutions
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <span class="menu-label">By Outcome</span>
+            <a href="ai-receptionist.html" role="menuitem">Never Miss a Call</a>
+            <a href="how-it-works.html" role="menuitem">Automate Follow-Ups</a>
+            <a href="how-it-works.html" role="menuitem">Send Estimates Fast</a>
+            <span class="menu-label">By Industry</span>
+            <a href="demo-sites.html" role="menuitem">Browse Demo Sites</a>
+          </div>
+        </div>
         <a href="how-it-works.html">How It Works</a>
-        <a href="demo.html">Demo</a>
         <a href="pricing.html" aria-current="page">Pricing</a>
         <a href="faq.html">FAQ</a>
       </nav>
-      <a href="tel:+14109959730" class="nav-phone btn-ghost-brand">(410) 995-9730</a>
-      <span id="nav-auth-links"></span>
-      <a href="signup.html" class="btn btn-primary btn-sm nav-cta" id="nav-cta-audit">Sign Up Free</a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <span id="nav-auth-links"></span>
+        <a href="signup.html" class="btn btn-primary btn-sm nav-cta" id="nav-cta-audit">Get Started</a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>

@@ -1,5 +1,7 @@
 /* ============================================================
    VENTRY AI — script.js
+   - Theme toggle (dark/light)
+   - Nav dropdowns
    - Sticky header scroll state
    - Mobile nav toggle
    - Intersection Observer fade-up animations
@@ -10,6 +12,80 @@
 
 (function () {
   'use strict';
+
+  /* ----------------------------------------------------------
+     THEME TOGGLE
+  ---------------------------------------------------------- */
+  var themeToggle = document.getElementById('theme-toggle');
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        // switch to dark
+        document.documentElement.removeAttribute('data-theme');
+        try { localStorage.setItem('ventryTheme', 'dark'); } catch(e) {}
+      } else {
+        // switch to light
+        document.documentElement.setAttribute('data-theme', 'light');
+        try { localStorage.setItem('ventryTheme', 'light'); } catch(e) {}
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
+     NAV DROPDOWNS
+  ---------------------------------------------------------- */
+  var dropdowns = document.querySelectorAll('.nav-dropdown');
+
+  dropdowns.forEach(function (dd) {
+    var trigger = dd.querySelector('.nav-dropdown-trigger');
+
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('open');
+
+      // Close all other dropdowns
+      dropdowns.forEach(function (other) {
+        other.classList.remove('open');
+        var t = other.querySelector('.nav-dropdown-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        dd.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Close dropdowns on outside click
+  document.addEventListener('click', function () {
+    dropdowns.forEach(function (dd) {
+      dd.classList.remove('open');
+      var t = dd.querySelector('.nav-dropdown-trigger');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close dropdowns on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      dropdowns.forEach(function (dd) {
+        dd.classList.remove('open');
+        var t = dd.querySelector('.nav-dropdown-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
 
   /* ----------------------------------------------------------
      STICKY HEADER
